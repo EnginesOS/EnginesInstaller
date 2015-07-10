@@ -4,7 +4,7 @@ RUBY_VER=2.2.2
 
 export RUBY_VER
 
-. /tmp/203.14.203.141/EnginesInstaller/routines.sh
+. ./routines.sh
  if test -f /opt/engines/installers/routines.sh
  then
 		. /opt/engines/installers/routines.sh
@@ -31,9 +31,9 @@ set_permissions
 cp -r /opt/engines/system/install_source/* /
 #cat /opt/engines/system/install_source/etc/sudoers >> /etc/sudoers
 
-chmod +x /tmp/203.14.203.141/EnginesInstaller/complete_install.sh
+chmod +x ./complete_install.sh
 
-su -l engines -c /tmp/203.14.203.141/EnginesInstaller/complete_install.sh
+su -l engines -c ./complete_install.sh
 
 
  

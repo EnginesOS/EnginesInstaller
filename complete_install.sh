@@ -1,7 +1,7 @@
 #!/bin/bash
 RUBY_VER=2.2.2
 export RUBY_VER
-. /tmp/203.14.203.141/EnginesInstaller/routines.sh
+. ./routines.sh
 
 rbenv install 2.2.2
 rbenv global 2.2.2
