@@ -1,5 +1,5 @@
 #!/bin/bash
 
-. /opt/engines/installers/routines.sh
+. ${top}/routines.sh
   
 generate_ssl 

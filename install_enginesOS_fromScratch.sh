@@ -32,12 +32,12 @@ make_dirs
 
 set_permissions
 
-cp -r /opt/engines/system/install_source/* /
+#cp -r /opt/engines/system/install_source/* /
 #cat /opt/engines/system/install_source/etc/sudoers >> /etc/sudoers
 
 chmod +x  ${top}/complete_install.sh
 
-su -l engines -c  ${top}/complete_install.sh
+su -l engines -c  ${top}/complete_install.sh ${top}
 
 
  
