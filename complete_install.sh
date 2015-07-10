@@ -22,7 +22,7 @@ setup_mgmt_git
 # /opt/engines/bin/buildimages.sh
 
 touch /opt/engines/.complete_install
-
+create_services 
 sudo reboot
 
 
