@@ -11,7 +11,7 @@ export top
  #then
 #		. /opt/engines/installers/routines.sh
  #fi
- l
+ 
 
 dpkg-reconfigure tzdata
 
