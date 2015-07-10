@@ -19,7 +19,9 @@ dpkg-reconfigure tzdata
 configure_git 
 
 install_docker_and_components
+
 ln -s /opt/engines/bin/set_ip.sh /etc/network/if-up.d/
+
 chown -R engines /opt/engines/
 passwd engines  
 

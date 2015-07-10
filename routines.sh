@@ -92,7 +92,7 @@ echo "Configuring Docker DNS settings"
 	#for systemd
 		if test -f /lib/systemd/system/docker.service
 			then
-				cp /opt/engines/system/install_source/lib/systemd/system/docker.service /lib/systemd/system/docker.service
+				cp ${top}/install_source/lib/systemd/system/docker.service /lib/systemd/system/docker.service
 			fi
 		 update-rc.d docker defaults 
 		 service docker start	
@@ -123,7 +123,7 @@ echo "Setting up engines system user"
 echo "Installing rbenv"
 
 mkdir -p /etc/sudoers.d/
-cp /opt/engines/system/install_source/etc/sudoers.d/engines /etc/sudoers.d/engines 
+cp ${top}/install_source/etc/sudoers.d/engines /etc/sudoers.d/engines 
 
 
 mkdir -p /usr/local/  
