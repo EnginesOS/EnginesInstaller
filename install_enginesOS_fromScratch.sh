@@ -1,11 +1,11 @@
 #!/bin/bash
 
-RUBY_VER=2.1.2
+RUBY_VER=2.2.2
 
 export RUBY_VER
 
-. /tmp/203.14.203.141/EnginesInstaller/routines.sh
-. /opt/engines/installers/routines.sh
+. ./routines.sh
+
 
 
 dpkg-reconfigure tzdata
@@ -20,9 +20,9 @@ set_permissions
 
 passwd engines  
 
-chmod +x /tmp/203.14.203.141/EnginesInstaller/complete_install.sh
+chmod +x ./complete_install.sh
 
-su -l engines -c /tmp/203.14.203.141/EnginesInstaller/complete_install.sh
+su -l engines -c ./complete_install.sh
 
 
  
