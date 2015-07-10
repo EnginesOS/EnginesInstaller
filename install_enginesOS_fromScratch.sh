@@ -37,7 +37,8 @@ set_permissions
 
 chmod +x  ${top}/complete_install.sh
 
-su -l engines -c  ${top}/complete_install.sh ${top}
+echo -n ${top} >/tmp/.install_dir
+su -l engines -c  ${top}/complete_install.sh 
 
 
  
