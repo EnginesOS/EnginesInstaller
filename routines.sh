@@ -77,18 +77,18 @@ echo "Setting up engines system user"
 		echo "PATH=\"/opt/engines/bin:$PATH\"" >>~dockuser/.profile 
 		
 echo "Installing ruby"
-		\curl -L https://get.rvm.io | bash -s stable 
-		echo ". /etc/profile.d/rvm.sh" >> ~dockuser/.login 		
-		echo "rvm  --default use ruby-$RUBY_VER" >> ~dockuser/.profile
+		#\curl -L https://get.rvm.io | bash -s stable 
+		#echo ". /etc/profile.d/rvm.sh" >> ~dockuser/.login 		
+		#echo "rvm  --default use ruby-$RUBY_VER" >> ~dockuser/.profile
 		#/usr/local/rvm/bin/rvm install ruby-$RUBY_VER
 
 		#/usr/local/rvm/bin/rvm  --default use ruby-$RUBY_VER
 		 
-		/usr/local/rvm/wrappers/ruby-2.1.2/gem install git 
+		#/usr/local/rvm/wrappers/ruby-2.2.2/gem install git 
  		#/usr/local/rvm/bin/rvm gemset create git
  		
  		#Following needed for rspec tests
-		/usr/local/rvm/wrappers/ruby-2.1.2/gem install multi_json rspec
+		#/usr/local/rvm/wrappers/ruby-2.1.2/gem install multi_json rspec
 		#/usr/local/rvm/bin/rvm gemset create multi_json
 
 		#/usr/local/rvm/bin/rvm gemset create 	rspec
