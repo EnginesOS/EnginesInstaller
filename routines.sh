@@ -242,7 +242,7 @@ cp -r /opt/engines/etc/ssl/certs /opt/engines/etc/ssl/imap/
 cp -r /opt/engines/etc/ssl/keys /opt/engines/etc/ssl/imap/
 cp -r /opt/engines/etc/ssl/certs /opt/engines/etc/ssl/pgsql/
 cp -r /opt/engines/etc/ssl/keys /opt/engines/etc/ssl/pgsql/private
-
+mkdir -p /opt/engines/etc/auth/access  /opt/engines/etc/auth/scripts  /opt/engines/etc/auth/keys
 }
 
 function set_permissions {
@@ -283,7 +283,7 @@ echo "Setting directory and file permissions"
 	
 	chown 22017 -R /var/log/engines/services/auth/ /var/lib/engines/auth/
 	chown -R 22017 /opt/engines/etc/auth/scripts
-	
+	chown -R 22017 /opt/engines/etc/auth/access
 	chown 22017 -R  /opt/engines/etc/auth/keys/
 	chgrp -R 22020 /opt/engines/run/services/
 	chmod g+w -R  /opt/engines/run/services/
