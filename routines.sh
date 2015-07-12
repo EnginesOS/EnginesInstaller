@@ -185,6 +185,8 @@ keys=""
 }
 
 function make_dirs {
+mkdir -p  /home/engines/db
+touch /home/engines/db/production.sqlite3
 mkdir -p  /var/lib/engines/backup_paths
 mkdir -p  /var/lib/engines/fs/
 mkdir -p  /var/lib/engines/pgsql
@@ -322,6 +324,7 @@ function create_services {
 echo "Creating and starting Engines Services"
 	 /opt/engines/bin/engines.rb service create dns
 	sleep 30
+	/opt/engines/bin/engines.rb service create mgmt
 	 /opt/engines/bin/engines.rb service create mysql_server
 	 /opt/engines/bin/engines.rb service create nginx
 	 /opt/engines/bin/engines.rb service create auth
@@ -359,16 +362,4 @@ openssl genrsa -des3 -out server.key 2048
   
 }
 
-function setup_mgmt_git {
-echo "Seeding Mgmt Application source from repository"
-mkdir -p /opt/engines/system/images/04.systemApps/mgmt/home/app
-	 cd /opt/engines/system/images/04.systemApps/mgmt/home/app
-	  if test ! -f .git/config
-		then
-			git init
-			
-			git remote add -t alpha origin 	https://github.com/EnginesOS/SystemGui.git
-			git fetch 
-		fi
 
-}
