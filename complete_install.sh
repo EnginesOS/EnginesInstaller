@@ -1,4 +1,5 @@
 #!/bin/bash
+#engines section of install run as engines
 RUBY_VER=2.2.2
 export RUBY_VER
 top=`cat /tmp/.install_dir`

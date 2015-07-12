@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#root section of install run as root
 RUBY_VER=2.2.2
 
 export RUBY_VER
@@ -25,8 +25,8 @@ ln -s /opt/engines/bin/set_ip.sh /etc/network/if-up.d/
 chown -R engines /opt/engines/
 passwd engines  
 
-generate_ssl
-
+#generate_ssl
+copy_install_ssl_cert
 
 make_dirs
 
