@@ -340,8 +340,11 @@ docker rm cAdvisor mysql_server backup nginx dns mgmt
 }
 
 function copy_install_ssl_cert {
+echo "install installation ssl cert"
+mkdir -p /opt/engines/etc/ssl/keys/
+mkdir -p /opt/engines/etc/ssl/certs/
 cp ${top}/install_source/ssl/server.key /opt/engines/etc/ssl/keys/engines.key
-cp ${top}/install_source/ssl/server.crt /opt/engines/etc/ssl/keys/engines.crt
+cp ${top}/install_source/ssl/server.crt /opt/engines/etc/ssl/certs/engines.crt
 mkdir -p /opt/engines/etc/nginx/ssl/ /opt/engines/etc/nginx/ssl/
 cp -rp /opt/engines/etc/ssl/certs  /opt/engines/etc/nginx/ssl/
 cp -rp /opt/engines/etc/ssl/keys   /opt/engines/etc/nginx/ssl/
