@@ -20,7 +20,7 @@ function configure_git {
   
  echo "Password for engines (shell) user"
   adduser -q --uid 21000  -gecos "Engines OS User"  --home /home/engines --disabled-password engines
-   
+   passwd engines 
    echo "updating OS to Latest"
   apt-get -y  --force-yes update
   

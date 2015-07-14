@@ -20,7 +20,7 @@ install_docker_and_components
 ln -s /opt/engines/bin/set_ip.sh /etc/network/if-up.d/
 
 chown -R engines /opt/engines/
-passwd engines  
+ 
 
 #setup_ssl
 copy_install_ssl_cert
