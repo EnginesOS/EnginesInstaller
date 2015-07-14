@@ -291,7 +291,7 @@ echo "Setting directory and file permissions"
 	chmod g+w -R  /opt/engines/run/services/
 	 chgrp containers /opt/engines/run/services/*/run
 	 chmod g+w /opt/engines/run/services/*/run
-	
+	 chown root /opt/engines/etc/auth/
 	}
 
 function set_os_flavor {
