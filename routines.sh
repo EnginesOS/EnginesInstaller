@@ -93,7 +93,7 @@ echo "Installing required  packages"
 		
 		 apt-get -y install libssl-dev  imagemagick cmake  dc mysql-client libmysqlclient-dev unzip wget git 
 		
-		 echo 1 > /sys/fs/cgroup/memory.use_hierarchy
+		sh -c echo 1 \> /sys/fs/cgroup/memory.use_hierarchy
 
 echo "Setting up engines system user"
 		 #Kludge should not be a static but a specified or atleaqst checked id
