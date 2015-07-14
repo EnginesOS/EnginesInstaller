@@ -308,11 +308,10 @@ echo "Configuring OS Specific Dockerfiles"
 function create_services {
 echo "Creating and starting Engines Services"
 	 /opt/engines/bin/engines.rb service create dns
-	sleep 30
-	/opt/engines/bin/engines.rb service create mgmt
 	 /opt/engines/bin/engines.rb service create mysql_server
-	 /opt/engines/bin/engines.rb service create nginx
+	/opt/engines/bin/engines.rb service create mgmt
 	 /opt/engines/bin/engines.rb service create auth
+	 /opt/engines/bin/engines.rb service create nginx
 	 /opt/engines/bin/eservices create 
 	
 }
