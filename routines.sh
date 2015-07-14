@@ -37,8 +37,10 @@ function configure_git {
   
   function install_docker_and_components {
   
-  echo "updating OS to Latest"
-  
+ echo "Password for engines (shell) user"
+  adduser -q --uid 21000  -gecos "Engines OS User"  --home /home/engines --disabled-password engines
+   
+   echo "updating OS to Latest"
   apt-get -y  --force-yes update
   
   #Not something we should do as can ask grub questions and will confuse no techy on aws
@@ -51,11 +53,7 @@ function configure_git {
 		 rm  /tmp/rc.local
 		
 		 chmod u+x  /etc/rc.local
-		 
 
-	
-		 
-		 
 		
 echo "Installing Docker"		
 		 apt-get install -y apt-transport-https   linux-image-extra-$(uname -r) lvm2 thin-provisioning-tools openssh-server
@@ -92,18 +90,21 @@ echo "Configuring Docker DNS settings"
 echo "Installing required  packages"		  		  
 		
 		 apt-get -y install libssl-dev  imagemagick cmake  dc mysql-client libmysqlclient-dev unzip wget git 
-		
-		sh -c echo 1 \> /sys/fs/cgroup/memory.use_hierarchy
+		echo 1 > /tmp/memory.use_hierarchy
+		cp /tmp/memory.use_hierarchy /sys/fs/cgroup/memory/memory.use_hierarchy
+		sh -c echo 1 \> /sys/fs/cgroup/memory/memory.use_hierarchy
 
 echo "Setting up engines system user"
 		 #Kludge should not be a static but a specified or atleaqst checked id
-		 adduser -q --uid 21000 --ingroup docker   -gecos "Engines OS User"  --home /home/engines --disabled-password engines
+		 
 		 addgroup engines
 		 addgroup -gid 22020 containers
 		 usermod  -G containers -a engines
+		  usermod  -G docker -a engines
 		 usermod  -G engines engines
 		  usermod -u 22015 backup
 		  usermod  -a -G engines  backup
+		  
 		echo "PATH=\"/opt/engines/bin:$PATH\"" >>~engines/.profile 
 		
 echo "Installing rbenv"
