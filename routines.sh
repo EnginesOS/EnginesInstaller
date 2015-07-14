@@ -82,7 +82,7 @@ echo "Setting up engines system user"
 		 addgroup -gid 22020 containers
 		 usermod  -G containers -a engines
 		  usermod  -G docker -a engines
-		 usermod  -G engines engines
+		 usermod  -G engines -a engines
 		  usermod -u 22015 backup
 		  usermod  -a -G engines  backup
 		  
