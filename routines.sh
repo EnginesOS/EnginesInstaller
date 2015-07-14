@@ -9,28 +9,9 @@ function configure_git {
 	
 	mkdir -p /opt/
 	
-	
-	#engines/
-	#cd /opt/engines/
-	#git init 
+
 	git clone https://github.com/EnginesOS/System.git --branch alpha  --single-branch /opt/engines/
-	#git remote add -t alpha origin 	https://github.com/EnginesOS/System.git
-	#git fetch
-	
-#	echo '[core]
-#	        repositoryformatversion = 0
-#	        filemode = true
-#	        bare = false
-#	        logallrefupdates = true
-#	[branch "master"]
-#	[remote "origin"]
-#	        url = https://github.com/EnginesOS/System
-#	        fetch = +refs/heads/*:refs/remotes/origin/*
-#	[branch "master"]
-#	        remote = origin
-#	        merge = refs/heads/master
-#	' > .git/config
-#	git pull
+
 
 
 }
