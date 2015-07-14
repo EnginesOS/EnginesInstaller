@@ -14,11 +14,12 @@ rbenv  local 2.2.2
 touch /opt/engines/.complete_install
 create_services 
 #sudo reboot
-cp ${top}/install_source/home/engines/follow_start.sh ~
-grep follow_start.sh ~/.bashrc
+cp ${top}/install_source/home/engines/follow_start.sh ~engines
+grep follow_start.sh ~engines/.bashrc
 	if test $? -ne 0
 		then
-			echo  ~/follow_start.sh >> ~/.bashrc
+			echo  ~/follow_start.sh >> ~engines/.bashrc
 	fi
 
 
+~engines/follow_start.sh 
