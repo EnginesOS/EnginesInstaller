@@ -79,7 +79,10 @@ echo "Configuring Docker DNS settings"
 			fi
 		 update-rc.d docker defaults 
 		 service docker start	
-		 systemctl enable docker
+		  if test -f /bin/systemctl
+		  then
+		 	systemctl enable docker
+		 fi
 		 
 		 #need to restart to get dns set
 		 service docker stop
