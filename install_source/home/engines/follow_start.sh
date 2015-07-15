@@ -10,4 +10,8 @@ while ! test -f /opt/engines/run/services/mgmt/run/flags/startup_complete
  
  kill $pid
  
- echo please visit http://extip:10443/
+ gw_ifac=`netstat -nr |grep ^0.0.0.0 | awk '{print $8}'`
+
+lan_ip=`/sbin/ifconfig $gw_ifac |grep "inet addr"  |  cut -f 2 -d: |cut -f 1 -d" "`
+ext_ip=`curl http://canhazip.com`
+echo please visit https://$lan_ip:10443/ or https://$ext_ip:10443/
