@@ -152,9 +152,6 @@ function generate_keys {
 echo "Generating system Keys"
 keys=""
 
-
-
-
 	for key in $keys
 		do
 		  ssh-keygen -q -N "" -f $key
@@ -163,9 +160,6 @@ keys=""
 	      mv $key /opt/engines/etc/keys/
 	      cp $key.pub /opt/engines/system/images/03.serviceImages/$key/
 	   done
-	   
-	 
-
 	
 }
 
