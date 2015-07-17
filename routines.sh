@@ -224,6 +224,24 @@ cp -r /opt/engines/etc/ssl/keys /opt/engines/etc/ssl/imap/
 cp -r /opt/engines/etc/ssl/certs /opt/engines/etc/ssl/pgsql/
 cp -r /opt/engines/etc/ssl/keys /opt/engines/etc/ssl/pgsql/private
 mkdir -p /opt/engines/etc/auth/access  /opt/engines/etc/auth/scripts  /opt/engines/etc/auth/keys
+
+mkdir -p /home/engines/.ssh/mgmt/
+}
+
+function setup_mgmt_keys {
+
+ ssh-keygen -f ~/.ssh/mgmt/restart_system
+ ssh-keygen -f ~/.ssh/mgmt/update_system
+ ssh-keygen -f ~/.ssh/access_system
+ ssh-keygen -f ~/.ssh/mgmt/update_access_system
+ 
+ restart_system_pub=`cat ~/.ssh/mgmt/restart_system.pub`
+ update_system_pub=`cat ~/.ssh/mgmt/update_system.pub`
+ update_access_system_pub=`cat ~/.ssh/mgmt/update_access_system.pub`
+ 
+ echo "command=\"/opt/engines/bin/restart_system.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty ssh-rsa $restart_system_pub engines" >  ~/.ssh/mgmt/authorized_keys
+ echo "command=\"/opt/engines/bin/update_system.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty ssh-rsa $update_system_pub engines" >>  ~/.ssh/mgmt/authorized_keys
+ echo "command=\"/opt/engines/bin/update_system_access.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty ssh-rsa $update_access_system_pub engines" >>  ~/.ssh/mgmt/authorized_keys
 }
 
 function set_permissions {
