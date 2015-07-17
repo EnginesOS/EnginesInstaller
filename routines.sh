@@ -239,9 +239,9 @@ function setup_mgmt_keys {
  update_system_pub=`cat ~/.ssh/mgmt/update_system.pub`
  update_access_system_pub=`cat ~/.ssh/mgmt/update_access_system.pub`
  
- echo "command=\"/opt/engines/bin/restart_system.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty ssh-rsa $restart_system_pub engines" >  ~/.ssh/mgmt/authorized_keys
- echo "command=\"/opt/engines/bin/update_system.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty ssh-rsa $update_system_pub engines" >>  ~/.ssh/mgmt/authorized_keys
- echo "command=\"/opt/engines/bin/update_system_access.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty ssh-rsa $update_access_system_pub engines" >>  ~/.ssh/mgmt/authorized_keys
+ echo "command=\"/opt/engines/bin/restart_system.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $restart_system_pub " >  ~/.ssh/authorized_keys
+ echo "command=\"/opt/engines/bin/update_system.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $update_system_pub " >>  ~/.ssh/authorized_keys
+ echo "command=\"/opt/engines/bin/update_system_access.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $update_access_system_pub " >>  ~/.ssh/authorized_keys
 }
 
 function set_permissions {
