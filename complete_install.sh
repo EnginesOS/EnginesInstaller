@@ -10,6 +10,7 @@ rbenv global 2.2.2
 rbenv  local 2.2.2
  	~/.rbenv/shims/gem install multi_json rspec rubytree git 
 
+setup_mgmt_keys
 
 touch /opt/engines/.complete_install
 create_services 
