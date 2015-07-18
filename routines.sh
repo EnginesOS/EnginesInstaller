@@ -86,6 +86,13 @@ echo "Setting up engines system user"
 		  usermod -u 22015 backup
 		  usermod  -a -G engines  backup
 		  
+		  if test -f /home/ubuntu/.ssh/authorized_keys
+		   then
+		   		cp /home/ubuntu/.ssh/authorized_keys ~/engines/.ssh
+		   		chown engines ~/engines/.ssh/authorized_keys
+		   	fi
+		   
+		  
 		echo "PATH=\"/opt/engines/bin:$PATH\"" >>~engines/.profile 
 		
 echo "Installing rbenv"
