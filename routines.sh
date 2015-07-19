@@ -86,10 +86,12 @@ echo "Setting up engines system user"
 		  usermod -u 22015 backup
 		  usermod  -a -G engines  backup
 		  
-		  if test -f /home/ubuntu/.ssh/authorized_keys
+		  if test -f ~/.ssh/authorized_keys
 		   then
-		   		cp /home/ubuntu/.ssh/authorized_keys ~/engines/.ssh
-		   		chown engines ~/engines/.ssh/authorized_keys
+		   		mkdir -p ~/engines/.ssh/
+		   		chown engines ~/engines/.ssh/
+		   		cp ~/.ssh/authorized_keys ~/engines/.ssh/
+		   		chown engines  ~engines/.ssh/authorized_keys
 		   	fi
 		   
 		  
