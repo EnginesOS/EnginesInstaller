@@ -88,9 +88,9 @@ echo "Setting up engines system user"
 		  
 		  if test -f ~/.ssh/authorized_keys
 		   then
-		   		mkdir -p ~/engines/.ssh/
-		   		chown engines ~/engines/.ssh/
-		   		cp ~/.ssh/authorized_keys ~/engines/.ssh/
+		   		mkdir -p ~engines/.ssh/
+		   		chown engines ~engines/.ssh/
+		   		cp ~/.ssh/authorized_keys ~engines/.ssh/
 		   		chown engines  ~engines/.ssh/authorized_keys
 		   	fi
 		   
@@ -208,7 +208,7 @@ touch /home/engines/db/development.sqlite3
 mkdir -p  /var/lib/engines/mgmt/public/system/
 mkdir -p /home/engines/deployment/deployed/
 mkdir -p  /var/log/engines/services/ftp/proftpd
-99mkdir -p  /var/log/engines/services/auth/ftp/
+mkdir -p  /var/log/engines/services/auth/ftp/
 mkdir -p /opt/engines/etc/auth/keys/
 mkdir -p /var/lib/engines/auth/
 mkdir -p  /opt/engines/etc/cron/tabs
