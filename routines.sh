@@ -37,7 +37,7 @@ function configure_git {
 
 		
 echo "Installing Docker"		
-		 apt-get install -y apt-transport-https   linux-image-extra-$(uname -r) lvm2 thin-provisioning-tools openssh-server
+		 apt-get install -y apt-transport-https  libreadline-dev  linux-image-extra-$(uname -r) lvm2 thin-provisioning-tools openssh-server
 		 echo deb https://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list
 		 apt-get -y update
 #IF AWS	 and not devmapper	 
@@ -208,7 +208,7 @@ touch /home/engines/db/development.sqlite3
 mkdir -p  /var/lib/engines/mgmt/public/system/
 mkdir -p /home/engines/deployment/deployed/
 mkdir -p  /var/log/engines/services/ftp/proftpd
- mkdir -p  /var/log/engines/services/auth/ftp/
+99mkdir -p  /var/log/engines/services/auth/ftp/
 mkdir -p /opt/engines/etc/auth/keys/
 mkdir -p /var/lib/engines/auth/
 mkdir -p  /opt/engines/etc/cron/tabs
@@ -239,10 +239,10 @@ mkdir -p /home/engines/.ssh/mgmt/
 
 function setup_mgmt_keys {
 
- ssh-keygen -f ~/.ssh/mgmt/restart_system
- ssh-keygen -f ~/.ssh/mgmt/update_system
- ssh-keygen -f ~/.ssh/access_system
- ssh-keygen -f ~/.ssh/mgmt/update_access_system
+ ssh-keygen -f ~/.ssh/mgmt/restart_system -N ""
+ ssh-keygen -f ~/.ssh/mgmt/update_system -N ""
+ ssh-keygen -f ~/.ssh/access_system -N ""
+ ssh-keygen -f ~/.ssh/mgmt/update_access_system -N ""
  
  restart_system_pub=`cat ~/.ssh/mgmt/restart_system.pub`
  update_system_pub=`cat ~/.ssh/mgmt/update_system.pub`

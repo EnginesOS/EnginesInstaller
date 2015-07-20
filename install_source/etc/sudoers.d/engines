@@ -7,4 +7,6 @@ engines ALL = (root) NOPASSWD: /sbin/reboot
 engines ALL = (root) NOPASSWD: /opt/engines/scripts/_setup_service_key_dir.sh
 engines ALL = (root) NOPASSWD: /opt/engines/scripts/_setup_service_dir.sh
 engines ALL = (root) NOPASSWD: /opt/engines/scripts/_restart_system.sh
+engines ALL = (root) NOPASSWD: /opt/engines/scripts/_install_cert.sh
+engines ALL = (root) NOPASSWD: /opt/engines/scripts/_install_ca.sh
 #Must have tailing empty line
