@@ -520,7 +520,7 @@ echo "Downloading FTP image"
 echo "Downloading Volmanager image"
 	docker pull engines/volmanager:$release >>/tmp/engines_install.log
 echo "Starting System Services"
-	 /opt/engines/bin/eservices create  >>/tmp/engines_install.log
+	 /opt/engines/bin/eservices check_and_act  >>/tmp/engines_install.log
 	
 }
 function remove_services {
