@@ -2,6 +2,8 @@
 #root section of install run as root
 RUBY_VER=2.2.2
 
+touch /tmp/engines_install.log
+
 
 if test $# -gt 0
 	then

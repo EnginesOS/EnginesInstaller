@@ -101,7 +101,7 @@ function configure_git {
 		   		chown engines  ~engines/.ssh/authorized_keys
 		   	fi
 		   
-		  
+		  chown engines /tmp/engines_install.log
 		echo "PATH=\"/opt/engines/bin:$PATH\"" >>~engines/.profile 
 		
 mkdir -p /etc/sudoers.d/
