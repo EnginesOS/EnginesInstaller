@@ -284,6 +284,8 @@ function setup_backup_dirs {
  mkdir -p  /var/lib/engines/backup_paths
  chown 22015 /var/lib/engines/backup_paths/
  chown 22015 /var/log/engines/services/backup/
+ mkdir -p /opt/engines/etc/backup/configs
+ chown 22015 /opt/engines/etc/backup/configs
  }
  
  function setup_dns_dirs {
