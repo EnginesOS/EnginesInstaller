@@ -16,7 +16,7 @@ setup_mgmt_keys
 
 echo Installation complete
 touch ~/.complete_install
-
+ /opt/engines/bin/set_ip.sh
 echo Downloading and starting services
 create_services  
 
