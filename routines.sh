@@ -1,3 +1,10 @@
+#*******************************************************************************
+# Copyright (c) 2015 P3Nominees.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License v2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+#*******************************************************************************
 #!/bin/bash
 RUBY_VER=2.2.2
 
@@ -7,7 +14,7 @@ function configure_git {
 	echo "Installing base Engines System"
 	apt-get install -y git	>/dev/null
 	mkdir -p /opt/	
-	git clone https://github.com/EnginesOS/System.git --branch $branch  --single-branch /opt/engines/
+	git clone https://github.com/EnginesOS/System.git --branch $branch  --single-branch /opt/engines/ 	>/dev/null
 	#echo $branch > /opt/engines/release
 
 
@@ -23,7 +30,7 @@ function configure_git {
   apt-get -y  --force-yes update >/dev/null
   
   #Perhaps Not something we should do as can ask grub questions and will confuse no techy on aws
-  apt-get -y  upgrade /dev/null
+  apt-get -y  upgrade > /dev/null
   }
   
   function setup_startup_script {
