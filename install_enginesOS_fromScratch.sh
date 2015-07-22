@@ -17,9 +17,12 @@ configure_git
 
 install_docker_and_components
 
-ln -s /opt/engines/bin/set_ip.sh /etc/network/if-up.d/
+if ! test -f  /etc/network/if-up.d/set_ip.sh
+ then 
+	ln -s /opt/engines/bin/set_ip.sh /etc/network/if-up.d/
+fi
 
-chown -R engines /opt/engines/
+#chown -R engines /opt/engines/
  
 
 

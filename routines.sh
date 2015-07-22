@@ -186,6 +186,7 @@ echo "Creating Management Service Dirs"
 	chown 21000  /home/engines/db/development.sqlite3
 	
 	chown -R 21000 /home/engines/db/
+	mkdir -p /opt/engines/run/service_manager/
 	chown -R 21000 /opt/engines/run/service_manager/
 	chown -R 21000 /home/engines/deployment/deployed/
 	chown -R 21000 /var/lib/engines ~engines/  /var/log/engines  /var/lib/engines/mgmt/public/system/
@@ -211,7 +212,8 @@ echo "Creating FS Dirs"
 mkdir -p  /var/lib/engines/
 mkdir -p  /var/lib/engines/fs/
 
-chown -R 21000 /var/lib/engines  /var/log/engines 
+chown -R 21000 /var/lib/engines   
+
 }
 function setup_log_dir {
 echo "Creating Log Dirs"
@@ -322,9 +324,8 @@ mkdir -p /opt/engines/etc/auth/access  /opt/engines/etc/auth/scripts  /opt/engin
 	 chgrp containers /opt/engines/run/services/*/run
 	 chmod g+w /opt/engines/run/services/*/run
 	 chown root /opt/engines/etc/auth/
-	 mkdir -p   /opt/engines/run/service_manager/
-	 chown 21000 /opt/engines/run/service_manager/
 	 }
+	 
  function setup_email_dirs {
    echo "setting up  Email Dirs"
  mkdir -p /var/log/engines/services/email/apache2
@@ -335,6 +336,8 @@ function make_dirs {
 	
 	setup_fs_dir
 	setup_log_dir
+	setup_cert_auth_dirs
+	setup_auth_dirs
 	setup_mgmt_dirs
 	setup_nginx_dirs
 	setup_mysql_dirs
@@ -345,8 +348,7 @@ function make_dirs {
 	setup_imap_dirs
 	setup_ftp_dirs
 	setup_mongo_dirs
-	setup_cert_auth_dirs
-	setup_auth_dirs
+	
 	setup_cron_dirs
 	setup_email_dirs
 	setup_run_dirs
