@@ -22,12 +22,13 @@ ln -s /opt/engines/bin/set_ip.sh /etc/network/if-up.d/
 chown -R engines /opt/engines/
  
 
-#setup_ssl
-copy_install_ssl_cert
 
 make_dirs
+copy_install_ssl_cert
 
-set_permissions
+
+
+#set_permissions
 
 
 

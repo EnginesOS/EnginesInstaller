@@ -172,73 +172,217 @@ keys=""
 	
 }
 
-function make_dirs {
-mkdir -p  /home/engines/db
-touch /home/engines/db/production.sqlite3
-mkdir -p  /var/lib/engines/backup_paths
-mkdir -p  /var/lib/engines/fs/
-mkdir -p  /var/lib/engines/pgsql
-mkdir -p  /var/lib/engines/mysql
-mkdir -p  /var/lib/engines/mongo
-mkdir -p  /var/log/engines/services/nginx/nginx
-mkdir -p  /var/log/engines/services/backup
-mkdir -p  /var/log/engines/services/mgmt
-mkdir -p  /var/log/engines/services/pgsql/
-mkdir -p  /var/log/engines/services/nfs/
+function setup_mgmt_dirs {
+echo "Creating Management Service Dirs"
+	mkdir -p  /home/engines/db
+	touch /home/engines/db/production.sqlite3
+	touch /home/engines/db/development.sqlite3
+	mkdir -p  /var/log/engines/services/mgmt
+	mkdir -p /home/engines/deployment/deployed/
+	mkdir -p  /var/lib/engines/mgmt/public/system/
+	mkdir -p /home/engines/.ssh/mgmt/
+	
+	chown 21000  /home/engines/db/production.sqlite3
+	chown 21000  /home/engines/db/development.sqlite3
+	
+	chown -R 21000 /home/engines/db/
+	chown -R 21000 /opt/engines/run/service_manager/
+	chown -R 21000 /home/engines/deployment/deployed/
+	chown -R 21000 /var/lib/engines ~engines/  /var/log/engines  /var/lib/engines/mgmt/public/system/
+}
 
-mkdir -p  /var/log/engines/services/mysql/
-mkdir -p  /var/log/engines/services/dns/
-mkdir -p /var/log/engines/services/smtp/
+function setup_nginx_dirs {
+	echo "Creating Nginx Service Dirs"
+	mkdir -p  /var/log/engines/services/nginx/nginx
+	mkdir -p /opt/engines/run/services/nginx/run/nginx/
+	chown -R 22005.22005 /var/log/engines/services/nginx /opt/engines/run/services/nginx/run/nginx
+}
+
+function setup_mysql_dirs {
+	echo "Creating MySQL Service Dirs"
+	mkdir -p  /var/lib/engines/mysql 
+	mkdir -p /var/log/engines/services/mysql/
+	mkdir -p  /opt/engines/run/services/mysql_server/run/mysqld
+		chown -R 22006.22006  /var/lib/engines/mysql /var/log/engines/services/mysql/ /opt/engines/run/services/mysql_server/run/mysqld	
+}
+
+function setup_fs_dir {
+echo "Creating FS Dirs"
+mkdir -p  /var/lib/engines/
+mkdir -p  /var/lib/engines/fs/
+
+chown -R 21000 /var/lib/engines  /var/log/engines 
+}
+function setup_log_dir {
+echo "Creating Log Dirs"
+mkdir -p  /var/log/engines
 mkdir -p /var/log/engines/containers/
-mkdir -p /opt/engines/
-mkdir -p  /var/lib/engines/mysql /var/log/engines/services/mysql/ /opt/engines/run/services/mysql_server/run/mysqld
-mkdir -p /var/lib/engines/mysql /var/log/engines/services/mysql/ /opt/engines/run/services/mysql_server/run/mysqld
-mkdir -p /var/lib/engines/pgsql /var/log/engines/services/pgsql	/opt/engines/run/services/pgsql_server/run/postgres
-mkdir -p /var/log/engines/services/nginx /opt/engines/run/services/nginx/run/nginx
-mkdir -p /var/lib/engines/mongo /var/log/engines/services/mongo_server	/opt/engines/run/services/mongo_server/run/mongo/
-mkdir -p /opt/engines/run/services/dns/run/dns
-mkdir -p /opt/engines/run/services/mysql_server/run/mysqld
-mkdir -p /opt/engines/run/services/nginx/run/nginx/
-mkdir -p /var/lib/engines/imap/lib
-mkdir -p /var/lib/engines/imap/mail
-mkdir -p /opt/engines/etc/syslog/conf/
-mkdir -p /home/engines/db
-touch /home/engines/db/production.sqlite3
-touch /home/engines/db/development.sqlite3
-mkdir -p  /var/lib/engines/mgmt/public/system/
-mkdir -p /home/engines/deployment/deployed/
-mkdir -p  /var/log/engines/services/ftp/proftpd
-mkdir -p  /var/log/engines/services/auth/ftp/
-mkdir -p /opt/engines/etc/auth/keys/
-mkdir -p /var/lib/engines/auth/
-mkdir -p  /opt/engines/etc/cron/tabs
-mkdir -p /var/log/engines/services/cron
-mkdir -p    /opt/engines/run/service_manager/
-mkdir -p /home/engines/db/
-touch  /home/engines/db/production.sqlite3
-mkdir -p /home/engines/deployment/deployed/
-mkdir -p  /opt/engines/etc/keys
+chown -R 21000 /var/log/engines 
 mkdir -p /var/log/engines/services/syslog/rmt
-mkdir -p /var/log/engines/services/email/apache2
-mkdir -p /opt/engines/etc/backup/configs
-mkdir -p /opt/engines/etc/ssl/imap
-mkdir -p /opt/engines/etc/ssl/smtp
+chown  22012 -R  /var/log/engines/services/syslog
+
+
+}
+
+function setup_pqsql_dirs {
+echo "Createing Postgresl"
+mkdir -p  /var/lib/engines/pgsql
+mkdir -p  /var/log/engines/services/pgsql/
+mkdir -p  /opt/engines/run/services/pgsql_server/run/postgres
 mkdir -p /opt/engines/etc/ssl/pgsql/
-mkdir -p /opt/engines/etc/smtp
-mkdir -p /opt/engines/ssh/keys/services/
-cp -r /opt/engines/etc/ssl/certs /opt/engines/etc/ssl/smtp/
-cp -r /opt/engines/etc/ssl/keys /opt/engines/etc/ssl/smtp/
-cp -r /opt/engines/etc/ssl/certs /opt/engines/etc/ssl/imap/
-cp -r /opt/engines/etc/ssl/keys /opt/engines/etc/ssl/imap/
 cp -r /opt/engines/etc/ssl/certs /opt/engines/etc/ssl/pgsql/
 cp -r /opt/engines/etc/ssl/keys /opt/engines/etc/ssl/pgsql/private
-mkdir -p /opt/engines/etc/auth/access  /opt/engines/etc/auth/scripts  /opt/engines/etc/auth/keys
-mkdir -p /var/lib/engines/certs/ca
-mkdir -p /var/lib/engines/certs/keys
-mkdir -p /var/lib/engines/certs/certs
+chown -R 22002 /opt/engines/etc/ssl/pgsql
+chmod og-rw -R /opt/engines/etc/ssl/pgsql
+chown -R 22002.22002	/var/lib/engines/pgsql /var/log/engines/services/pgsql	/opt/engines/run/services/pgsql_server/run/postgres
+
+}
+function setup_smtp_dirs {
+mkdir -p /var/log/engines/services/smtp/
+mkdir -p /opt/engines/etc/ssl/smtp
+cp -r /opt/engines/etc/ssl/certs /opt/engines/etc/ssl/smtp/
+cp -r /opt/engines/etc/ssl/keys /opt/engines/etc/ssl/smtp/
+ chown 22003 -R /var/log/engines/services/smtp/ /opt/engines/etc/ssl/smtp/ 
+ chmod og-rw -R /opt/engines/etc/ssl/smtp/keys/
+}
+
+function setup_backup_dirs {
+ echo "Seting up backup Dirs"
+ mkdir -p  /var/log/engines/services/backup
+ mkdir -p  /var/lib/engines/backup_paths
+ chown 22015 /var/lib/engines/backup_paths/
+ chown 22015 /var/log/engines/services/backup/
+ }
+ 
+ function setup_dns_dirs {
+ echo "setting up DNS Dirs"
+ 	mkdir -p  /var/log/engines/services/dns/
+ 	mkdir -p /opt/engines/run/services/dns/run/dns
+ 	chown -R 22009.22009 /opt/engines/run/services/dns/run/dns /var/log/engines/services/dns/
+ }
+ 
+ function setup_imap_dirs {
+ 	echo "setting up Imap Dirs"
+ 	mkdir -p /var/lib/engines/imap/lib
+	mkdir -p /var/lib/engines/imap/mail
+	mkdir -p /opt/engines/etc/ssl/imap
+	cp -r /opt/engines/etc/ssl/certs /opt/engines/etc/ssl/imap/
+	cp -r /opt/engines/etc/ssl/keys /opt/engines/etc/ssl/imap/
+	chown -R 22013 /var/lib/engines/imap
+	chown -R 22013 /opt/engines/etc/ssl/imap
+	chmod og-rw -R /opt/engines/etc/ssl/imap
+	
+ }
+ 
+ function setup_ftp_dirs {
+ echo "setting up FTP Dirs"
+  mkdir -p  /var/log/engines/services/ftp/proftpd
+ chown -R 22010 /var/log/engines/services/ftp
+ 
+ }
+ function setup_mongo_dirs {
+ echo "setting up mongo Dirs"
+ mkdir -p /var/lib/engines/mongo /var/log/engines/services/mongo_server	/opt/engines/run/services/mongo_server/run/mongo/
+ chown -R 22008.22008 /var/lib/engines/mongo /var/log/engines/services/mongo_server	/opt/engines/run/services/mongo_server/run/mongo/
+ }
+ 
+ function setup_cert_auth_dirs {
+ echo "setting up Cert Auth Dirs"
+mkdir -p /var/lib/engines/cert_auth/ca
+mkdir -p /var/lib/engines/cert_auth/keys
+mkdir -p /var/lib/engines/cert_auth/certs
+chown 22022 -R /var/lib/engines/cert_auth
+mkdir -p  /var/log/engines/services/cert_auth/
+chown 22022 -R /var/lib/engines/cert_auth
 touch /var/lib/engines/cert_auth/ca/system_CA.pem
 ln -s /var/lib/engines/cert_auth/ca/system_CA.pem /usr/local/share/ca-certificates/engines_internal_ca.crt
-mkdir -p /home/engines/.ssh/mgmt/
+
+ }
+ function setup_auth_dirs {
+  echo "setting up  Auth Dirs"
+mkdir -p /opt/engines/etc/auth/keys/
+mkdir -p /var/lib/engines/auth/
+mkdir -p /opt/engines/etc/auth/access  /opt/engines/etc/auth/scripts  /opt/engines/etc/auth/keys
+	chown 22017 -R /var/log/engines/services/auth/ /var/lib/engines/auth/
+	chown -R 22017 /opt/engines/etc/auth/scripts
+	chown -R 22017 /opt/engines/etc/auth/access
+	chown 22017 -R  /opt/engines/etc/auth/keys/
+ }
+ function setup_cron_dirs {
+   echo "setting up  Cron Dirs"
+ mkdir -p /var/log/engines/services/cron 
+ chown 22017 -R  22016 /var/log/engines/services/cron
+
+ }
+ 
+ function setup_run_dirs {
+  echo "setting up  Run Dirs"
+ 	chgrp -R 22020 /opt/engines/run/services/
+	chmod g+w -R  /opt/engines/run/services/
+	 chgrp containers /opt/engines/run/services/*/run
+	 chmod g+w /opt/engines/run/services/*/run
+	 chown root /opt/engines/etc/auth/
+	 mkdir -p   /opt/engines/run/service_manager/
+	 chown 21000 /opt/engines/run/service_manager/
+	 }
+ function setup_email_dirs {
+   echo "setting up  Email Dirs"
+ mkdir -p /var/log/engines/services/email/apache2
+ chown 22003 -R /var/log/engines/services/email/
+ }
+ 
+function make_dirs {
+	
+	setup_fs_dir
+	setup_log_dir
+	setup_mgmt_dirs
+	setup_nginx_dirs
+	setup_mysql_dirs
+	setup_pqsql_dirs 
+	setup_smtp_dirs
+	setup_backup_dirs
+	setup_dns_dirs
+	setup_imap_dirs
+	setup_ftp_dirs
+	setup_mongo_dirs
+	setup_cert_auth_dirs
+	setup_auth_dirs
+	setup_cron_dirs
+	setup_email_dirs
+	setup_run_dirs
+	
+
+
+
+
+mkdir -p  /var/log/engines/services/nfs/
+
+
+
+
+#mkdir -p  /var/log/engines/services/auth/ftp/
+
+#mkdir -p  /opt/engines/etc/cron/tabs
+
+
+
+
+
+#mkdir -p  /opt/engines/etc/keys
+
+
+
+
+
+
+
+#mkdir -p /opt/engines/ssh/keys/services/
+
+
+
+
+
+
 }
 
 function setup_mgmt_keys {
@@ -260,48 +404,18 @@ function setup_mgmt_keys {
 function set_permissions {
 echo "Setting directory and file permissions"
 	chown -R engines /opt/engines/ /var/lib/engines ~engines/  /var/log/engines  /var/lib/engines/mgmt/public/system/
-	chown -R 22006.22006  /var/lib/engines/mysql /var/log/engines/services/mysql/ /opt/engines/run/services/mysql_server/run/mysqld
-	chown -R 22002.22002	/var/lib/engines/pgsql /var/log/engines/services/pgsql	/opt/engines/run/services/pgsql_server/run/postgres
-	chown -R 22005.22005 /var/log/engines/services/nginx /opt/engines/run/services/nginx/run/nginx
-    chown -R 22008.22008 /var/lib/engines/mongo /var/log/engines/services/mongo_server	/opt/engines/run/services/mongo_server/run/mongo/
-	chown -R 22009.22009 /opt/engines/run/services/dns/run/dns
-	chown -R 22010 /var/log/engines/services/ftp
-	 
-	chown  engines   /opt/engines/etc/syslog/conf/
-	chown  22012 -R  /var/log/engines/services/syslog
-	chown  22012 /var/log/engines/services/syslog
 
-	chown 22005 /opt/engines/run/services/nginx/run/nginx/
-	chown 21000  /home/engines/db/production.sqlite3
-	chown 21000  /home/engines/db/development.sqlite3
-	chown -R 21000 /opt/engines/etc/keys
-	chown -R 21000 /home/engines/db/
-	chown -R 21000 /opt/engines/run/service_manager/
-	chown -R 21000 /home/engines/deployment/deployed/
-	chown -R 22013 /var/lib/engines/imap
-	chown -R 22013  /var/lib/engines/imap/mail
-	chown -R 22013 /opt/engines/etc/ssl/imap
-	chmod og-rw -R /opt/engines/etc/ssl/imap
-	chown -R 22002 /opt/engines/etc/ssl/pgsql
-	chmod og-rw -R /opt/engines/etc/ssl/pgsql
-	chown 22003 -R /opt/engines/etc/smtp
-	chown 22017 -R  /opt/engines/ssh/keys/services/
-	chown 22018 -R  /var/log/engines/services/nfs/
-	 chown 22003 -R /var/log/engines/services/email/
-	 chown  -R 22015 /opt/engines/etc/backup/
-	chown 22015 /var/lib/engines/backup_paths/
-	chown 22015 /var/log/engines/services/backup/
-	chown 22022 -R /var/lib/engines/cert_auth
+ 
+	#chown  engines   /opt/engines/etc/syslog/conf/
+
+	#chown -R 21000 /opt/engines/etc/keys
+
+	#chown 22003 -R /opt/engines/etc/smtp
 	
-	chown 22017 -R /var/log/engines/services/auth/ /var/lib/engines/auth/
-	chown -R 22017 /opt/engines/etc/auth/scripts
-	chown -R 22017 /opt/engines/etc/auth/access
-	chown 22017 -R  /opt/engines/etc/auth/keys/
-	chgrp -R 22020 /opt/engines/run/services/
-	chmod g+w -R  /opt/engines/run/services/
-	 chgrp containers /opt/engines/run/services/*/run
-	 chmod g+w /opt/engines/run/services/*/run
-	 chown root /opt/engines/etc/auth/
+	#chown 22018 -R  /var/log/engines/services/nfs/
+	 
+	# chown  -R 22015 /opt/engines/etc/backup/
+
 	}
 
 function set_os_flavor {
