@@ -233,7 +233,11 @@ cp -r /opt/engines/etc/ssl/keys /opt/engines/etc/ssl/imap/
 cp -r /opt/engines/etc/ssl/certs /opt/engines/etc/ssl/pgsql/
 cp -r /opt/engines/etc/ssl/keys /opt/engines/etc/ssl/pgsql/private
 mkdir -p /opt/engines/etc/auth/access  /opt/engines/etc/auth/scripts  /opt/engines/etc/auth/keys
-
+mkdir -p /var/lib/engines/certs/ca
+mkdir -p /var/lib/engines/certs/keys
+mkdir -p /var/lib/engines/certs/certs
+touch /var/lib/engines/cert_auth/ca/system_CA.pem
+ln -s /var/lib/engines/cert_auth/ca/system_CA.pem /usr/local/share/ca-certificates/engines_internal_ca.crt
 mkdir -p /home/engines/.ssh/mgmt/
 }
 
@@ -287,7 +291,7 @@ echo "Setting directory and file permissions"
 	 chown  -R 22015 /opt/engines/etc/backup/
 	chown 22015 /var/lib/engines/backup_paths/
 	chown 22015 /var/log/engines/services/backup/
-	
+	chown 22022 -R /var/lib/engines/cert_auth
 	
 	chown 22017 -R /var/log/engines/services/auth/ /var/lib/engines/auth/
 	chown -R 22017 /opt/engines/etc/auth/scripts

@@ -15,12 +15,12 @@ setup_mgmt_keys
 touch /opt/engines/.complete_install
 create_services 
 #sudo reboot
-cp ${top}/install_source/home/engines/follow_start.sh ~engines
+
 grep follow_start.sh ~engines/.bashrc
 	if test $? -ne 0
 		then
-			echo  ~/follow_start.sh >> ~engines/.bashrc
+			echo  /opt/engines/bin/follow_start.sh >> ~engines/.bashrc
 	fi
 
 
-~engines/follow_start.sh 
+/opt/engines/bin/follow_start.sh 
