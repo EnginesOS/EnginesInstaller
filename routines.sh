@@ -1,3 +1,5 @@
+#!/bin/bash
+RUBY_VER=2.2.2
 #*******************************************************************************
 # Copyright (c) 2015 P3Nominees.
 # All rights reserved. This program and the accompanying materials
@@ -5,8 +7,7 @@
 # which accompanies this distribution, and is available at
 # http://www.apache.org/licenses/LICENSE-2.0
 #*******************************************************************************
-#!/bin/bash
-RUBY_VER=2.2.2
+
 
 
 
@@ -200,6 +201,7 @@ keys=""
 function setup_mgmt_dirs {
 echo "Creating Management Service Dirs"
 	mkdir -p  /home/engines/db
+	
 	touch /home/engines/db/production.sqlite3
 	touch /home/engines/db/development.sqlite3
 	mkdir -p  /var/log/engines/services/mgmt
@@ -215,10 +217,12 @@ echo "Creating Management Service Dirs"
 	chown -R 21000 /opt/engines/run/service_manager/
 	chown -R 21000 /home/engines/deployment/deployed/
 	chown -R 21000 /var/lib/engines ~engines/  /var/log/engines  /var/lib/engines/mgmt/public/system/
+	
+	
 }
 
 function setup_nginx_dirs {
-	echo "Creating Nginx Service Dirs"
+	echo "Setup Nginx "
 	mkdir -p  /var/log/engines/services/nginx/nginx
 	mkdir -p /opt/engines/run/services/nginx/run/nginx/
 	chown -R 22005.22005 /var/log/engines/services/nginx /opt/engines/run/services/nginx/run/nginx
@@ -252,7 +256,7 @@ chown  22012 -R  /var/log/engines/services/syslog
 }
 
 function setup_pqsql_dirs {
-echo "Createing Postgresl"
+echo "Setting up Postgresl"
 mkdir -p  /var/lib/engines/pgsql
 mkdir -p  /var/log/engines/services/pgsql/
 mkdir -p  /opt/engines/run/services/pgsql_server/run/postgres
@@ -265,6 +269,7 @@ chown -R 22002.22002	/var/lib/engines/pgsql /var/log/engines/services/pgsql	/opt
 
 }
 function setup_smtp_dirs {
+ echo "Setting up SMTP "
 mkdir -p /var/log/engines/services/smtp/
 mkdir -p /opt/engines/etc/ssl/smtp
 cp -r /opt/engines/etc/ssl/certs /opt/engines/etc/ssl/smtp/
@@ -274,7 +279,7 @@ cp -r /opt/engines/etc/ssl/keys /opt/engines/etc/ssl/smtp/
 }
 
 function setup_backup_dirs {
- echo "Seting up backup Dirs"
+ echo "Seting up Backup "
  mkdir -p  /var/log/engines/services/backup
  mkdir -p  /var/lib/engines/backup_paths
  chown 22015 /var/lib/engines/backup_paths/
@@ -282,14 +287,14 @@ function setup_backup_dirs {
  }
  
  function setup_dns_dirs {
- echo "setting up DNS Dirs"
+ echo "Setting up DNS "
  	mkdir -p  /var/log/engines/services/dns/
  	mkdir -p /opt/engines/run/services/dns/run/dns
  	chown -R 22009.22009 /opt/engines/run/services/dns/run/dns /var/log/engines/services/dns/
  }
  
  function setup_imap_dirs {
- 	echo "setting up Imap Dirs"
+ 	echo "Setting up Imap "
  	mkdir -p /var/lib/engines/imap/lib
 	mkdir -p /var/lib/engines/imap/mail
 	mkdir -p /opt/engines/etc/ssl/imap
@@ -302,19 +307,19 @@ function setup_backup_dirs {
  }
  
  function setup_ftp_dirs {
- echo "setting up FTP Dirs"
+ echo "Setting up FTP "
   mkdir -p  /var/log/engines/services/ftp/proftpd
  chown -R 22010 /var/log/engines/services/ftp
  
  }
  function setup_mongo_dirs {
- echo "setting up mongo Dirs"
+ echo "Setting up mongo "
  mkdir -p /var/lib/engines/mongo /var/log/engines/services/mongo_server	/opt/engines/run/services/mongo_server/run/mongo/
  chown -R 22008.22008 /var/lib/engines/mongo /var/log/engines/services/mongo_server	/opt/engines/run/services/mongo_server/run/mongo/
  }
  
  function setup_cert_auth_dirs {
- echo "setting up Cert Auth Dirs"
+ echo "Setting up Cert Auth "
 mkdir -p /var/lib/engines/cert_auth/ca
 mkdir -p /var/lib/engines/cert_auth/keys
 mkdir -p /var/lib/engines/cert_auth/certs
@@ -327,7 +332,7 @@ ln -s /var/lib/engines/cert_auth/ca/system_CA.pem /opt/engines/etc/ca/engines_in
 
  }
  function setup_auth_dirs {
-  echo "setting up  Auth Dirs"
+  echo "Setting up  Auth "
 mkdir -p /opt/engines/etc/auth/keys/
 mkdir -p /var/lib/engines/auth/
 mkdir -p /var/log/engines/services/auth/ 
@@ -345,12 +350,17 @@ mkdir -p /opt/engines/etc/auth/access  /opt/engines/etc/auth/scripts  /opt/engin
  }
  
  function setup_run_dirs {
-  echo "setting up  Run Dirs"
+  echo "Setting up  Run Dirs"
+   chown 21000 /opt/engines/run/services/ /opt/engines/run/containers/
  	chgrp -R 22020 /opt/engines/run/services/
 	chmod g+w -R  /opt/engines/run/services/
 	 chgrp containers /opt/engines/run/services/*/run
 	 chmod g+w /opt/engines/run/services/*/run
 	 chown root /opt/engines/etc/auth/
+	  mkdir /opt/engines/run/cid
+	  chown 21000 /opt/engines/run/cid
+	 chown 21000 -R /opt/engines/run/services/
+	 chown 21000 -R /opt/engines/run/containers/
 	 }
 	 
  function setup_email_dirs {
@@ -466,9 +476,9 @@ echo "Creating and starting Engines Services"
 release=`cat /opt/engines/release`
 
 echo "Downloading DNS image"
-docker pull engines/dns:$release
+docker pull engines/dns:$release >/dev/null 
 echo "Downloading Syslog image"
-docker pull engines/syslog:$release
+docker pull engines/syslog:$release >/dev/null 
 
 echo "Starting DNS"
 	 /opt/engines/bin/engines.rb service create dns >/dev/null
@@ -484,7 +494,7 @@ echo "Downloading Auth image"
 	 docker pull engines/auth:$release >/dev/null 
 echo "Starting Auth"
 	 /opt/engines/bin/engines.rb service create auth >/dev/null
-echo "Downloading Web Router  image"
+echo "Downloading Web Router image"
 	  docker pull engines/nginx:$release >/dev/null
 echo "Starting Web Router"
 	 /opt/engines/bin/engines.rb service create nginx >/dev/null
@@ -500,7 +510,7 @@ echo "Downloading FTP image"
 	docker pull engines/ftp:$release >/dev/null
 echo "Downloading Volmanager image"
 	docker pull engines/volmanager:$release >/dev/null
-echo "Starting system services"
+echo "Starting System Services"
 	 /opt/engines/bin/eservices create  >/dev/null
 	
 }
