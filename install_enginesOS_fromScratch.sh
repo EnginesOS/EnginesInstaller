@@ -27,7 +27,7 @@ fi
 
 
 make_dirs
-copy_install_ssl_cert
+
 
 
 

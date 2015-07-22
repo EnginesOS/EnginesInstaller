@@ -297,7 +297,8 @@ chown 22022 -R /var/lib/engines/cert_auth
 mkdir -p  /var/log/engines/services/cert_auth/
 chown 22022 -R /var/lib/engines/cert_auth
 touch /var/lib/engines/cert_auth/ca/system_CA.pem
-ln -s /var/lib/engines/cert_auth/ca/system_CA.pem /usr/local/share/ca-certificates/engines_internal_ca.crt
+mkdir -p /opt/engines/etc/ca/
+ln -s /var/lib/engines/cert_auth/ca/system_CA.pem /opt/engines/etc/ca/engines_internal_ca.crt
 
  }
  function setup_auth_dirs {
@@ -337,6 +338,7 @@ function make_dirs {
 	setup_fs_dir
 	setup_log_dir
 	setup_cert_auth_dirs
+	copy_install_ssl_cert
 	setup_auth_dirs
 	setup_mgmt_dirs
 	setup_nginx_dirs
