@@ -305,6 +305,7 @@ ln -s /var/lib/engines/cert_auth/ca/system_CA.pem /opt/engines/etc/ca/engines_in
   echo "setting up  Auth Dirs"
 mkdir -p /opt/engines/etc/auth/keys/
 mkdir -p /var/lib/engines/auth/
+mkdir -p /var/log/engines/services/auth/ 
 mkdir -p /opt/engines/etc/auth/access  /opt/engines/etc/auth/scripts  /opt/engines/etc/auth/keys
 	chown 22017 -R /var/log/engines/services/auth/ /var/lib/engines/auth/
 	chown -R 22017 /opt/engines/etc/auth/scripts
@@ -314,7 +315,7 @@ mkdir -p /opt/engines/etc/auth/access  /opt/engines/etc/auth/scripts  /opt/engin
  function setup_cron_dirs {
    echo "setting up  Cron Dirs"
  mkdir -p /var/log/engines/services/cron 
- chown 22017 -R  22016 /var/log/engines/services/cron
+ chown -R  22016 /var/log/engines/services/cron
 
  }
  
