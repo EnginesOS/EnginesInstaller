@@ -13,9 +13,9 @@ RUBY_VER=2.2.2
 
 function configure_git {
 	echo "Installing base Engines System"
-	apt-get install -y git	>/dev/null
+	apt-get install -y git	>>/tmp/engines_install.log
 	mkdir -p /opt/	
-	git clone https://github.com/EnginesOS/System.git --branch $branch  --single-branch /opt/engines/ 	>/dev/null
+	git clone https://github.com/EnginesOS/System.git --branch $branch  --single-branch /opt/engines/ 	>>/tmp/engines_install.log
 	#echo $branch > /opt/engines/release
 
 
@@ -28,10 +28,10 @@ function configure_git {
   }
   function update_os {
    echo "updating OS to Latest"
-  apt-get -y  --force-yes update >/dev/null
+  apt-get -y  --force-yes update >>/tmp/engines_install.log
   
   #Perhaps Not something we should do as can ask grub questions and will confuse no techy on aws
-  apt-get -y  upgrade > /dev/null
+  apt-get -y  upgrade  >>/tmp/engines_install.log
   }
   
   function setup_startup_script {
@@ -46,13 +46,13 @@ function configure_git {
   
   function install_docker_components {
   echo "Installing Docker"		
-		 apt-get install -y apt-transport-https  libreadline-dev  linux-image-extra-$(uname -r) lvm2 thin-provisioning-tools openssh-server >/dev/null
+		 apt-get install -y apt-transport-https  libreadline-dev  linux-image-extra-$(uname -r) lvm2 thin-provisioning-tools openssh-server >>/tmp/engines_install.log
 		 echo deb https://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list
-		 apt-get -y update >/dev/null
+		 apt-get -y update >>/tmp/engines_install.log
  
 	
-		 wget -qO- https://get.docker.io/gpg | apt-key add - >/dev/null
-		 apt-get -y  --force-yes install lxc-docker >/dev/null
+		 wget -qO- https://get.docker.io/gpg | apt-key add - >>/tmp/engines_install.log
+		 apt-get -y  --force-yes install lxc-docker >>/tmp/engines_install.log
 		 update-rc.d docker defaults 
 		 service docker start
   }
@@ -84,7 +84,7 @@ function configure_git {
   function configure_engines_user {
   echo "Configuring engines system user"
 		
-		  apt-get -y install libssl-dev  imagemagick cmake  dc mysql-client libmysqlclient-dev unzip wget git  >/dev/null
+		  apt-get -y install libssl-dev  imagemagick cmake  dc mysql-client libmysqlclient-dev unzip wget git  >>/tmp/engines_install.log
 		 addgroup engines
 		 addgroup -gid 22020 containers
 		 usermod  -G containers -a engines
@@ -115,14 +115,14 @@ cp ${top}/install_source/etc/sudoers.d/engines /etc/sudoers.d/engines
 
 mkdir -p /usr/local/  
 cd /usr/local/  
-git clone git://github.com/sstephenson/rbenv.git /usr/local/rbenv >/dev/null
+git clone git://github.com/sstephenson/rbenv.git /usr/local/rbenv >>/tmp/engines_install.log
 
 	chgrp -R engines rbenv
 	chmod -R g+rwxXs rbenv
 	
 	cd /usr/local/rbenv   
 
-	git clone git://github.com/sstephenson/ruby-build.git /usr/local/rbenv/plugins/ruby-build
+	git clone git://github.com/sstephenson/ruby-build.git /usr/local/rbenv/plugins/ruby-build  >>/tmp/engines_install.log
 	chgrp -R engines plugins/ruby-build
 	chmod -R g+rwxs plugins/ruby-build
 	
@@ -361,6 +361,8 @@ mkdir -p /opt/engines/etc/auth/access  /opt/engines/etc/auth/scripts  /opt/engin
 	  chown 21000 /opt/engines/run/cid
 	 chown 21000 -R /opt/engines/run/services/
 	 chown 21000 -R /opt/engines/run/containers/
+	 mkdir -p /opt/engines/etc/domains/
+	 chown 21000 -R /opt/engines/etc/domains/
 	 }
 	 
  function setup_email_dirs {
@@ -413,10 +415,10 @@ mkdir -p  /var/log/engines/services/nfs/
 
 function setup_mgmt_keys {
 
- ssh-keygen -f ~/.ssh/mgmt/restart_system -N "">/dev/null
- ssh-keygen -f ~/.ssh/mgmt/update_system -N "">/dev/null
- ssh-keygen -f ~/.ssh/access_system -N "">/dev/null
- ssh-keygen -f ~/.ssh/mgmt/update_access_system -N "">/dev/null
+ ssh-keygen -f ~/.ssh/mgmt/restart_system -N "">>/tmp/engines_install.log
+ ssh-keygen -f ~/.ssh/mgmt/update_system -N "">>/tmp/engines_install.log
+ ssh-keygen -f ~/.ssh/access_system -N "">>/tmp/engines_install.log
+ ssh-keygen -f ~/.ssh/mgmt/update_access_system -N "">>/tmp/engines_install.log
  
  restart_system_pub=`cat ~/.ssh/mgmt/restart_system.pub`
  update_system_pub=`cat ~/.ssh/mgmt/update_system.pub`
@@ -476,42 +478,42 @@ echo "Creating and starting Engines Services"
 release=`cat /opt/engines/release`
 
 echo "Downloading DNS image"
-docker pull engines/dns:$release >/dev/null 
+docker pull engines/dns:$release >>/tmp/engines_install.log 
 echo "Downloading Syslog image"
-docker pull engines/syslog:$release >/dev/null 
+docker pull engines/syslog:$release >>/tmp/engines_install.log 
 
 echo "Starting DNS"
-	 /opt/engines/bin/engines.rb service create dns >/dev/null
+	 /opt/engines/bin/engines.rb service create dns >>/tmp/engines_install.log
 echo "Downloading  MySQL image"
-	 docker pull engines/mysql:$release >/dev/null
+	 docker pull engines/mysql:$release >>/tmp/engines_install.log
 echo "Starting MySQL"	 
-	 /opt/engines/bin/engines.rb service create mysql_server  >/dev/null 
+	 /opt/engines/bin/engines.rb service create mysql_server  >>/tmp/engines_install.log 
 echo "Downloading Management  image"
-	  docker pull engines/mgmt:$release >/dev/null
+	  docker pull engines/mgmt:$release >>/tmp/engines_install.log
 echo "Starting Management"
-	/opt/engines/bin/engines.rb service create mgmt >/dev/null
+	/opt/engines/bin/engines.rb service create mgmt >>/tmp/engines_install.log
 echo "Downloading Auth image"
-	 docker pull engines/auth:$release >/dev/null 
+	 docker pull engines/auth:$release >>/tmp/engines_install.log 
 echo "Starting Auth"
-	 /opt/engines/bin/engines.rb service create auth >/dev/null
+	 /opt/engines/bin/engines.rb service create auth >>/tmp/engines_install.log
 echo "Downloading Web Router image"
-	  docker pull engines/nginx:$release >/dev/null
+	  docker pull engines/nginx:$release >>/tmp/engines_install.log
 echo "Starting Web Router"
-	 /opt/engines/bin/engines.rb service create nginx >/dev/null
+	 /opt/engines/bin/engines.rb service create nginx >>/tmp/engines_install.log
 echo "Downloading Backup image"
-	 docker pull engines/backup:$release >/dev/null 
+	 docker pull engines/backup:$release >>/tmp/engines_install.log 
 echo "Downloading Cron image"
-	 docker pull engines/cron:$release >/dev/null 
+	 docker pull engines/cron:$release >>/tmp/engines_install.log 
 echo "Downloading Cert Auth image"
-	 docker pull engines/cert_auth:$release >/dev/null
+	 docker pull engines/cert_auth:$release >>/tmp/engines_install.log
 echo "Downloading SMTP image"
-	 docker pull engines/smtp:$release >/dev/null 
+	 docker pull engines/smtp:$release >>/tmp/engines_install.log 
 echo "Downloading FTP image"
-	docker pull engines/ftp:$release >/dev/null
+	docker pull engines/ftp:$release >>/tmp/engines_install.log
 echo "Downloading Volmanager image"
-	docker pull engines/volmanager:$release >/dev/null
+	docker pull engines/volmanager:$release >>/tmp/engines_install.log
 echo "Starting System Services"
-	 /opt/engines/bin/eservices create  >/dev/null
+	 /opt/engines/bin/eservices create  >>/tmp/engines_install.log
 	
 }
 function remove_services {
