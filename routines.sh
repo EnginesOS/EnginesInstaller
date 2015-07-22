@@ -83,7 +83,7 @@ function configure_git {
   function configure_engines_user {
   echo "Configuring engines system user"
 		
-		  apt-get -y install libssl-dev  imagemagick cmake  dc mysql-client libmysqlclient-dev unzip wget git 
+		  apt-get -y install libssl-dev  imagemagick cmake  dc mysql-client libmysqlclient-dev unzip wget git  >/dev/null
 		 addgroup engines
 		 addgroup -gid 22020 containers
 		 usermod  -G containers -a engines
@@ -114,7 +114,7 @@ cp ${top}/install_source/etc/sudoers.d/engines /etc/sudoers.d/engines
 
 mkdir -p /usr/local/  
 cd /usr/local/  
-git clone git://github.com/sstephenson/rbenv.git /usr/local/rbenv
+git clone git://github.com/sstephenson/rbenv.git /usr/local/rbenv >/dev/null
 
 	chgrp -R engines rbenv
 	chmod -R g+rwxXs rbenv

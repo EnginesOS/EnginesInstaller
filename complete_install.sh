@@ -5,15 +5,20 @@ export RUBY_VER
 top=`cat /tmp/.install_dir`
 .  ${top}/routines.sh
 
-rbenv install 2.2.2
-rbenv global 2.2.2
+echo Installing Ruby 
+rbenv install 2.2.2 >/dev/null 
+rbenv global 2.2.2 
 rbenv  local 2.2.2
- 	~/.rbenv/shims/gem install multi_json rspec rubytree git 
-
+echo Installing Ruby Gems
+ 	~/.rbenv/shims/gem install multi_json rspec rubytree git >/dev/null
+echo Installing Mgmt Keys
 setup_mgmt_keys
 
+echo Installation complete
 touch /opt/engines/.complete_install
-create_services 
+
+echo starting services
+create_services  
 #sudo reboot
 
 grep follow_start.sh ~engines/.bashrc
