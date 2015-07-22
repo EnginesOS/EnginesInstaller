@@ -365,8 +365,9 @@ mkdir -p /opt/engines/etc/auth/access  /opt/engines/etc/auth/scripts  /opt/engin
 	 chown 21000 -R /opt/engines/run/containers/
 	 mkdir -p /opt/engines/etc/domains/
 	 chown 21000 -R /opt/engines/etc/domains/
+	 	 mkdir -p /opt/engines/etc/net/  
 	  chown 21000 -R /opt/engines/etc/net/  
-	 mkdir -p /opt/engines/etc/net/  
+
 	 mkdir -p /opt/engines/etc/preferences/
 	chown 21000 -R /opt/engines/etc/preferences/
 	 }
