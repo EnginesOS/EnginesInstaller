@@ -4,29 +4,29 @@ RUBY_VER=2.2.2
 
 
 function configure_git {
-
-	apt-get install -y git
-	
-	mkdir -p /opt/
-	
-
-	git clone https://github.com/EnginesOS/System.git --branch alpha  --single-branch /opt/engines/
-
+	echo "Installing base Engines System"
+	apt-get install -y git	>/dev/null
+	mkdir -p /opt/	
+	git clone https://github.com/EnginesOS/System.git --branch $branch  --single-branch /opt/engines/
+	#echo $branch > /opt/engines/release
 
 
 }
-  
-  function install_docker_and_components {
-  
- echo "Password for engines (shell) user"
+  function create_engines_user {
+   echo "Password for engines (shell) user"
   adduser -q --uid 21000  -gecos "Engines OS User"  --home /home/engines --disabled-password engines
    passwd engines 
+  
+  }
+  function update_os {
    echo "updating OS to Latest"
-  apt-get -y  --force-yes update
+  apt-get -y  --force-yes update >/dev/null
   
-  #Not something we should do as can ask grub questions and will confuse no techy on aws
-  #apt-get -y  --force-yes upgrade
+  #Perhaps Not something we should do as can ask grub questions and will confuse no techy on aws
+  apt-get -y  upgrade /dev/null
+  }
   
+  function setup_startup_script {
   echo "Adding startup script"
 		 cat /etc/rc.local | sed "/^exit.*$/s//su -l engines \/opt\/engines\/bin\/engines_startup.sh/" > /tmp/rc.local
 		 echo "exit 0"  >> /tmp/rc.local
@@ -34,20 +34,23 @@ function configure_git {
 		 rm  /tmp/rc.local
 		
 		 chmod u+x  /etc/rc.local
-
-		
-echo "Installing Docker"		
-		 apt-get install -y apt-transport-https  libreadline-dev  linux-image-extra-$(uname -r) lvm2 thin-provisioning-tools openssh-server
+  }
+  
+  function install_docker_components {
+  echo "Installing Docker"		
+		 apt-get install -y apt-transport-https  libreadline-dev  linux-image-extra-$(uname -r) lvm2 thin-provisioning-tools openssh-server >/dev/null
 		 echo deb https://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list
-		 apt-get -y update
-#IF AWS	 and not devmapper	 
-		#  apt-get install -y linux-image-extra-$(uname -r) -qq
-		 wget -qO- https://get.docker.io/gpg | apt-key add -
-		 apt-get -y  --force-yes install lxc-docker
+		 apt-get -y update >/dev/null
+ 
+	
+		 wget -qO- https://get.docker.io/gpg | apt-key add - >/dev/null
+		 apt-get -y  --force-yes install lxc-docker >/dev/null
 		 update-rc.d docker defaults 
 		 service docker start
-	
-echo "Configuring Docker DNS settings"	 
+  }
+  
+  function configure_docker {
+  echo "Configuring Docker DNS settings"	 
 		# echo "DOCKER_OPTS=\"--storage-driver=devicemapper --dns  172.17.42.1 --dns 8.8.8.8  --bip=172.17.42.1/16\"" >> /etc/default/docker
 		 echo "DOCKER_OPTS=\" --storage-driver=aufs --dns  172.17.42.1 --dns 8.8.8.8  --bip=172.17.42.1/16\"" >> /etc/default/docker
 	
@@ -65,19 +68,15 @@ echo "Configuring Docker DNS settings"
 		 
 		 #need to restart to get dns set
 		 service docker stop
+		 sh -c echo 1 \> /sys/fs/cgroup/memory/memory.use_hierarchy
 		 sleep 20
 		 service docker start
 		  
-echo "Installing required  packages"		  		  
+  }
+  function configure_engines_user {
+  echo "Configuring engines system user"
 		
-		 apt-get -y install libssl-dev  imagemagick cmake  dc mysql-client libmysqlclient-dev unzip wget git 
-		echo 1 > /tmp/memory.use_hierarchy
-		cp /tmp/memory.use_hierarchy /sys/fs/cgroup/memory/memory.use_hierarchy
-		sh -c echo 1 \> /sys/fs/cgroup/memory/memory.use_hierarchy
-
-echo "Setting up engines system user"
-		 #Kludge should not be a static but a specified or atleaqst checked id
-		 
+		  apt-get -y install libssl-dev  imagemagick cmake  dc mysql-client libmysqlclient-dev unzip wget git 
 		 addgroup engines
 		 addgroup -gid 22020 containers
 		 usermod  -G containers -a engines
@@ -97,10 +96,13 @@ echo "Setting up engines system user"
 		  
 		echo "PATH=\"/opt/engines/bin:$PATH\"" >>~engines/.profile 
 		
-echo "Installing rbenv"
-
 mkdir -p /etc/sudoers.d/
 cp ${top}/install_source/etc/sudoers.d/engines /etc/sudoers.d/engines 
+		
+  }
+  
+  function install_rbenv {
+  echo "Installing rbenv"
 
 
 mkdir -p /usr/local/  
@@ -126,22 +128,19 @@ git clone git://github.com/sstephenson/rbenv.git /usr/local/rbenv
 	echo 'eval "$(rbenv init -)"' >> ~engines/.bashrc
 	
 	/usr/local/rbenv/plugins/ruby-build/install.sh 
-	 
-#	/usr/local/rbenv/bin/rbenv install $RUBY_VER
-#	/usr/local/rbenv/bin/rbenv global $RUBY_VER
-#	echo "gem: --no-ri --no-rdoc" > ~/.gemrc
-	
-#	/usr/local/rbenv/bin/rbenv rehash
-#	cp -rp  ~/.gemrc ~/.bashrc ~engines
-	
-#	~/.rbenv/shims/gem install multi_json rspec rubytree git 
+
+  }
+  
+  function setup_engines_crontab {
 		
 	echo "Setup engines cron tab"
 echo "*/10 * * * * /opt/engines/bin/engines.sh engine check_and_act all >>/opt/engines/logs/engines/restarts.log
 */10 * * * * /opt/engines/bin/engines.sh  service  check_and_act all >>/opt/engines/logs/services/restarts.log" >/tmp/ct
 crontab -u engines /tmp/ct
 rm /tmp/ct
+}
 
+function setup_dns {
 #DHCP
  if test -f /etc/dhcp/dhclient.conf
  	then
@@ -152,8 +151,27 @@ rm /tmp/ct
 	#temp while we wait for next dhcp renewal if using dhcp
 	
 echo "nameserver 172.17.42.1" >>  /etc/resolv.conf 
-
-
+}
+  
+ function setup_ip_script {
+  if ! test -f  /etc/network/if-up.d/set_ip.sh
+ then 
+	ln -s /opt/engines/bin/set_ip.sh /etc/network/if-up.d/
+fi
+  }
+  
+  function install_docker_and_components {
+  
+  create_engines_user
+  update_os
+  setup_startup_script
+  install_docker_components
+  configure_docker
+  configure_engines_user
+  install_rbenv
+  setup_engines_crontab  	  		  
+  setup_dns 	
+  setup_ip_script
   }
 
 
@@ -363,29 +381,15 @@ function make_dirs {
 mkdir -p  /var/log/engines/services/nfs/
 
 
-
-
 #mkdir -p  /var/log/engines/services/auth/ftp/
 
 #mkdir -p  /opt/engines/etc/cron/tabs
 
 
-
-
-
 #mkdir -p  /opt/engines/etc/keys
 
 
-
-
-
-
-
 #mkdir -p /opt/engines/ssh/keys/services/
-
-
-
-
 
 
 }
@@ -408,7 +412,7 @@ function setup_mgmt_keys {
 
 function set_permissions {
 echo "Setting directory and file permissions"
-	chown -R engines /opt/engines/ /var/lib/engines ~engines/  /var/log/engines  /var/lib/engines/mgmt/public/system/
+	#chown -R engines /opt/engines/ /var/lib/engines ~engines/  /var/log/engines  /var/lib/engines/mgmt/public/system/
 
  
 	#chown  engines   /opt/engines/etc/syslog/conf/
@@ -460,7 +464,7 @@ echo "Creating and starting Engines Services"
 	
 }
 function remove_services {
-echo "Creating and startingg Engines OS Services"
+echo "Creating and starting Engines OS Services"
 
 docker stop cAdvisor mysql_server backup nginx dns mgmt
 docker rm cAdvisor mysql_server backup nginx dns mgmt

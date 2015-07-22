@@ -2,6 +2,16 @@
 #root section of install run as root
 RUBY_VER=2.2.2
 
+
+if test $# -gt 0
+	then
+		branch=$1
+	else
+		branch=alpha
+	fi
+	
+export branch
+
 export RUBY_VER
 top=`pwd`
 export top
@@ -17,10 +27,7 @@ configure_git
 
 install_docker_and_components
 
-if ! test -f  /etc/network/if-up.d/set_ip.sh
- then 
-	ln -s /opt/engines/bin/set_ip.sh /etc/network/if-up.d/
-fi
+
 
 #chown -R engines /opt/engines/
  
