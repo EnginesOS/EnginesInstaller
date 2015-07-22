@@ -15,7 +15,7 @@ echo Installing Mgmt Keys
 setup_mgmt_keys
 
 echo Installation complete
-touch /opt/engines/.complete_install
+touch ~/.complete_install
 
 echo Downloading and starting services
 create_services  

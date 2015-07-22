@@ -403,10 +403,10 @@ mkdir -p  /var/log/engines/services/nfs/
 
 function setup_mgmt_keys {
 
- ssh-keygen -f ~/.ssh/mgmt/restart_system -N ""
- ssh-keygen -f ~/.ssh/mgmt/update_system -N ""
- ssh-keygen -f ~/.ssh/access_system -N ""
- ssh-keygen -f ~/.ssh/mgmt/update_access_system -N ""
+ ssh-keygen -f ~/.ssh/mgmt/restart_system -N "">/dev/null
+ ssh-keygen -f ~/.ssh/mgmt/update_system -N "">/dev/null
+ ssh-keygen -f ~/.ssh/access_system -N "">/dev/null
+ ssh-keygen -f ~/.ssh/mgmt/update_access_system -N "">/dev/null
  
  restart_system_pub=`cat ~/.ssh/mgmt/restart_system.pub`
  update_system_pub=`cat ~/.ssh/mgmt/update_system.pub`
@@ -468,7 +468,7 @@ release=`cat /opt/engines/release`
 echo "Downloading DNS image"
 docker pull engines/dns:$release
 echo "Downloading Syslog image"
-docker pull engines/syslogs:$release
+docker pull engines/syslog:$release
 
 echo "Starting DNS"
 	 /opt/engines/bin/engines.rb service create dns >/dev/null
