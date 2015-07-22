@@ -17,9 +17,9 @@ setup_mgmt_keys
 echo Installation complete
 touch /opt/engines/.complete_install
 
-echo starting services
+echo Downloading and starting services
 create_services  
-#sudo reboot
+
 
 grep follow_start.sh ~engines/.bashrc
 	if test $? -ne 0

@@ -462,12 +462,46 @@ echo "Configuring OS Specific Dockerfiles"
 
 function create_services {
 echo "Creating and starting Engines Services"
-	 /opt/engines/bin/engines.rb service create dns
-	 /opt/engines/bin/engines.rb service create mysql_server
-	/opt/engines/bin/engines.rb service create mgmt
-	 /opt/engines/bin/engines.rb service create auth
-	 /opt/engines/bin/engines.rb service create nginx
-	 /opt/engines/bin/eservices create 
+
+release=`cat /opt/engines/release`
+
+echo "Downloading DNS image"
+docker pull engines/dns:$release
+echo "Downloading Syslog image"
+docker pull engines/syslogs:$release
+
+echo "Starting DNS"
+	 /opt/engines/bin/engines.rb service create dns >/dev/null
+echo "Downloading  MySQL image"
+	 docker pull engines/mysql:$release >/dev/null
+echo "Starting MySQL"	 
+	 /opt/engines/bin/engines.rb service create mysql_server  >/dev/null 
+echo "Downloading Management  image"
+	  docker pull engines/mgmt:$release >/dev/null
+echo "Starting Management"
+	/opt/engines/bin/engines.rb service create mgmt >/dev/null
+echo "Downloading Auth image"
+	 docker pull engines/auth:$release >/dev/null 
+echo "Starting Auth"
+	 /opt/engines/bin/engines.rb service create auth >/dev/null
+echo "Downloading Web Router  image"
+	  docker pull engines/nginx:$release >/dev/null
+echo "Starting Web Router"
+	 /opt/engines/bin/engines.rb service create nginx >/dev/null
+echo "Downloading Backup image"
+	 docker pull engines/backup:$release >/dev/null 
+echo "Downloading Cron image"
+	 docker pull engines/cron:$release >/dev/null 
+echo "Downloading Cert Auth image"
+	 docker pull engines/cert_auth:$release >/dev/null
+echo "Downloading SMTP image"
+	 docker pull engines/smtp:$release >/dev/null 
+echo "Downloading FTP image"
+	docker pull engines/ftp:$release >/dev/null
+echo "Downloading Volmanager image"
+	docker pull engines/volmanager:$release >/dev/null
+echo "Starting system services"
+	 /opt/engines/bin/eservices create  >/dev/null
 	
 }
 function remove_services {
