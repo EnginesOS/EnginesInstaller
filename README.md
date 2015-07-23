@@ -13,18 +13,7 @@ cd EnginesInstaller
 
 sudo  ./install_enginesOS_fromScratch.sh alpha
 </pre>
-Installer syntax<br>
-sudo  ./install_enginesOS_fromScratch.sh {branch}<br>
-The available branches for the EnginesSystem are
-<li>alpha 
-<li>master
-<li>current
 
-<p>
-<li>alpha is a known good 
-<li>master is the latest stable
-<li>current is the bleeding edge
-<li>beta comming soon -  with support for updating to future versions 
 
 The installer will take 20mins for a cloud installation, a local install will take longer dependening on the speed of your Internet connection
 The total download is about 2.5GB
@@ -45,6 +34,21 @@ If you are installing Engines remotely you will need atleast port 10443 publical
  <li>Email 25,465,993,995/TCP
  <li>DNS 53/UDP
  <li>VPN 1194/TCP+UDP
+ 
+#Other Versions
+ Installer syntax<br>
+sudo  ./install_enginesOS_fromScratch.sh {branch}<br>
+The available branches for the EnginesSystem are
+<li>alpha 
+<li>master
+<li>current
+
+<p>
+<li>alpha is a known good 
+<li>master is the latest stable
+<li>current is the bleeding edge
+<li>beta comming soon -  with support for updating to future versions 
+<p>
  
 
 If you have any queries and problems please email support@engines.onl or raise an issue on github
