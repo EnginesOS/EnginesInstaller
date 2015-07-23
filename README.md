@@ -29,7 +29,8 @@ The available branches for the EnginesSystem are
 The installer will take 20mins for a cloud installation, a local install will take longer dependening on the speed of your Internet connection
 The total download is about 2.5GB
 
-Once finished the installer will present the url to open to complete the installation.
+Once finished the installer will present the url to open to configure the installation.
+the user name and password for the initial login are admin:password
 
 <b>Management Port</b>
 
