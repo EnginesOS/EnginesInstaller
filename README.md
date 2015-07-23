@@ -2,7 +2,8 @@
 
 How to Use
 
-On a fresh Ubuntu 14.04 or 15 installation
+For use on a fresh Ubuntu 14.04 or 15.x installation<br>
+While Engines is in a prelease stage we do not recommend installation onto a live system.
 
 <pre>sudo apt-get install -y git
 
