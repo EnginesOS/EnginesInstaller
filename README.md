@@ -35,7 +35,7 @@ If you are installing Engines remotely you will need atleast port 10443 publicly
  <li>DNS 53/UDP
  <li>VPN 1194/TCP+UDP
  
-#Other Versions
+<strong>Other Versions</strong>
  Installer syntax<br>
 sudo  ./install_enginesOS_fromScratch.sh {branch}<br>
 The available branches for the EnginesSystem are
