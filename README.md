@@ -42,7 +42,10 @@ If you are installing Engines remotely you will need atleast port 10443 publical
  <li>VPN xxx/TCP xxx/UDP
  
 
-Please email support@engines.onl  or raise an issue
+If you have any queries and problems please email support@engines.onl or raise an issue on github
+
 With the Installer @ https://github.com/EnginesOS/EnginesInstaller/issues/new
+
 With the Engines System @ https://github.com/EnginesOS/System/issues/new
+
 With the Engines Management Interface @  https://github.com/EnginesOS/SystemGui/issues/new
