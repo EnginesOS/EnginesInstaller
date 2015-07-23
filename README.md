@@ -30,7 +30,7 @@ The installer will take 20mins for a cloud installation, a local install will ta
 The total download is about 2.5GB
 
 Once finished the installer will present the url to open to configure the installation.
-the user name and password for the initial login are admin:password
+the user name and password combination for the initial login is admin:password
 
 <b>Management Port</b>
 
