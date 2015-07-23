@@ -18,12 +18,12 @@ sudo  ./install_enginesOS_fromScratch.sh alpha
 The installer will take 20mins for a cloud installation, a local install will take longer dependening on the speed of your Internet connection
 The total download is about 2.5GB
 
-Once finished the installer will present the url to open to configure the installation.
-the user name and password combination for the initial login is admin:password
+Once finished the installer will present a url to open to configure the installation.
+The user name and password combination for the initial login is admin:password
 
 <b>Management Port</b>
 
-If you are installing Engines remotely you will need atleast port 10443 publicaly acessible to access the management interface<br>
+If you are installing Engines remotely you will need atleast port 10443 publicly acessible to access the management interface<br>
 
  <b>Ports</b>
  <li>Management Interface 10443/TCP
