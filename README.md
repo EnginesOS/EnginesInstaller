@@ -11,14 +11,17 @@ git clone https://github.com/EnginesOS/EnginesInstaller
 
 cd EnginesInstaller
 
-sudo  ./install_enginesOS_fromScratch.sh {branch}
+sudo  ./install_enginesOS_fromScratch.sh alpha
 </pre>
+Installer syntax<br>
+sudo  ./install_enginesOS_fromScratch.sh {branch}<br>
 The available branches for the EnginesSystem are
 <li>alpha 
 <li>master
 <li>current
+
 <p>
-<li>alpha is a known good
+<li>alpha is a known good 
 <li>master is the latest stable
 <li>current is the bleeding edge
 <li>beta comming soon -  with support for updating to future versions 
