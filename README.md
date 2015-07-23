@@ -36,10 +36,10 @@ If you are installing Engines remotely you will need atleast port 10443 publical
  <li>Webpages hosted 80,443/TCP
  
  <b>Additional Optional Ports</b>
- <li>FTP Ports xx,xx,xx,xx/TCP
- <li>Email 25,465,xx,xx,xx/TCP
+ <li>FTP Ports 989,990/TCP
+ <li>Email 25,465,993,995/TCP
  <li>DNS 53/UDP
- <li>VPN xxx/TCP xxx/UDP
+ <li>VPN 1194/TCP+UDP
  
 
 If you have any queries and problems please email support@engines.onl or raise an issue on github
