@@ -50,7 +50,7 @@ The available branches for the EnginesSystem are
 <li>beta comming soon -  with support for updating to future versions 
 <p>
  
-
+<h3>Support and Issues</h3>
 If you have any queries and problems please email support@engines.onl or raise an issue on github
 
 With the Installer @ https://github.com/EnginesOS/EnginesInstaller/issues/new
