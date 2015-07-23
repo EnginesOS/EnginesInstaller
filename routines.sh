@@ -330,6 +330,7 @@ chown 22022 -R /var/lib/engines/cert_auth
 mkdir -p  /var/log/engines/services/cert_auth/
 chown 22022 -R /var/lib/engines/cert_auth
 touch /var/lib/engines/cert_auth/ca/system_CA.pem
+chown 22022 -R /var/lib/engines/cert_authca/system_CA.pem
 mkdir -p /opt/engines/etc/ca/
 ln -s /var/lib/engines/cert_auth/ca/system_CA.pem /opt/engines/etc/ca/engines_internal_ca.crt
 
