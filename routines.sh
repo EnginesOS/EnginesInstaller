@@ -23,7 +23,7 @@ function configure_git {
   function create_engines_user {
    echo "Password for engines (shell) user"
   adduser -q --uid 21000  -gecos "Engines OS User"  --home /home/engines --disabled-password engines
-   passwd engines 
+ #  passwd engines 
   
   }
   function update_os {
