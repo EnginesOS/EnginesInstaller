@@ -21,7 +21,7 @@ function configure_git {
 
 }
   function create_engines_user {
-   echo "Password for engines (shell) user"
+   echo "Creating for engines (shell) user"
   adduser -q --uid 21000  -gecos "Engines OS User"  --home /home/engines --disabled-password engines
  #  passwd engines 
   
@@ -514,7 +514,7 @@ echo "Downloading Backup image"
 echo "Downloading Cron image"
 	 docker pull engines/cron:$release >>/tmp/engines_install.log 
 echo "Downloading Cert Auth image"
-	 docker pull engines/cert_auth:$release >>/tmp/engines_install.log
+	 docker pull engines/certs:$release >>/tmp/engines_install.log
 echo "Downloading SMTP image"
 	 docker pull engines/smtp:$release >>/tmp/engines_install.log 
 echo "Downloading FTP image"
@@ -522,7 +522,7 @@ echo "Downloading FTP image"
 echo "Downloading Volmanager image"
 	docker pull engines/volmanager:$release >>/tmp/engines_install.log
 echo "Starting System Services"
-	 /opt/engines/bin/eservices check_and_act  >>/tmp/engines_install.log
+	 /opt/engines/bin/eservices check_and_act  >>/tmp/engines_install.log &
 	
 }
 function remove_services {
