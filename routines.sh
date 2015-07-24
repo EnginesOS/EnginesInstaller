@@ -258,7 +258,7 @@ chown  22012 -R  /var/log/engines/services/syslog
 }
 
 function setup_pqsql_dirs {
-echo "Setting up Postgresl"
+echo "Setting up PostgreSQL"
 mkdir -p  /var/lib/engines/pgsql
 mkdir -p  /var/log/engines/services/pgsql/
 mkdir -p  /opt/engines/run/services/pgsql_server/run/postgres
@@ -337,7 +337,7 @@ ln -s /var/lib/engines/cert_auth/ca/system_CA.pem /opt/engines/etc/ca/engines_in
 
  }
  function setup_auth_dirs {
-  echo "Setting up  Auth "
+  echo "Setting up Auth "
 mkdir -p /opt/engines/etc/auth/keys/
 mkdir -p /var/lib/engines/auth/
 mkdir -p /var/log/engines/services/auth/ 
