@@ -99,6 +99,7 @@ function configure_git {
 		   		chown engines ~engines/.ssh/
 		   		cp ~/.ssh/authorized_keys ~engines/.ssh/
 		   		chown engines  ~engines/.ssh/authorized_keys
+		   		chmod og-rw ~engines/.ssh/authorized_keys
 		   	fi
 		   
 		  chown engines /tmp/engines_install.log
@@ -369,7 +370,8 @@ mkdir -p /opt/engines/etc/auth/access  /opt/engines/etc/auth/scripts  /opt/engin
 	 chown 21000 -R /opt/engines/etc/domains/
 	 	 mkdir -p /opt/engines/etc/net/  
 	  chown 21000 -R /opt/engines/etc/net/  
-
+mkdir -p /opt/engines/run/system/flags/
+chown 21000 /opt/engines/run/system/
 	 mkdir -p /opt/engines/etc/preferences/
 	chown 21000 -R /opt/engines/etc/preferences/
 	 }
@@ -428,14 +430,16 @@ function setup_mgmt_keys {
  ssh-keygen -f ~/.ssh/mgmt/update_system -N "">>/tmp/engines_install.log
  ssh-keygen -f ~/.ssh/access_system -N "">>/tmp/engines_install.log
  ssh-keygen -f ~/.ssh/mgmt/update_access_system -N "">>/tmp/engines_install.log
- 
+ ssh-keygen -f ~/.ssh/mgmt/update_engines_system_software -N "">>/tmp/engines_install.log
  restart_system_pub=`cat ~/.ssh/mgmt/restart_system.pub`
  update_system_pub=`cat ~/.ssh/mgmt/update_system.pub`
  update_access_system_pub=`cat ~/.ssh/mgmt/update_access_system.pub`
+ update_engines_system_software=`cat ~/.ssh/mgmt/update_engines_system_software.pub`
  
  echo "command=\"/opt/engines/bin/restart_system.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $restart_system_pub " >  ~/.ssh/authorized_keys
  echo "command=\"/opt/engines/bin/update_system.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $update_system_pub " >>  ~/.ssh/authorized_keys
  echo "command=\"/opt/engines/bin/update_system_access.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $update_access_system_pub " >>  ~/.ssh/authorized_keys
+ echo "command=\"/opt/engines/bin/update_engines_system_software.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $update_engines_system_software " >>  ~/.ssh/authorized_keys
 }
 
 function set_permissions {
