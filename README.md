@@ -29,11 +29,13 @@ If you are installing Engines remotely you will need atleast port 10443 publicly
  <li>Management Interface 10443/TCP
  <li>Webpages hosted 80,443/TCP
  
- <b>Additional Optional Ports</b>
+ <b>Optional Ports</b>
  <li>FTP Ports 989,990/TCP
  <li>Email 25,465,993,995/TCP
  <li>DNS 53/UDP
  <li>VPN 1194/TCP+UDP
+ <li>ssh to mgmt 828
+ <li>ssh to host 22
  
 <h3>Other Versions</h3>
  Installer syntax<br>
