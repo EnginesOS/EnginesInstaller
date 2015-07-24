@@ -16,7 +16,7 @@ function configure_git {
 	apt-get install -y git	>>/tmp/engines_install.log
 	mkdir -p /opt/	
 	git clone https://github.com/EnginesOS/System.git --branch $branch  --single-branch /opt/engines/ 	>>/tmp/engines_install.log
-	#echo $branch > /opt/engines/release
+	echo $branch > /opt/engines/release
 
 
 }
