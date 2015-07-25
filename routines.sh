@@ -262,22 +262,22 @@ echo "Setting up PostgreSQL"
 mkdir -p  /var/lib/engines/pgsql
 mkdir -p  /var/log/engines/services/pgsql/
 mkdir -p  /opt/engines/run/services/pgsql_server/run/postgres
-mkdir -p /opt/engines/etc/ssl/pgsql/
-cp -r /opt/engines/etc/ssl/certs /opt/engines/etc/ssl/pgsql/
-cp -r /opt/engines/etc/ssl/keys /opt/engines/etc/ssl/pgsql/private
-chown -R 22002 /opt/engines/etc/ssl/pgsql
-chmod og-rw -R /opt/engines/etc/ssl/pgsql
+mkdir -p /opt/engines/etc/pgsql/ssl
+cp -r /opt/engines/etc/ssl/certs /opt/engines/etc/pgsql/ssl
+cp -r /opt/engines/etc/ssl/keys /opt/engines/etc/pgsql/ssl/private
+chown -R 22002 /opt/engines/etc/pgsql/ssl
+chmod og-rw -R /opt/engines/etc/pgsql/ssl
 chown -R 22002.22002	/var/lib/engines/pgsql /var/log/engines/services/pgsql	/opt/engines/run/services/pgsql_server/run/postgres
 
 }
 function setup_smtp_dirs {
  echo "Setting up SMTP "
 mkdir -p /var/log/engines/services/smtp/
-mkdir -p /opt/engines/etc/ssl/smtp
-cp -r /opt/engines/etc/ssl/certs /opt/engines/etc/ssl/smtp/
-cp -r /opt/engines/etc/ssl/keys /opt/engines/etc/ssl/smtp/
- chown 22003 -R /var/log/engines/services/smtp/ /opt/engines/etc/ssl/smtp/ 
- chmod og-rw -R /opt/engines/etc/ssl/smtp/keys/
+mkdir -p /opt/engines/etc/smtp/ssl/
+cp -r /opt/engines/etc/ssl/certs /opt/engines/etc/smtp/ssl
+cp -r /opt/engines/etc/ssl/keys /opt/engines/etc/smtp/ssl
+ chown 22003 -R /var/log/engines/services/smtp/ /opt/engines/etc/smtp/ssl 
+ chmod og-rw -R /opt/engines/etc/smtp/ssl/keys/
 }
 
 function setup_backup_dirs {
@@ -301,12 +301,12 @@ function setup_backup_dirs {
  	echo "Setting up Imap "
  	mkdir -p /var/lib/engines/imap/lib
 	mkdir -p /var/lib/engines/imap/mail
-	mkdir -p /opt/engines/etc/ssl/imap
-	cp -r /opt/engines/etc/ssl/certs /opt/engines/etc/ssl/imap/
-	cp -r /opt/engines/etc/ssl/keys /opt/engines/etc/ssl/imap/
+	mkdir -p /opt/engines/etc/imap/ssl
+	cp -r /opt/engines/etc/ssl/certs /opt/engines/etc/imap/ssl
+	cp -r /opt/engines/etc/ssl/keys /opt/engines/etc/imap/ssl
 	chown -R 22013 /var/lib/engines/imap
-	chown -R 22013 /opt/engines/etc/ssl/imap
-	chmod og-rw -R /opt/engines/etc/ssl/imap
+	chown -R 22013 /opt/engines/etc/imap/ssl
+	chmod og-rw -R /opt/engines/etc/imap/ssl
 	
  }
  
@@ -542,40 +542,40 @@ docker rm cAdvisor mysql_server backup nginx dns mgmt
 
 function copy_install_ssl_cert {
 echo "install installation ssl cert"
-mkdir -p /opt/engines/etc/ssl/keys/
-mkdir -p /opt/engines/etc/ssl/certs/
-
-cp ${top}/install_source/ssl/server.key /opt/engines/etc/ssl/keys/engines.key
-cp ${top}/install_source/ssl/server.crt /opt/engines/etc/ssl/certs/engines.crt
+#mkdir -p /opt/engines/etc/ssl/keys/
+#mkdir -p /opt/engines/etc/ssl/certs/
+cp ${top}/install_source/ssl/server.crt /var/lib/engines/cert_auth/public/certs/engines.crt
+cp ${top}/install_source/ssl/server.key /var/lib/engines/cert_auth/public/keys/engines.key 
+cp ${top}/install_source/ssl/server.crt 
 cp ${top}/install_source/ssl/server.crt /usr/local/share/ca-certificates/engines_internal_ca.crt
 
 mkdir -p /opt/engines/etc/nginx/ssl/ /opt/engines/etc/nginx/ssl/
 cp -rp /opt/engines/etc/ssl/certs  /opt/engines/etc/nginx/ssl/
 cp -rp /opt/engines/etc/ssl/keys   /opt/engines/etc/nginx/ssl/
 }
-
-function generate_ssl {
-echo "Generating Self Signed Cert"
-
-mkdir -p /opt/engines/etc/ssl/keys/
-mkdir -p /opt/engines/etc/ssl/certs/
-
-openssl genrsa -des3 -out server.key 2048
- openssl rsa -in server.key -out server.key.insecure
-  mv server.key server.key.secure
-  mv server.key.insecure server.key
-  openssl req -new -key server.key -out server.csr
-  openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt
-  mv server.key /opt/engines/etc/ssl/keys/engines.key
-  mv server.crt /opt/engines/etc/ssl/certs/engines.crt
-   
-   #Initial Certs for nginx are the mgmt certs
-   mkdir -p /opt/engines/etc/nginx/ssl/ /opt/engines/etc/nginx/ssl/
-   cp -rp /opt/engines/etc/ssl/certs  /opt/engines/etc/nginx/ssl/
-   cp -rp /opt/engines/etc/ssl/keys   /opt/engines/etc/nginx/ssl/
-   
-   rm server.csr  server.key.secure
-  
-}
-
+#
+#function generate_ssl {
+#echo "Generating Self Signed Cert"
+#
+#mkdir -p /opt/engines/etc/ssl/keys/
+#mkdir -p /opt/engines/etc/ssl/certs/
+#
+#openssl genrsa -des3 -out server.key 2048
+# openssl rsa -in server.key -out server.key.insecure
+#  mv server.key server.key.secure
+#  mv server.key.insecure server.key
+#  openssl req -new -key server.key -out server.csr
+#  openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt
+#  mv server.key /opt/engines/etc/ssl/keys/engines.key
+#  mv server.crt /opt/engines/etc/ssl/certs/engines.crt
+#   
+#   #Initial Certs for nginx are the mgmt certs
+#   mkdir -p /opt/engines/etc/nginx/ssl/ /opt/engines/etc/nginx/ssl/
+#   cp -rp /opt/engines/etc/ssl/certs  /opt/engines/etc/nginx/ssl/
+#   cp -rp /opt/engines/etc/ssl/keys   /opt/engines/etc/nginx/ssl/
+#   
+#   rm server.csr  server.key.secure
+#  
+#}
+#
 
