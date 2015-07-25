@@ -332,8 +332,8 @@ mkdir -p  /var/log/engines/services/cert_auth/
 
 mkdir -p /opt/engines/etc/certs/engines/
 mkdir -p /opt/engines/etc/certs/ca
-chown -R 22022 /var/lib/engines/cert_auth/
- }
+chown -R 22022 /var/lib/engines/cert_auth/ /opt/engines/etc/certs/ /var/log/engines/services/cert_auth/
+ } 
 
  function setup_auth_dirs {
   echo "Setting up Auth "
