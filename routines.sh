@@ -327,15 +327,14 @@ function setup_backup_dirs {
 mkdir -p /var/lib/engines/cert_auth/ca
 mkdir -p /var/lib/engines/cert_auth/keys
 mkdir -p /var/lib/engines/cert_auth/certs
-chown 22022 -R /var/lib/engines/cert_auth
-mkdir -p  /var/log/engines/services/cert_auth/
-chown 22022 -R /var/lib/engines/cert_auth
-touch /var/lib/engines/cert_auth/ca/system_CA.pem
-chown 22022 -R /var/lib/engines/cert_auth/ca/system_CA.pem
-mkdir -p /opt/engines/etc/ca/
-ln -s /var/lib/engines/cert_auth/ca/system_CA.pem /opt/engines/etc/ca/engines_internal_ca.crt
 
+mkdir -p  /var/log/engines/services/cert_auth/
+
+mkdir -p /opt/engines/etc/certs/engines/
+mkdir -p /opt/engines/etc/certs/ca
+chown -R 22022 /var/lib/engines/cert_auth/
  }
+
  function setup_auth_dirs {
   echo "Setting up Auth "
 mkdir -p /opt/engines/etc/auth/keys/
