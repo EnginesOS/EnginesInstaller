@@ -65,7 +65,7 @@ function configure_git {
 	#for systemd
 		if test -f /lib/systemd/system/docker.service
 			then
-				cp install_source/lib/systemd/system/docker.service /lib/systemd/system/docker.service
+				cp ${top}/install_source/lib/systemd/system/docker.service /lib/systemd/system/docker.service
 			fi
 		 update-rc.d docker defaults 
 		 service docker start	
@@ -106,7 +106,7 @@ function configure_git {
 		echo "PATH=\"/opt/engines/bin:$PATH\"" >>~engines/.profile 
 		
 mkdir -p /etc/sudoers.d/
-cp install_source/etc/sudoers.d/engines /etc/sudoers.d/engines 
+cp ${top}/install_source/etc/sudoers.d/engines /etc/sudoers.d/engines 
 		
   }
   
@@ -263,8 +263,8 @@ mkdir -p  /var/lib/engines/pgsql
 mkdir -p  /var/log/engines/services/pgsql/
 mkdir -p  /opt/engines/run/services/pgsql_server/run/postgres
 mkdir -p /opt/engines/etc/pgsql/ssl
-cp -r /opt/engines/etc/ssl/certs /opt/engines/etc/pgsql/ssl
-cp -r /opt/engines/etc/ssl/keys /opt/engines/etc/pgsql/ssl/private
+cp -r /var/lib/engines/cert_auth/public/certs /opt/engines/etc/pgsql/ssl
+cp -r /var/lib/engines/cert_auth/public/keys /opt/engines/etc/pgsql/ssl/private
 chown -R 22002 /opt/engines/etc/pgsql/ssl
 chmod og-rw -R /opt/engines/etc/pgsql/ssl
 chown -R 22002.22002	/var/lib/engines/pgsql /var/log/engines/services/pgsql	/opt/engines/run/services/pgsql_server/run/postgres
@@ -274,8 +274,8 @@ function setup_smtp_dirs {
  echo "Setting up SMTP "
 mkdir -p /var/log/engines/services/smtp/
 mkdir -p /opt/engines/etc/smtp/ssl/
-cp -r /opt/engines/etc/ssl/certs /opt/engines/etc/smtp/ssl
-cp -r /opt/engines/etc/ssl/keys /opt/engines/etc/smtp/ssl
+cp -r /var/lib/engines/cert_auth/public/certs /opt/engines/etc/smtp/ssl
+cp -r /var/lib/engines/cert_auth/public/keys /opt/engines/etc/smtp/ssl
  chown 22003 -R /var/log/engines/services/smtp/ /opt/engines/etc/smtp/ssl 
  chmod og-rw -R /opt/engines/etc/smtp/ssl/keys/
 }
@@ -302,8 +302,8 @@ function setup_backup_dirs {
  	mkdir -p /var/lib/engines/imap/lib
 	mkdir -p /var/lib/engines/imap/mail
 	mkdir -p /opt/engines/etc/imap/ssl
-	cp -r /opt/engines/etc/ssl/certs /opt/engines/etc/imap/ssl
-	cp -r /opt/engines/etc/ssl/keys /opt/engines/etc/imap/ssl
+	cp -r /var/lib/engines/cert_auth/public/certs /opt/engines/etc/imap/ssl
+	cp -r /var/lib/engines/cert_auth/public/keys /opt/engines/etc/imap/ssl
 	chown -R 22013 /var/lib/engines/imap
 	chown -R 22013 /opt/engines/etc/imap/ssl
 	chmod og-rw -R /opt/engines/etc/imap/ssl
@@ -314,6 +314,10 @@ function setup_backup_dirs {
  echo "Setting up FTP "
   mkdir -p  /var/log/engines/services/ftp/proftpd
  chown -R 22010 /var/log/engines/services/ftp
+ cp -r /var/lib/engines/cert_auth/public/certs /opt/engines/etc/ftp/ssl
+cp -r /var/lib/engines/cert_auth/public/keys /opt/engines/etc/ftp/ssl
+ chown -R 22010 /opt/engines/etc/ftp/ssl
+ chmod og-rw -R /opt/engines/etc/ftp/ssl
  
  }
  function setup_mongo_dirs {
@@ -379,6 +383,9 @@ chown 21000 /opt/engines/run/system/
    echo "setting up  Email Dirs"
  mkdir -p /var/log/engines/services/email/apache2
  chown 22003 -R /var/log/engines/services/email/
+  cp -r /var/lib/engines/cert_auth/public/certs /opt/engines/etc/ftp/ssl
+cp -r /var/lib/engines/cert_auth/public/keys /opt/engines/etc/ftp/ssl
+  chown 22003 -R /opt/engines/etc/ftp/ssl
  }
  
 function make_dirs {
@@ -545,10 +552,10 @@ echo "install installation ssl cert"
 #mkdir -p /opt/engines/etc/ssl/keys/
 #mkdir -p /opt/engines/etc/ssl/certs/
 mkdir -p /var/lib/engines/cert_auth/public/certs/ /var/lib/engines/cert_auth/public/keys/
-cp install_source/ssl/server.crt /var/lib/engines/cert_auth/public/certs/engines.crt
-cp install_source/ssl/server.key /var/lib/engines/cert_auth/public/keys/engines.key 
+cp ${top}/install_source/ssl/server.crt /var/lib/engines/cert_auth/public/certs/engines.crt
+cp ${top}/install_source/ssl/server.key /var/lib/engines/cert_auth/public/keys/engines.key 
 
-cp install_source/ssl/server.crt /usr/local/share/ca-certificates/engines_internal_ca.crt
+cp ${top}/install_source/ssl/server.crt /usr/local/share/ca-certificates/engines_internal_ca.crt
 
 mkdir -p /opt/engines/etc/nginx/ssl/ /opt/engines/etc/nginx/ssl/
 cp -rp /opt/engines/etc/ssl/certs  /opt/engines/etc/nginx/ssl/
