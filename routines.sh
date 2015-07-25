@@ -226,8 +226,13 @@ echo "Creating Management Service Dirs"
 function setup_nginx_dirs {
 	echo "Setup Nginx "
 	mkdir -p  /var/log/engines/services/nginx/nginx
-	mkdir -p /opt/engines/run/services/nginx/run/nginx/
+	mkdir -p /opt/engines/run/services/nginx/run/nginx/ /opt/engines/etc/nginx/ssl
 	chown -R 22005.22005 /var/log/engines/services/nginx /opt/engines/run/services/nginx/run/nginx
+	cp -r /var/lib/engines/cert_auth/public/certs /opt/engines/etc/nginx/ssl
+	cp -r /var/lib/engines/cert_auth/public/keys /opt/engines/etc/nginx/ssl
+
+	chown -R 22005.22005 /opt/engines/etc/nginx/ssl
+	chmod og-rw -R /opt/engines/etc/nginx/ssl
 }
 
 function setup_mysql_dirs {
@@ -312,7 +317,7 @@ function setup_backup_dirs {
  
  function setup_ftp_dirs {
  echo "Setting up FTP "
-  mkdir -p  /var/log/engines/services/ftp/proftpd
+  mkdir -p  /var/log/engines/services/ftp/proftpd /opt/engines/etc/ftp/ssl    
  chown -R 22010 /var/log/engines/services/ftp
  cp -r /var/lib/engines/cert_auth/public/certs /opt/engines/etc/ftp/ssl
 cp -r /var/lib/engines/cert_auth/public/keys /opt/engines/etc/ftp/ssl
@@ -381,11 +386,11 @@ chown 21000 /opt/engines/run/system/
 	 
  function setup_email_dirs {
    echo "setting up  Email Dirs"
- mkdir -p /var/log/engines/services/email/apache2
+ mkdir -p /var/log/engines/services/email/apache2 /opt/engines/etc/email/ssl
  chown 22003 -R /var/log/engines/services/email/
-  cp -r /var/lib/engines/cert_auth/public/certs /opt/engines/etc/ftp/ssl
-cp -r /var/lib/engines/cert_auth/public/keys /opt/engines/etc/ftp/ssl
-  chown 22003 -R /opt/engines/etc/ftp/ssl
+  cp -r /var/lib/engines/cert_auth/public/certs /opt/engines/etc/email/ssl
+cp -r /var/lib/engines/cert_auth/public/keys /opt/engines/etc/email/ssl
+  chown 22003 -R /opt/engines/etc/email/ssl
  }
  
 function make_dirs {
@@ -557,9 +562,6 @@ cp ${top}/install_source/ssl/server.key /var/lib/engines/cert_auth/public/keys/e
 
 cp ${top}/install_source/ssl/server.crt /usr/local/share/ca-certificates/engines_internal_ca.crt
 
-mkdir -p /opt/engines/etc/nginx/ssl/ /opt/engines/etc/nginx/ssl/
-cp -rp /opt/engines/etc/ssl/certs  /opt/engines/etc/nginx/ssl/
-cp -rp /opt/engines/etc/ssl/keys   /opt/engines/etc/nginx/ssl/
 }
 #
 #function generate_ssl {
