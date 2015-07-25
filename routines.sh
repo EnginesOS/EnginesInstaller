@@ -65,7 +65,7 @@ function configure_git {
 	#for systemd
 		if test -f /lib/systemd/system/docker.service
 			then
-				cp ${top}/install_source/lib/systemd/system/docker.service /lib/systemd/system/docker.service
+				cp install_source/lib/systemd/system/docker.service /lib/systemd/system/docker.service
 			fi
 		 update-rc.d docker defaults 
 		 service docker start	
@@ -106,7 +106,7 @@ function configure_git {
 		echo "PATH=\"/opt/engines/bin:$PATH\"" >>~engines/.profile 
 		
 mkdir -p /etc/sudoers.d/
-cp ${top}/install_source/etc/sudoers.d/engines /etc/sudoers.d/engines 
+cp install_source/etc/sudoers.d/engines /etc/sudoers.d/engines 
 		
   }
   
@@ -545,10 +545,10 @@ echo "install installation ssl cert"
 #mkdir -p /opt/engines/etc/ssl/keys/
 #mkdir -p /opt/engines/etc/ssl/certs/
 mkdir -p /var/lib/engines/cert_auth/public/certs/ /var/lib/engines/cert_auth/public/keys/
-cp ${top}/install_source/ssl/server.crt /var/lib/engines/cert_auth/public/certs/engines.crt
-cp ${top}/install_source/ssl/server.key /var/lib/engines/cert_auth/public/keys/engines.key 
+cp install_source/ssl/server.crt /var/lib/engines/cert_auth/public/certs/engines.crt
+cp install_source/ssl/server.key /var/lib/engines/cert_auth/public/keys/engines.key 
 
-cp ${top}/install_source/ssl/server.crt /usr/local/share/ca-certificates/engines_internal_ca.crt
+cp install_source/ssl/server.crt /usr/local/share/ca-certificates/engines_internal_ca.crt
 
 mkdir -p /opt/engines/etc/nginx/ssl/ /opt/engines/etc/nginx/ssl/
 cp -rp /opt/engines/etc/ssl/certs  /opt/engines/etc/nginx/ssl/
