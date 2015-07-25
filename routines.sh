@@ -409,10 +409,6 @@ function make_dirs {
 	setup_cron_dirs
 	setup_email_dirs
 	setup_run_dirs
-	
-
-
-
 
 mkdir -p  /var/log/engines/services/nfs/
 
@@ -507,10 +503,15 @@ docker pull engines/syslog:$release >>/tmp/engines_install.log
 
 echo "Starting DNS"
 	 /opt/engines/bin/engines.rb service create dns >>/tmp/engines_install.log
+echo "Downloading Cert Auth image"
+	 docker pull engines/certs:$release >>/tmp/engines_install.log
+echo "Starting Cert Auth"
+	/opt/engines/bin/engines.rb service create certauth >>/tmp/engines_install.log
 echo "Downloading  MySQL image"
 	 docker pull engines/mysql:$release >>/tmp/engines_install.log
 echo "Starting MySQL"	 
-	 /opt/engines/bin/engines.rb service create mysql_server  >>/tmp/engines_install.log 
+	 /opt/engines/bin/engines.rb service create mysql_server  >>/tmp/engines_install.log
+	  
 echo "Downloading Management  image"
 	  docker pull engines/mgmt:$release >>/tmp/engines_install.log
 echo "Starting Management"
@@ -519,6 +520,7 @@ echo "Downloading Auth image"
 	 docker pull engines/auth:$release >>/tmp/engines_install.log 
 echo "Starting Auth"
 	 /opt/engines/bin/engines.rb service create auth >>/tmp/engines_install.log
+	 
 echo "Downloading Web Router image"
 	  docker pull engines/nginx:$release >>/tmp/engines_install.log
 echo "Starting Web Router"
@@ -527,8 +529,7 @@ echo "Downloading Backup image"
 	 docker pull engines/backup:$release >>/tmp/engines_install.log 
 echo "Downloading Cron image"
 	 docker pull engines/cron:$release >>/tmp/engines_install.log 
-echo "Downloading Cert Auth image"
-	 docker pull engines/certs:$release >>/tmp/engines_install.log
+
 echo "Downloading SMTP image"
 	 docker pull engines/smtp:$release >>/tmp/engines_install.log 
 echo "Downloading FTP image"
