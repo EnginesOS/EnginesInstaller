@@ -328,9 +328,10 @@ cp -r /var/lib/engines/cert_auth/public/keys /opt/engines/etc/ftp/ssl
  
  function setup_cert_auth_dirs {
  echo "Setting up Cert Auth "
-mkdir -p /var/lib/engines/cert_auth/ca
-mkdir -p /var/lib/engines/cert_auth/keys
-mkdir -p /var/lib/engines/cert_auth/certs
+
+ mkdir -p /var/lib/engines/cert_auth/private/ca/keys
+ mkdir -p /var/lib/engines/cert_auth/public/certs
+ mkdir -p /var/lib/engines/cert_auth/public/certs
 
 mkdir -p  /var/log/engines/services/cert_auth/
 
