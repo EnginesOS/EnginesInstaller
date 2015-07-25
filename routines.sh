@@ -544,9 +544,10 @@ function copy_install_ssl_cert {
 echo "install installation ssl cert"
 #mkdir -p /opt/engines/etc/ssl/keys/
 #mkdir -p /opt/engines/etc/ssl/certs/
+mkdir -p /var/lib/engines/cert_auth/public/certs/ /var/lib/engines/cert_auth/public/keys/
 cp ${top}/install_source/ssl/server.crt /var/lib/engines/cert_auth/public/certs/engines.crt
 cp ${top}/install_source/ssl/server.key /var/lib/engines/cert_auth/public/keys/engines.key 
-cp ${top}/install_source/ssl/server.crt 
+
 cp ${top}/install_source/ssl/server.crt /usr/local/share/ca-certificates/engines_internal_ca.crt
 
 mkdir -p /opt/engines/etc/nginx/ssl/ /opt/engines/etc/nginx/ssl/
