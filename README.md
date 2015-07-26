@@ -58,7 +58,8 @@ The user name and password combination for the initial login is admin:password
  <b>Public - Self Hosted</b>
   Not recommended for anything other that testing purposes, when set engines creates and publishes the above DNS entries as an authoritive server on the public ip address of the engines server
   <p>
-  You can change this this latter and add additional domains through the management application and mix types.
+  You can change these latter and add additional domains through the management application and mix types.
+  <br>
   <br>
   <strong>Comming soon</strong><br>
   Dynamic DNS provider support<br>
