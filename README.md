@@ -37,7 +37,7 @@ If you are installing Engines remotely you will need atleast port 10443 publicly
  <li>ssh to mgmt 828
  <li>ssh to host 22
  
- <strong>DNS<strong>
+ <strong>DNS</strong>
  On the first run wizard you will need to fill in a default domain and DNS hosting type, there are three main ways DNS can be configured.
  <br>
  <b>Private</b>
