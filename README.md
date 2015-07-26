@@ -11,12 +11,12 @@ git clone https://github.com/EnginesOS/EnginesInstaller
 
 cd EnginesInstaller
 
-sudo  ./install_enginesOS_fromScratch.sh alpha
+sudo  ./install_engines.sh alpha
 </pre>
 
 
-The installer will take 20mins for a cloud installation, a local install will take longer dependening on the speed of your Internet connection
-The total download is about 2.5GB
+The installer will take 25mins for a cloud installation, a local install will take longer dependening on the speed of your Internet connection
+The total download is about 2.GB
 
 Once finished the installer will present a url to open to configure the installation.
 The user name and password combination for the initial login is admin:password
@@ -36,6 +36,28 @@ If you are installing Engines remotely you will need atleast port 10443 publicly
  <li>VPN 1194/TCP+UDP
  <li>ssh to mgmt 828
  <li>ssh to host 22
+ 
+ <strong>DNS<strong>
+ On the first run wizard you will need to fill in a default domain and DNS hosting type, there are three main ways DNS can be configured.
+ <br>
+ <b>Private</b>
+  This will setup up a DNS zone hosted on the engines server with records published with the LAN ip address.<br>
+  To access the engines system set your workstations DNS server to the engines server.<br>
+ <b>Public - hosted Externally</b>
+  Set the default domain in the first run wizard as server_name.your.domain.name
+  You will need to add the following DNS records <br>
+  <pre>
+   server_name.your.domain.name.	A  the_external_ip_address_of_engines_server
+   *.server_name.your.domain.name.	A  the_external_ip_address_of_engines_server
+  </pre>
+ <br> 
+ Web access to engines and services (where applicable) is then through hostname.server_name.your.domain.name
+ <br>
+ <b>Public - Self Hosted</b>
+  Not recommended for anything other that testing purposes, engines creates and publishes the above DNS entries on the public ip address of the engines server
+  <bp>
+    
+  
  
 <h3>Other Versions</h3>
  Installer syntax<br>
