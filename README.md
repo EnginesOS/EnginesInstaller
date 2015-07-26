@@ -39,7 +39,7 @@ If you are installing Engines remotely you will need atleast port 10443 publicly
  
  <strong>DNS</strong><br>
  On the first run wizard you will need to fill in a default domain and DNS hosting type, there are three main ways DNS can be configured.<br>
- <i>Don't not use a .local suffix for the default domain. </i>
+ <i>Do not use a .local suffix for the default domain. </i>
  <br>
  <br>
  <b>Private</b>
