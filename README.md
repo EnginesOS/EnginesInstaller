@@ -37,25 +37,44 @@ If you are installing Engines remotely you will need atleast port 10443 publicly
  <li>ssh to mgmt 828
  <li>ssh to host 22
  
- <strong>DNS</strong>
- On the first run wizard you will need to fill in a default domain and DNS hosting type, there are three main ways DNS can be configured.
+ <strong>DNS</strong><br>
+ On the first run wizard you will need to fill in a default domain and DNS hosting type, there are three main ways DNS can be configured. 
  <br>
  <b>Private</b>
-  This will setup up a DNS zone hosted on the engines server with records published with the LAN ip address.<br>
-  To access the engines system set your workstations DNS server to the engines server.<br>
+  This will setup up a DNS zone hosted on the engines server for the default domain with records published with the LAN ip address.<br>
+  To access the engines system set your workstations DNS server to the engines server. Dont not use a .local suffix for this.
+  <br>
+  <br>
  <b>Public - hosted Externally</b>
   Set the default domain in the first run wizard as server_name.your.domain.name
   You will need to add the following DNS records <br>
+   <pre>
+   your.domain.name.	A  the_external_ip_address_of_engines_server
+   *.your.domain.name.	A  the_external_ip_address_of_engines_server
+  </pre>
+  <br>
+  or 
   <pre>
    server_name.your.domain.name.	A  the_external_ip_address_of_engines_server
    *.server_name.your.domain.name.	A  the_external_ip_address_of_engines_server
-  </pre>
+  </pre><br>
+ You may wish to set TTLs
+  
  <br> 
+ <br>
  Web access to engines and services (where applicable) is then through hostname.server_name.your.domain.name
  <br>
+ <br>
  <b>Public - Self Hosted</b>
-  Not recommended for anything other that testing purposes, engines creates and publishes the above DNS entries on the public ip address of the engines server
-  <bp>
+  Not recommended for anything other that testing purposes, engines creates and publishes the above DNS entries as an authoritive server on the public ip address of the engines server
+  <p>
+  You can add additional domains through the management application and mix types types.
+  <br>
+  <strong>Comming soon</strong><br>
+  Dynamic DNS provider support<br>
+  <strong>Future</strong>
+  Zeroconf domains<br>
+   
     
   
  
