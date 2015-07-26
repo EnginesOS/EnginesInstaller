@@ -498,16 +498,20 @@ echo "Creating and starting Engines Services"
 release=`cat /opt/engines/release`
 
 echo "Downloading DNS image"
-docker pull engines/dns:$release >>/tmp/engines_install.log 
-echo "Downloading Syslog image"
-docker pull engines/syslog:$release >>/tmp/engines_install.log 
-
+	docker pull engines/dns:$release >>/tmp/engines_install.log
 echo "Starting DNS"
 	 /opt/engines/bin/engines.rb service create dns >>/tmp/engines_install.log
+ 
+echo "Downloading Syslog image"
+	docker pull engines/syslog:$release >>/tmp/engines_install.log
+echo "Starting Syslog" 
+	 /opt/engines/bin/engines.rb service create syslog >>/tmp/engines_install.log
+	 
 echo "Downloading Cert Auth image"
 	 docker pull engines/certs:$release >>/tmp/engines_install.log
 echo "Starting Cert Auth"
-	/opt/engines/bin/engines.rb service create certauth >>/tmp/engines_install.log
+	/opt/engines/bin/engines.rb service create cert_auth >>/tmp/engines_install.log
+	
 echo "Downloading  MySQL image"
 	 docker pull engines/mysql:$release >>/tmp/engines_install.log
 echo "Starting MySQL"	 
@@ -517,6 +521,7 @@ echo "Downloading Management  image"
 	  docker pull engines/mgmt:$release >>/tmp/engines_install.log
 echo "Starting Management"
 	/opt/engines/bin/engines.rb service create mgmt >>/tmp/engines_install.log
+	
 echo "Downloading Auth image"
 	 docker pull engines/auth:$release >>/tmp/engines_install.log 
 echo "Starting Auth"
@@ -526,17 +531,37 @@ echo "Downloading Web Router image"
 	  docker pull engines/nginx:$release >>/tmp/engines_install.log
 echo "Starting Web Router"
 	 /opt/engines/bin/engines.rb service create nginx >>/tmp/engines_install.log
+	 
 echo "Downloading Backup image"
-	 docker pull engines/backup:$release >>/tmp/engines_install.log 
+	 docker pull engines/backup:$release >>/tmp/engines_install.log
+echo "Starting Backup"
+	 /opt/engines/bin/engines.rb service create backup >>/tmp/engines_install.log
+	 
 echo "Downloading Cron image"
-	 docker pull engines/cron:$release >>/tmp/engines_install.log 
+	 docker pull engines/cron:$release >>/tmp/engines_install.log
+ echo "Starting Cron"
+	 /opt/engines/bin/engines.rb service create cron >>/tmp/engines_install.log
+ 	 
 
 echo "Downloading SMTP image"
-	 docker pull engines/smtp:$release >>/tmp/engines_install.log 
+	 docker pull engines/smtp:$release >>/tmp/engines_install.log
+ echo "Starting SMTP"
+	 /opt/engines/bin/engines.rb service create smtp >>/tmp/engines_install.log
+ 	 
+
+	  
 echo "Downloading FTP image"
 	docker pull engines/ftp:$release >>/tmp/engines_install.log
+echo "Starting FTP"
+	 /opt/engines/bin/engines.rb service create ftp >>/tmp/engines_install.log
+ 	
+	
 echo "Downloading Volmanager image"
 	docker pull engines/volmanager:$release >>/tmp/engines_install.log
+echo "Starting Volmanager image"
+	/opt/engines/bin/engines.rb service create volmanager >>/tmp/engines_install.log
+
+	
 echo "Starting System Services"
 	 /opt/engines/bin/eservices check_and_act  >>/tmp/engines_install.log &
 	
@@ -557,8 +582,9 @@ mkdir -p /var/lib/engines/cert_auth/public/certs/ /var/lib/engines/cert_auth/pub
 cp ${top}/install_source/ssl/server.crt /var/lib/engines/cert_auth/public/certs/engines.crt
 cp ${top}/install_source/ssl/server.key /var/lib/engines/cert_auth/public/keys/engines.key 
 
-cp ${top}/install_source/ssl/server.crt /usr/local/share/ca-certificates/engines_internal_ca.crt
+cp ${top}/install_source/ssl/server.crt /opt/engines/etc/ca/engines_internal_ca.crt
 
+chown -R 22022 /var/lib/engines/cert_auth/
 mkdir -p /opt/engines/etc/nginx/ssl/ /opt/engines/etc/nginx/ssl/
 cp -rp /var/lib/engines/cert_auth/public/certs  /opt/engines/etc/nginx/ssl/
 cp -rp /var/lib/engines/cert_auth/public/keys   /opt/engines/etc/nginx/ssl/
