@@ -354,14 +354,14 @@ mkdir -p /opt/engines/etc/auth/access  /opt/engines/etc/auth/scripts  /opt/engin
 	chown 22017 -R  /opt/engines/etc/auth/keys/
  }
  function setup_cron_dirs {
-   echo "setting up  Cron Dirs"
+   echo "Setting up Cron Dirs"
  mkdir -p /var/log/engines/services/cron 
  chown -R  22016 /var/log/engines/services/cron
 
  }
  
  function setup_run_dirs {
-  echo "Setting up  Run Dirs"
+  echo "Setting up Run Dirs"
    chown 21000 /opt/engines/run/services/ /opt/engines/run/containers/
  	chgrp -R 22020 /opt/engines/run/services/
 	chmod g+w -R  /opt/engines/run/services/
@@ -383,7 +383,7 @@ chown 21000 /opt/engines/run/system/
 	 }
 	 
  function setup_email_dirs {
-   echo "setting up  Email Dirs"
+   echo "Setting up Email Dirs"
  mkdir -p /var/log/engines/services/email/apache2 /opt/engines/etc/email/ssl
  chown 22003 -R /var/log/engines/services/email/
   cp -r /var/lib/engines/cert_auth/public/certs /opt/engines/etc/email/ssl
