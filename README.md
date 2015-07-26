@@ -38,27 +38,29 @@ If you are installing Engines remotely you will need atleast port 10443 publicly
  <li>ssh to host 22
  
  <strong>DNS</strong><br>
- On the first run wizard you will need to fill in a default domain and DNS hosting type, there are three main ways DNS can be configured. 
+ On the first run wizard you will need to fill in a default domain and DNS hosting type, there are three main ways DNS can be configured.<br>
+ <i>Don't not use a .local suffix for the default domain. </i>
  <br>
  <b>Private</b>
-  This will setup up a DNS zone hosted on the engines server for the default domain with records published with the LAN ip address.<br>
-  To access the engines system set your workstations DNS server to the engines server. Dont not use a .local suffix for this.
+  This will setup up a DNS zone hosted on the engines server for the default domain with records published using the engines server LAN IP address.<br>
+  To access the engines system you will need to set your workstations DNS server to the engines server. 
   <br>
   <br>
  <b>Public - hosted Externally</b>
-  Set the default domain in the first run wizard as server_name.your.domain.name
+  Set the default domain in the first run wizard as some.domain.name
   You will need to add the following DNS records <br>
    <pre>
-   your.domain.name.	A  the_external_ip_address_of_engines_server
-   *.your.domain.name.	A  the_external_ip_address_of_engines_server
+   some.domain.name.	A  the_external_ip_address_of_engines_server
+   *.some.domain.name.	A  the_external_ip_address_of_engines_server
   </pre>
-  <br>
-  or 
-  <pre>
-   server_name.your.domain.name.	A  the_external_ip_address_of_engines_server
-   *.server_name.your.domain.name.	A  the_external_ip_address_of_engines_server
-  </pre><br>
- You may wish to set TTLs
+
+   You may wish to set TTLs<br>
+   some.domain.name. does not need to be a top level domain as in mycompany.com, but can engines.mycompany.com even engines.testing.mycompany.com as in<br>
+   
+     <pre>
+   engines.testing.mycompany.com.	A  the_external_ip_address_of_engines_server
+   *.engines.testing.mycompany.com.	A  the_external_ip_address_of_engines_server
+  </pre> 
   
  <br> 
  <br>
@@ -80,7 +82,7 @@ If you are installing Engines remotely you will need atleast port 10443 publicly
  
 <h3>Other Versions</h3>
  Installer syntax<br>
-sudo  ./install_enginesOS_fromScratch.sh {branch}<br>
+sudo  ./install_engines.sh {branch}<br>
 The available branches for the EnginesSystem are
 <li>alpha 
 <li>master
