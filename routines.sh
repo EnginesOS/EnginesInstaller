@@ -407,25 +407,12 @@ function make_dirs {
 	setup_dns_dirs
 	setup_imap_dirs
 	setup_ftp_dirs
-	setup_mongo_dirs
-	
+	setup_mongo_dirs	
 	setup_cron_dirs
 	setup_email_dirs
 	setup_run_dirs
 
 mkdir -p  /var/log/engines/services/nfs/
-
-
-#mkdir -p  /var/log/engines/services/auth/ftp/
-
-#mkdir -p  /opt/engines/etc/cron/tabs
-
-
-#mkdir -p  /opt/engines/etc/keys
-
-
-#mkdir -p /opt/engines/ssh/keys/services/
-
 
 }
 
@@ -436,7 +423,7 @@ function setup_mgmt_keys {
  ssh-keygen -f ~/.ssh/access_system -N "">>/tmp/engines_install.log
  ssh-keygen -f ~/.ssh/mgmt/update_access_system -N "">>/tmp/engines_install.log
  ssh-keygen -f ~/.ssh/mgmt/update_engines_system_software -N "">>/tmp/engines_install.log
-  ssh-keygen -f ~/.ssh/mgmt/update_engines_console_password -N "">>/tmp/engines_install.log
+ ssh-keygen -f ~/.ssh/mgmt/update_engines_console_password -N "">>/tmp/engines_install.log
   
  restart_system_pub=`cat ~/.ssh/mgmt/restart_system.pub`
  update_system_pub=`cat ~/.ssh/mgmt/update_system.pub`
@@ -512,8 +499,6 @@ echo "Starting Syslog"
 echo "Downloading Cert Auth image"
 	 docker pull engines/certs:$release >>/tmp/engines_install.log
 echo "Starting Cert Auth"
-ls -la /var/lib/engines/cert_auth/
-
 	/opt/engines/bin/engines.rb service create cert_auth >>/tmp/engines_install.log
 	
 echo "Downloading  MySQL image"
