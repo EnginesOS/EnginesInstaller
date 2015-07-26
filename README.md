@@ -21,23 +21,10 @@ The total download is about 2.GB
 Once finished the installer will present a url to open to configure the installation.
 The user name and password combination for the initial login is admin:password
 
-<b>Management Port</b>
+<h3>Configuration</h3>
 
-If you are installing Engines remotely you will need atleast port 10443 publicly acessible to access the management interface<br>
-
- <b>Ports</b>
- <li>Management Interface 10443/TCP
- <li>Webpages hosted 80,443/TCP
  
- <b>Optional Ports</b>
- <li>FTP Ports 989,990/TCP
- <li>Email 25,465,993,995/TCP
- <li>DNS 53/UDP
- <li>VPN 1194/TCP+UDP
- <li>ssh to mgmt 828
- <li>ssh to host 22
- 
- <strong>DNS</strong><br>
+ <h4>DNS</h4>
  On the first run wizard you will need to fill in a default domain and DNS hosting type, there are three main ways DNS can be configured.<br>
  <i>Do not use a .local suffix for the default domain. </i>
  <br>
@@ -79,7 +66,21 @@ If you are installing Engines remotely you will need atleast port 10443 publicly
   Zeroconf domains<br>
    
     
-  
+  <h4>Ports</h4>
+
+If you are installing Engines remotely you will need atleast port 10443 publicly acessible to access the management interface<br>
+
+ <b>RequiredPorts</b>
+ <li>Management Interface 10443/TCP
+ <li>Webpages hosted 80,443/TCP
+ 
+ <b>Optional Ports</b>
+ <li>FTP Ports 989,990/TCP
+ <li>Email 25,465,993,995/TCP
+ <li>DNS 53/UDP
+ <li>VPN 1194/TCP+UDP
+ <li>ssh to mgmt 828
+ <li>ssh to host 22
  
 <h3>Other Versions</h3>
  Installer syntax<br>
