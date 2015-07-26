@@ -431,11 +431,12 @@ function setup_mgmt_keys {
  update_engines_system_software=`cat ~/.ssh/mgmt/update_engines_system_software.pub`
  update_engines_console_password=`cat ~/.ssh/mgmt/update_engines_console_password.pub`
  
- echo "command=\"/opt/engines/bin/restart_system.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $restart_system_pub " >  ~/.ssh/authorized_keys
- echo "command=\"/opt/engines/bin/update_system.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $update_system_pub " >>  ~/.ssh/authorized_keys
- echo "command=\"/opt/engines/bin/update_system_access.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $update_access_system_pub " >>  ~/.ssh/authorized_keys
- echo "command=\"/opt/engines/bin/update_engines_system_software.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $update_engines_system_software " >>  ~/.ssh/authorized_keys
- echo "command=\"/opt/engines/bin/update_engines_console_password.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $update_engines_console_password " >>  ~/.ssh/authorized_keys
+ echo "command=\"/opt/engines/bin/restart_system.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $restart_system_pub " >  ~/.ssh/authorized_keys.system
+ echo "command=\"/opt/engines/bin/update_system.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $update_system_pub " >>  ~/.ssh/authorized_keys.system
+ echo "command=\"/opt/engines/bin/update_system_access.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $update_access_system_pub " >>  ~/.ssh/authorized_keys.system
+ echo "command=\"/opt/engines/bin/update_engines_system_software.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $update_engines_system_software " >>  ~/.ssh/authorized_keys.system
+ echo "command=\"/opt/engines/bin/update_engines_console_password.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $update_engines_console_password " >>  ~/.ssh/authorized_keys.system
+ cp ~/.ssh/authorized_keys.system ~/.ssh/authorized_keys
 }
 
 function set_permissions {
