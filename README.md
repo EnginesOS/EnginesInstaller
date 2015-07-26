@@ -41,6 +41,7 @@ If you are installing Engines remotely you will need atleast port 10443 publicly
  On the first run wizard you will need to fill in a default domain and DNS hosting type, there are three main ways DNS can be configured.<br>
  <i>Don't not use a .local suffix for the default domain. </i>
  <br>
+ <br>
  <b>Private</b>
   This will setup up a DNS zone hosted on the engines server for the default domain with records published using the engines server LAN IP address.<br>
   To access the engines system you will need to set your workstations DNS server to the engines server. 
@@ -55,26 +56,26 @@ If you are installing Engines remotely you will need atleast port 10443 publicly
   </pre>
 
    You may wish to set TTLs<br>
-   some.domain.name. does not need to be a top level domain as in mycompany.com, but can engines.mycompany.com even engines.testing.mycompany.com as in<br>
-   
-     <pre>
+   some.domain.name. does not need to be a top level domain as in mycompany.com, but can engines.mycompany.com even engines.testing.mycompany.com as in
+   <br>  
+   <pre>
    engines.testing.mycompany.com.	A  the_external_ip_address_of_engines_server
    *.engines.testing.mycompany.com.	A  the_external_ip_address_of_engines_server
   </pre> 
   
  <br> 
  <br>
- Web access to engines and services (where applicable) is then through hostname.server_name.your.domain.name
+ Web access to engines and services (where applicable) is then through hostname.some.domain.name  in the example above mgmt.engines.testing.mycompany.com
  <br>
  <br>
  <b>Public - Self Hosted</b>
-  Not recommended for anything other that testing purposes, engines creates and publishes the above DNS entries as an authoritive server on the public ip address of the engines server
+  Not recommended for anything other that testing purposes, when set engines creates and publishes the above DNS entries as an authoritive server on the public ip address of the engines server
   <p>
-  You can add additional domains through the management application and mix types types.
+  You can change this this latter and add additional domains through the management application and mix types.
   <br>
   <strong>Comming soon</strong><br>
   Dynamic DNS provider support<br>
-  <strong>Future</strong>
+  <strong>Future</strong><br>
   Zeroconf domains<br>
    
     
