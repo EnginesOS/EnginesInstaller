@@ -585,6 +585,7 @@ echo "install installation ssl cert"
 mkdir -p /var/lib/engines/cert_auth/public/certs/ /var/lib/engines/cert_auth/public/keys/
 cp ${top}/install_source/ssl/server.crt /var/lib/engines/cert_auth/public/certs/engines.crt
 cp ${top}/install_source/ssl/server.key /var/lib/engines/cert_auth/public/keys/engines.key 
+ mkdir  /opt/engines/etc/ca/
 
 cp ${top}/install_source/ssl/server.crt /opt/engines/etc/ca/engines_internal_ca.crt
 
