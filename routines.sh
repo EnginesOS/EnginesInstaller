@@ -217,7 +217,9 @@ echo "Creating Management Service Dirs"
 	mkdir -p /opt/engines/run/service_manager/
 	chown -R 21000 /opt/engines/run/service_manager/
 	chown -R 21000 /home/engines/deployment/deployed/
-	chown -R 21000 /var/lib/engines ~engines/  /var/log/engines  /var/lib/engines/mgmt/public/system/
+	chown 21000 /var/lib/engines  /var/log/engines/containers /var/log/engines/
+	
+	chown -R 21000 ~engines/  /var/lib/engines/mgmt/public/system/
 	mkdir -p /opt/engines/run/system/flags/
 	chown -R 21000 /opt/engines/run/system/
 	
@@ -510,6 +512,8 @@ echo "Starting Syslog"
 echo "Downloading Cert Auth image"
 	 docker pull engines/certs:$release >>/tmp/engines_install.log
 echo "Starting Cert Auth"
+ls -la /var/lib/engines/cert_auth/
+
 	/opt/engines/bin/engines.rb service create cert_auth >>/tmp/engines_install.log
 	
 echo "Downloading  MySQL image"
