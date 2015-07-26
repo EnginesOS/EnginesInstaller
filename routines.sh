@@ -217,9 +217,9 @@ echo "Creating Management Service Dirs"
 	mkdir -p /opt/engines/run/service_manager/
 	chown -R 21000 /opt/engines/run/service_manager/
 	chown -R 21000 /home/engines/deployment/deployed/
-	chown 21000 /var/lib/engines  /var/log/engines/containers /var/log/engines/
+	chown 21000 /var/lib/engines  /var/log/engines/containers /var/log/engines/ /var/log/engines/services/ /var/log/engines/containers/
 	
-	chown -R 21000 ~engines/  /var/lib/engines/mgmt/public/system/
+	chown -R 21000 ~engines/  /var/lib/engines/mgmt/public/system/ /var/log/engines/services/mgmt 
 	mkdir -p /opt/engines/run/system/flags/
 	chown -R 21000 /opt/engines/run/system/
 	
