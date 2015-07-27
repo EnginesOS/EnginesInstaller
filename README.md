@@ -23,7 +23,7 @@ The user name and password combination for the initial login is admin:password<b
 Please use chrome for the time being as there are problems with some java scripts in the Management Interface.
 
 <br>
-<strong>System Requirements<strong><br>
+<strong>System Requirements</strong><br>
 2GB Ram
 40 GB HD 
 
