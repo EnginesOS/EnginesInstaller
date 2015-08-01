@@ -5,6 +5,7 @@ sleep 20
 
 if test -d EnginesInstaller
 	then
+	docker stop `docker ps |awk '{print $1}' `
 	 docker rm `docker ps -a |awk '{print $1}' `
 	 docker rmi `docker images |awk '{print $3}' `
 		service docker stop
