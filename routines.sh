@@ -436,8 +436,13 @@ function setup_mgmt_keys {
  echo "command=\"/opt/engines/bin/update_system_access.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $update_access_system_pub " >>  ~/.ssh/authorized_keys.system
  echo "command=\"/opt/engines/bin/update_engines_system_software.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $update_engines_system_software " >>  ~/.ssh/authorized_keys.system
  echo "command=\"/opt/engines/bin/update_engines_console_password.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $update_engines_console_password " >>  ~/.ssh/authorized_keys.system
- cp ~/.ssh/authorized_keys /home/engines/.ssh/authorized_keys.console_access
- cat  /home/engines/.ssh/authorized_keys.console_access ~/.ssh/authorized_keys.system > ~/.ssh/authorized_keys
+ 	if test -f ~/.ssh/authorized_keys
+ 		then
+ 			cp ~/.ssh/authorized_keys /home/engines/.ssh/authorized_keys.console_access
+ 			cat  /home/engines/.ssh/authorized_keys.console_access ~/.ssh/authorized_keys.system > ~/.ssh/authorized_keys
+ 		else 
+ 			cat ~/.ssh/authorized_keys.system > ~/.ssh/authorized_keys
+ 		end
  chmod og-rw  /home/engines/.ssh/authorized_keys
 }
 
