@@ -442,7 +442,7 @@ function setup_mgmt_keys {
  			cat  /home/engines/.ssh/authorized_keys.console_access ~/.ssh/authorized_keys.system > ~/.ssh/authorized_keys
  		else 
  			cat ~/.ssh/authorized_keys.system > ~/.ssh/authorized_keys
- 		end
+ 		fi
  chmod og-rw  /home/engines/.ssh/authorized_keys
 }
 
