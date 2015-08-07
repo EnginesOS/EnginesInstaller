@@ -2,12 +2,23 @@
 
 echo "15 seconds until destruction with no visual countdown starting now"
 sleep 20
-
+keep=0
+if $# -eq 1
+ then
+   if test $1 = "-k"
+     then 
+       keep=1
+     fi
+ fi
+ 
 if test -d EnginesInstaller
 	then
 	docker stop `docker ps |awk '{print $1}' `
 	 docker rm `docker ps -a |awk '{print $1}' `
-	 docker rmi `docker images |awk '{print $3}' `
+	 if test keep -eq 0
+	 	then
+	 		docker rmi `docker images |awk '{print $3}' `
+	 	fi
 		service docker stop
 		rm -r /var/lib/engines
 		rm -r /var/log/engines

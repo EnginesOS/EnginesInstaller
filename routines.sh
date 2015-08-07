@@ -223,6 +223,7 @@ echo "Creating Management Service Dirs"
 	mkdir -p /opt/engines/run/system/flags/
 	chown -R 21000 /opt/engines/run/system/
 	
+
 }
 
 function setup_nginx_dirs {
@@ -380,6 +381,11 @@ mkdir -p /opt/engines/run/system/flags/
 chown 21000 /opt/engines/run/system/
 	 mkdir -p /opt/engines/etc/preferences/
 	chown 21000 -R /opt/engines/etc/preferences/
+	
+	mkdir -p /var/lib/engines/registry
+	chown -R 22023 /var/lib/engines/registry
+	chown -R 21000  /opt/engines/run/system_services/
+	
 	 }
 	 
  function setup_email_dirs {
