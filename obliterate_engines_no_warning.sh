@@ -15,7 +15,7 @@ if test -d EnginesInstaller
 	then
 	docker stop `docker ps |awk '{print $1}' `
 	 docker rm `docker ps -a |awk '{print $1}' `
-	 if test keep -eq 0
+	 if test $keep -eq 0
 	 	then
 	 		docker rmi `docker images |awk '{print $3}' `
 	 	fi
