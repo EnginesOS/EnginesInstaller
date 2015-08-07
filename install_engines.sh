@@ -2,6 +2,11 @@
 #root section of install run as root
 RUBY_VER=2.2.2
 
+ if dpkg-query -W -f'${Status}' "lxc-docker" 2>/dev/null | grep -q "ok installed"; then
+ 	echo "Cannot install onto an existing docker host"
+ 	exit
+ fi
+
 touch /tmp/engines_install.log
 
 
@@ -20,7 +25,7 @@ export top
 
 . ${top}/routines.sh
  
- 
+
 
 dpkg-reconfigure tzdata
 
