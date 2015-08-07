@@ -2,6 +2,11 @@
 #root section of install run as root
 RUBY_VER=2.2.2
 
+if !test `id |cut -2 -d=|cut -f1 -d\(` -eq 0
+	then
+		echo "This script must be run as root or as sudo $0"
+		exit 
+	f1
  if dpkg-query -W -f'${Status}' "lxc-docker" 2>/dev/null | grep -q "ok installed"; then
  	echo "Cannot install onto an existing docker host"
  	exit
