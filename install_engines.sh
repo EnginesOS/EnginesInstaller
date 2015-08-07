@@ -2,7 +2,7 @@
 #root section of install run as root
 RUBY_VER=2.2.2
 
-if !test `id |cut -2 -d=|cut -f1 -d\(` -eq 0
+if ! test `id |cut -2 -d=|cut -f1 -d\(` -eq 0
 	then
 		echo "This script must be run as root or as sudo $0"
 		exit 
