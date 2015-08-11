@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "15 seconds until destruction with no visual countdown starting now"
-echo "Docker and ALL docker Images will be Deleted"
+echo "Docker and ALL docker Images will be Deleted -k to keep"
 echo "Ctl-C now if this is not want you want"
 sleep 20
 keep=0
