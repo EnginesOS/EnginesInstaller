@@ -13,6 +13,12 @@ if ! test `id |cut -f2 -d=|cut -f1 -d\(` -eq 0
  	exit
  fi
 
+if ! test -f ./routines.sh
+ then
+ 	echo "Error: Script must be run from within the EnginesInstaller dir "
+ 	exit
+ fi 
+
 touch /tmp/engines_install.log
 
 
