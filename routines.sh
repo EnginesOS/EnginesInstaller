@@ -37,6 +37,7 @@ function configure_git {
   function setup_startup_script {
   echo "Adding startup script"
 		 cat /etc/rc.local | sed "/^exit.*$/s//su -l engines \/opt\/engines\/bin\/engines_startup.sh/" > /tmp/rc.local
+		 echo "rm -f /opt/engines/run/system/flags/reboot_required >&/dev/null " >> /tmp/rc.local
 		 echo "exit 0"  >> /tmp/rc.local
 		 cp /tmp/rc.local /etc/rc.local
 		 rm  /tmp/rc.local
@@ -426,7 +427,7 @@ mkdir -p  /var/log/engines/services/nfs/
 
 function create_mgmt_script_key {
 	script_name=$1
-	ssh-keygen -f ~/.ssh/mgmt/${script_name} -N
+	ssh-keygen -f ~/.ssh/mgmt/${script_name} -N ""
 	pubkey=`cat ~/.ssh/mgmt/${script_name}.pub`
 	echo "command=\"/opt/engines/bin/${script_name}.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $pubkey " >  ~/.ssh/_${script_name}_authorized_keys
 	cat ~/.ssh/_${script_name}_authorized_keys >> ~/.ssh/authorized_keys.system
