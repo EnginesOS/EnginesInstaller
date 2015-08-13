@@ -434,6 +434,7 @@ function create_mgmt_script_key {
 
 function setup_mgmt_keys {
 	if test -f ~/.ssh/authorized_keys.system
+	 then
 		rm ~/.ssh/authorized_keys.system
 	fi
 	
