@@ -10,4 +10,6 @@ engines ALL = (root) NOPASSWD: /opt/engines/scripts/_install_cert.sh
 engines ALL = (root) NOPASSWD: /opt/engines/scripts/_install_ca.sh
 engines ALL = (root) NOPASSWD: /opt/engines/scripts/_update_engines_system_software.sh
 engines ALL = (root) NOPASSWD: /opt/engines/scripts/_update_engines_console_password.sh
+engines ALL = (root) NOPASSWD: /opt/engines/scripts/_apt-get_update.sh
+engines ALL = (root) NOPASSWD: /opt/engines/scripts/_update_base_os.sh
 #Must have tailing empty line
