@@ -424,26 +424,41 @@ mkdir -p  /var/log/engines/services/nfs/
 
 }
 
-function setup_mgmt_keys {
+function create_mgmt_script_key {
 
- ssh-keygen -f ~/.ssh/mgmt/restart_system -N "">>/tmp/engines_install.log
- ssh-keygen -f ~/.ssh/mgmt/update_system -N "">>/tmp/engines_install.log
- ssh-keygen -f ~/.ssh/access_system -N "">>/tmp/engines_install.log
- ssh-keygen -f ~/.ssh/mgmt/update_access_system -N "">>/tmp/engines_install.log
- ssh-keygen -f ~/.ssh/mgmt/update_engines_system_software -N "">>/tmp/engines_install.log
- ssh-keygen -f ~/.ssh/mgmt/update_engines_console_password -N "">>/tmp/engines_install.log
-  
- restart_system_pub=`cat ~/.ssh/mgmt/restart_system.pub`
- update_system_pub=`cat ~/.ssh/mgmt/update_system.pub`
- update_access_system_pub=`cat ~/.ssh/mgmt/update_access_system.pub`
- update_engines_system_software=`cat ~/.ssh/mgmt/update_engines_system_software.pub`
- update_engines_console_password=`cat ~/.ssh/mgmt/update_engines_console_password.pub`
- 
- echo "command=\"/opt/engines/bin/restart_system.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $restart_system_pub " >  ~/.ssh/authorized_keys.system
- echo "command=\"/opt/engines/bin/update_system.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $update_system_pub " >>  ~/.ssh/authorized_keys.system
- echo "command=\"/opt/engines/bin/update_system_access.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $update_access_system_pub " >>  ~/.ssh/authorized_keys.system
- echo "command=\"/opt/engines/bin/update_engines_system_software.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $update_engines_system_software " >>  ~/.ssh/authorized_keys.system
- echo "command=\"/opt/engines/bin/update_engines_console_password.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $update_engines_console_password " >>  ~/.ssh/authorized_keys.system
+	ssh-keygen -f ~/.ssh/mgmt/${script_name}
+	pubkey=`cat ~/.ssh/mgmt/${script_name}.pub
+	echo "command=\"/opt/engines/bin/${script_name}.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $pubkey " >  ~/.ssh/_${script_name}_authorized_keys
+	cat ~/.ssh/_${script_name}_authorized_keys >> ~/.ssh/authorized_keys.system
+}
+
+function setup_mgmt_keys {
+	if test -f ~/.ssh/authorized_keys.system
+		rm ~/.ssh/authorized_keys.system
+	fi
+	
+	for script_name in "restart_system deb_update_status update_system access_system update_access_system update_engines_system_software update_engines_console_password"
+		do
+			create_mgmt_script_key >>/tmp/engines_install.log
+		done 
+#ssh-keygen -f ~/.ssh/mgmt/restart_system -N "">>/tmp/engines_install.log
+#ssh-keygen -f ~/.ssh/mgmt/update_system -N "">>/tmp/engines_install.log
+#ssh-keygen -f ~/.ssh/access_system -N "">>/tmp/engines_install.log
+#ssh-keygen -f ~/.ssh/mgmt/update_access_system -N "">>/tmp/engines_install.log
+#ssh-keygen -f ~/.ssh/mgmt/update_engines_system_software -N "">>/tmp/engines_install.log
+#ssh-keygen -f ~/.ssh/mgmt/update_engines_console_password -N "">>/tmp/engines_install.log
+# 
+#restart_system_pub=`cat ~/.ssh/mgmt/restart_system.pub`
+#update_system_pub=`cat ~/.ssh/mgmt/update_system.pub`
+#update_access_system_pub=`cat ~/.ssh/mgmt/update_access_system.pub`
+#update_engines_system_software=`cat ~/.ssh/mgmt/update_engines_system_software.pub`
+#update_engines_console_password=`cat ~/.ssh/mgmt/update_engines_console_password.pub`
+#
+#echo "command=\"/opt/engines/bin/restart_system.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $restart_system_pub " >  ~/.ssh/authorized_keys.system
+#echo "command=\"/opt/engines/bin/update_system.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $update_system_pub " >>  ~/.ssh/authorized_keys.system
+#echo "command=\"/opt/engines/bin/update_system_access.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $update_access_system_pub " >>  ~/.ssh/authorized_keys.system
+#echo "command=\"/opt/engines/bin/update_engines_system_software.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $update_engines_system_software " >>  ~/.ssh/authorized_keys.system
+#echo "command=\"/opt/engines/bin/update_engines_console_password.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $update_engines_console_password " >>  ~/.ssh/authorized_keys.system
  	if test -f ~/.ssh/authorized_keys
  		then
  			cp ~/.ssh/authorized_keys /home/engines/.ssh/authorized_keys.console_access
