@@ -14,7 +14,7 @@ echo "Docker and ALL docker Images will be Deleted -k to keep docker images"
 echo "Ctl-C now if this is not want you want"
 sleep 20
 keep=0
-if $# -eq 1
+if test $# -eq 1
  then
    if test $1 = "-k"
      then 
