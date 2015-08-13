@@ -427,7 +427,7 @@ mkdir -p  /var/log/engines/services/nfs/
 function create_mgmt_script_key {
 
 	ssh-keygen -f ~/.ssh/mgmt/${script_name}
-	pubkey=`cat ~/.ssh/mgmt/${script_name}.pub
+	pubkey=`cat ~/.ssh/mgmt/${script_name}.pub`
 	echo "command=\"/opt/engines/bin/${script_name}.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $pubkey " >  ~/.ssh/_${script_name}_authorized_keys
 	cat ~/.ssh/_${script_name}_authorized_keys >> ~/.ssh/authorized_keys.system
 }
