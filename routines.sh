@@ -425,7 +425,7 @@ mkdir -p  /var/log/engines/services/nfs/
 }
 
 function create_mgmt_script_key {
-
+	script_name = $1
 	ssh-keygen -f ~/.ssh/mgmt/${script_name}
 	pubkey=`cat ~/.ssh/mgmt/${script_name}.pub`
 	echo "command=\"/opt/engines/bin/${script_name}.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $pubkey " >  ~/.ssh/_${script_name}_authorized_keys
@@ -440,7 +440,8 @@ function setup_mgmt_keys {
 	
 	for script_name in "restart_system deb_update_status update_system access_system update_access_system update_engines_system_software update_engines_console_password"
 		do
-			create_mgmt_script_key >>/tmp/engines_install.log
+			
+			create_mgmt_script_key  $script_name >>/tmp/engines_install.log
 		done 
 #ssh-keygen -f ~/.ssh/mgmt/restart_system -N "">>/tmp/engines_install.log
 #ssh-keygen -f ~/.ssh/mgmt/update_system -N "">>/tmp/engines_install.log
