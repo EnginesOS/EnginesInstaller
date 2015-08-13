@@ -24,11 +24,11 @@ if test $# -eq 1
  
 if test -d EnginesInstaller
 	then
-	docker stop `docker ps |awk '{print $1}' `
+	docker stop `docker ps |awk '{print $1}' | grep -v CONTAI `
 	 docker rm `docker ps -a |awk '{print $1}' `
 	 if test $keep -eq 0
 	 	then
-	 		docker rmi `docker images |awk '{print $3}' `
+	 		docker rmi `docker images |awk '{print $3}' | grep -v IMAGE `
 	 	fi
 		service docker stop
 		rm -r /var/lib/engines
