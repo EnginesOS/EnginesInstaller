@@ -385,9 +385,11 @@ chown 21000 /opt/engines/run/system/
 	
 	mkdir -p /var/lib/engines/registry
 	chown -R 22023 /var/lib/engines/registry
-		mkdir -p /var/log/engines/services/registry
-	chown -R 22023 /var/log/engines/services/registry
+		mkdir -p /var/log/engines/system_services/registry
+	chown -R 22023 /var/log/engines/system_services/registry
+	mkdir -p /opt/engines/run//system_services/registry/run
 	chown -R 21000  /opt/engines/run/system_services/
+	chown -R 22023.containers  /opt/engines/run/system_services/registry/run
 	
 	 }
 	 
