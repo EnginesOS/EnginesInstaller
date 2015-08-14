@@ -441,9 +441,8 @@ function setup_mgmt_keys {
 		rm ~/.ssh/authorized_keys.system
 	fi
 	
-	for script_name in "restart_system deb_update_status update_system access_system update_access_system update_engines_system_software update_engines_console_password"
-		do
-			
+	for script_name in restart_system deb_update_status update_system access_system update_access_system update_engines_system_software update_engines_console_password
+		do			
 			create_mgmt_script_key  $script_name >>/tmp/engines_install.log
 		done 
 #ssh-keygen -f ~/.ssh/mgmt/restart_system -N "">>/tmp/engines_install.log
