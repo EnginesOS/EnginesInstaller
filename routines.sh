@@ -36,8 +36,7 @@ function configure_git {
   
   function setup_startup_script {
   echo "Adding startup script"
-		 cat /etc/rc.local | sed "/^exit.*$/s//su -l engines \/opt\/engines\/bin\/engines_startup.sh/" > /tmp/rc.local
-		 echo "rm -f /opt/engines/run/system/flags/reboot_required >&/dev/null " >> /tmp/rc.local
+		 cat /etc/rc.local | sed "/^exit.*$/s//su -l engines \/opt\/engines\/bin\/engines_startup.sh/" > /tmp/rc.local		
 		 echo "exit 0"  >> /tmp/rc.local
 		 cp /tmp/rc.local /etc/rc.local
 		 rm  /tmp/rc.local
