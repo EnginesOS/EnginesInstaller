@@ -1,6 +1,13 @@
 #!/bin/bash
 
 
+w |grep engines >/dev/null
+if test $? -ne 0
+then
+	echo cannot uninstalled while engines user is logged
+	exit
+fi
+
 
 read -p "Are you sure? " -n 1 -r
 echo    # (optional) move to a new line
