@@ -2,7 +2,7 @@
 
 
 w |grep engines >/dev/null
-if test $? -ne 0
+if test $? -eq 0
 then
 	echo cannot uninstalled while engines user is logged
 	exit
