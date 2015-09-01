@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if ! test `id |cut -f2 -d=|cut -f1 -d\(` -eq 0
+	then
+		echo "This script must be run as root or as sudo $0"
+		exit 
+	fi
+	
 
 w |grep engines >/dev/null
 if test $? -eq 0
@@ -31,17 +37,17 @@ if test $# -eq 1
  
 if test -d EnginesInstaller
 	then
-	docker stop `docker ps |awk '{print $1}' | grep -v CONTAI `
-	 docker rm `docker ps -a |awk '{print $1}' `
+	docker stop `docker ps -q |awk '{print $1}' `
+	 docker rm `docker ps -aq |awk '{print $1}' `
 	 if test $keep -eq 0
 	 	then
-	 		docker rmi `docker images |awk '{print $3}' | grep -v IMAGE `
+	 		docker rmi `docker images -q |awk '{print $1}' `
 	 	fi
 		service docker stop
-		rm -r /var/lib/engines
-		rm -r /var/log/engines
-		rm -r /opt/engines
-		 rm -r /var/spool/cron/crontabs/engines
+		rm -rf /var/lib/engines
+		rm -rf /var/log/engines
+		rm -rf /opt/engines
+		rm -rf /var/spool/cron/crontabs/engines
 		apt-get -y remove lxc-docker
 		apt-get -y autoremove
 		userdel -r  engines
