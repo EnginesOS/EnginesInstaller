@@ -158,8 +158,14 @@ function setup_dns {
 		
 	fi
 	#temp while we wait for next dhcp renewal if using dhcp
-	
-echo "nameserver 172.17.42.1" >>  /etc/resolv.conf 
+	if test -f /etc/resolvconf/resolv.conf.d/head
+	then
+		resolv_file=/etc/resolvconf/resolv.conf.d/head
+	else
+		resolv_file=/etc/resolv.conf
+	fi
+echo "nameserver 172.17.42.1" >> $resolv_file  
+
 }
   
  function setup_ip_script {
