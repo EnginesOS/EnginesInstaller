@@ -176,7 +176,7 @@ fi
   }
   
   function install_docker_and_components {
-  
+ 
   create_engines_user
   update_os
   setup_startup_script
@@ -220,8 +220,8 @@ echo "Creating Management Service Dirs"
 	chown 21000  /home/engines/db/development.sqlite3
 	
 	chown -R 21000 /home/engines/db/
-	#mkdir -p /opt/engines/run/service_manager/
-	#chown -R 21000 /opt/engines/run/service_manager/
+	mkdir -p /opt/engines/run/service_manager/
+	chown -R 21000 /opt/engines/run/service_manager/
 	chown -R 21000 /home/engines/deployment/deployed/
 	chown 21000 /var/lib/engines  /var/log/engines/containers /var/log/engines/ /var/log/engines/services/ /var/log/engines/containers/
 	
@@ -446,7 +446,7 @@ function setup_mgmt_keys {
 		rm ~/.ssh/authorized_keys.system
 	fi
 	
-	for script_name in restart_system deb_update_status update_system access_system update_access_system update_engines_system_software update_engines_console_password
+	for script_name in restart_system deb_update_status update_system access_system update_system_access regen_private update_engines_system_software update_engines_console_password
 		do			
 			create_mgmt_script_key  $script_name >>/tmp/engines_install.log
 		done 
