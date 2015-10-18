@@ -51,6 +51,8 @@ if test -d EnginesInstaller
 		apt-get -y remove lxc-docker
 		apt-get -y autoremove
 		userdel -r  engines
+		cat /etc/resolvconf/resolv.conf.d/head grep -v "nameserver 172.17.42.1"  >/tmp/.local
+		mv  /tmp/.local /etc/resolvconf/resolv.conf.d/head
 
 		cat /etc/rc.local |grep -v engines >/tmp/.local
 		cp /tmp/.local   /etc/rc.local
