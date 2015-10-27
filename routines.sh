@@ -40,7 +40,7 @@ function configure_git {
 		 echo "exit 0"  >> /tmp/rc.local
 		 cp /tmp/rc.local /etc/rc.local
 		 rm  /tmp/rc.local
-		
+		cp /etc/os-release /opt/engines/etc/os-release-host
 		 chmod u+x  /etc/rc.local
   }
   
@@ -492,7 +492,8 @@ echo "Setting directory and file permissions"
 	#chown 22018 -R  /var/log/engines/services/nfs/
 	 
 	# chown  -R 22015 /opt/engines/etc/backup/
-
+	
+chown  21000 /opt/engines/etc/os-release-host
 	}
 
 function set_os_flavor {
