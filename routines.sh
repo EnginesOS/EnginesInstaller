@@ -446,28 +446,11 @@ function setup_mgmt_keys {
 		rm ~/.ssh/authorized_keys.system
 	fi
 	
-	for script_name in restart_system deb_update_status update_system access_system update_system_access regen_private update_engines_system_software update_engines_console_password
+	for script_name in set_hostnamerestart_system deb_update_status update_system access_system update_system_access regen_private update_engines_system_software update_engines_console_password
 		do			
 			create_mgmt_script_key  $script_name >>/tmp/engines_install.log
 		done 
-#ssh-keygen -f ~/.ssh/mgmt/restart_system -N "">>/tmp/engines_install.log
-#ssh-keygen -f ~/.ssh/mgmt/update_system -N "">>/tmp/engines_install.log
-#ssh-keygen -f ~/.ssh/access_system -N "">>/tmp/engines_install.log
-#ssh-keygen -f ~/.ssh/mgmt/update_access_system -N "">>/tmp/engines_install.log
-#ssh-keygen -f ~/.ssh/mgmt/update_engines_system_software -N "">>/tmp/engines_install.log
-#ssh-keygen -f ~/.ssh/mgmt/update_engines_console_password -N "">>/tmp/engines_install.log
-# 
-#restart_system_pub=`cat ~/.ssh/mgmt/restart_system.pub`
-#update_system_pub=`cat ~/.ssh/mgmt/update_system.pub`
-#update_access_system_pub=`cat ~/.ssh/mgmt/update_access_system.pub`
-#update_engines_system_software=`cat ~/.ssh/mgmt/update_engines_system_software.pub`
-#update_engines_console_password=`cat ~/.ssh/mgmt/update_engines_console_password.pub`
-#
-#echo "command=\"/opt/engines/bin/restart_system.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $restart_system_pub " >  ~/.ssh/authorized_keys.system
-#echo "command=\"/opt/engines/bin/update_system.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $update_system_pub " >>  ~/.ssh/authorized_keys.system
-#echo "command=\"/opt/engines/bin/update_system_access.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $update_access_system_pub " >>  ~/.ssh/authorized_keys.system
-#echo "command=\"/opt/engines/bin/update_engines_system_software.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $update_engines_system_software " >>  ~/.ssh/authorized_keys.system
-#echo "command=\"/opt/engines/bin/update_engines_console_password.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $update_engines_console_password " >>  ~/.ssh/authorized_keys.system
+
  	if test -f ~/.ssh/authorized_keys
  		then
  			cp ~/.ssh/authorized_keys /home/engines/.ssh/authorized_keys.console_access
@@ -480,18 +463,7 @@ function setup_mgmt_keys {
 
 function set_permissions {
 echo "Setting directory and file permissions"
-	#chown -R engines /opt/engines/ /var/lib/engines ~engines/  /var/log/engines  /var/lib/engines/mgmt/public/system/
-
- 
-	#chown  engines   /opt/engines/etc/syslog/conf/
-
-	#chown -R 21000 /opt/engines/etc/keys
-
-	#chown 22003 -R /opt/engines/etc/smtp
 	
-	#chown 22018 -R  /var/log/engines/services/nfs/
-	 
-	# chown  -R 22015 /opt/engines/etc/backup/
 	
 chown  21000 /opt/engines/etc/os-release-host
 	}
@@ -606,8 +578,7 @@ docker rm cAdvisor mysql_server backup nginx dns mgmt
 
 function copy_install_ssl_cert {
 echo "install installation ssl cert"
-#mkdir -p /opt/engines/etc/ssl/keys/
-#mkdir -p /opt/engines/etc/ssl/certs/
+
 mkdir -p /var/lib/engines/cert_auth/public/certs/ /var/lib/engines/cert_auth/public/keys/
 cp ${top}/install_source/ssl/server.crt /var/lib/engines/cert_auth/public/certs/engines.crt
 cp ${top}/install_source/ssl/server.key /var/lib/engines/cert_auth/public/keys/engines.key 
@@ -620,29 +591,3 @@ mkdir -p /opt/engines/etc/nginx/ssl/ /opt/engines/etc/nginx/ssl/
 cp -rp /var/lib/engines/cert_auth/public/certs  /opt/engines/etc/nginx/ssl/
 cp -rp /var/lib/engines/cert_auth/public/keys   /opt/engines/etc/nginx/ssl/
 }
-#
-#function generate_ssl {
-#echo "Generating Self Signed Cert"
-#
-#mkdir -p /opt/engines/etc/ssl/keys/
-#mkdir -p /opt/engines/etc/ssl/certs/
-#
-#openssl genrsa -des3 -out server.key 2048
-# openssl rsa -in server.key -out server.key.insecure
-#  mv server.key server.key.secure
-#  mv server.key.insecure server.key
-#  openssl req -new -key server.key -out server.csr
-#  openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt
-#  mv server.key /opt/engines/etc/ssl/keys/engines.key
-#  mv server.crt /opt/engines/etc/ssl/certs/engines.crt
-#   
-#   #Initial Certs for nginx are the mgmt certs
-#   mkdir -p /opt/engines/etc/nginx/ssl/ /opt/engines/etc/nginx/ssl/
-#   cp -rp /opt/engines/etc/ssl/certs  /opt/engines/etc/nginx/ssl/
-#   cp -rp /opt/engines/etc/ssl/keys   /opt/engines/etc/nginx/ssl/
-#   
-#   rm server.csr  server.key.secure
-#  
-#}
-#
-
