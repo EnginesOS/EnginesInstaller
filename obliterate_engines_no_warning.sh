@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if test -f /opt/engines/etc/no_obliterate
+ then
+  echo "Installation Protected From Obliteration"
+  exit
+ fi
+ 
 if ! test `id |cut -f2 -d=|cut -f1 -d\(` -eq 0
 	then
 		echo "This script must be run as root or as sudo $0"
