@@ -2,7 +2,7 @@
 #root section of install run as root
 RUBY_VER=2.2.2
 
-default_branch=beta-rc
+default_branch=`cat default_branch`
 
 if ! test `id |cut -f2 -d=|cut -f1 -d\(` -eq 0
 	then
