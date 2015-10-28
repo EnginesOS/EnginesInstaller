@@ -2,6 +2,8 @@
 #root section of install run as root
 RUBY_VER=2.2.2
 
+default_branch=beta-rc
+
 if ! test `id |cut -f2 -d=|cut -f1 -d\(` -eq 0
 	then
 		echo "This script must be run as root or as sudo $0"
@@ -26,7 +28,8 @@ if test $# -gt 0
 	then
 		branch=$1
 	else
-		branch=alpha
+		branch=$default_branch
+		echo "defaulting to $branch"
 	fi
 	
 export branch
