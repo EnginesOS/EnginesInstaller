@@ -500,6 +500,7 @@ echo "Creating and starting Engines Services"
 release=`cat /opt/engines/release`
 cho "Downloading Registry image"
 	docker pull engines/registry:$release >>/tmp/engines_install.log
+	/opt/engines/bin/engines.rb service stop dns  >>/tmp/engines_install.log
 echo "Starting DNS"
 echo "Downloading DNS image"
 	docker pull engines/dns:$release >>/tmp/engines_install.log
