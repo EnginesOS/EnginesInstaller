@@ -3,6 +3,7 @@
 if test -f /opt/engines/etc/no_obliterate
  then
   echo "Installation Protected From Obliteration"
+  echo " You will need to remove the file /opt/engines/etc/no_obliterate to run $0"
   exit
  fi
  
