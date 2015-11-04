@@ -439,6 +439,7 @@ function create_mgmt_script_key {
 	pubkey=`cat ~/.ssh/mgmt/${script_name}.pub`
 	echo "command=\"/opt/engines/bin/${script_name}.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $pubkey " >  ~/.ssh/_${script_name}_authorized_keys
 	cat ~/.ssh/_${script_name}_authorized_keys >> ~/.ssh/authorized_keys.system
+	cp ~/.ssh/mgmt/${script_name} ~/.ssh/mgmt/${script_name}.pub /opt/engines/ssh/keys/services/mgmt
 }
 
 function setup_mgmt_keys {
