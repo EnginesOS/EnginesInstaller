@@ -216,7 +216,8 @@ echo "Creating Management Service Dirs"
 	mkdir -p /home/engines/deployment/deployed/
 	mkdir -p  /var/lib/engines/mgmt/public/system/
 	mkdir -p /home/engines/.ssh/mgmt/
-	
+	mkdir -p /opt/engines/etc/ssh/keys/services/mgmt
+	chown 21000  /opt/engines/etc/ssh/keys/services/mgmt
 	chown 21000  /home/engines/db/production.sqlite3
 	chown 21000  /home/engines/db/development.sqlite3
 	
@@ -444,7 +445,7 @@ function create_mgmt_script_key {
 
 function setup_mgmt_keys {
 
-mkdir -p /opt/engines/etc/ssh/keys/services/mgmt
+
 	if test -f ~/.ssh/authorized_keys.system
 	 then
 		rm ~/.ssh/authorized_keys.system
