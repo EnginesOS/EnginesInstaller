@@ -217,6 +217,7 @@ echo "Creating Management Service Dirs"
 	mkdir -p  /var/lib/engines/mgmt/public/system/
 	mkdir -p /home/engines/.ssh/mgmt/
 	mkdir -p /opt/engines/etc/ssh/keys/services/mgmt
+	chmod og-rw /opt/engines/etc/ssh/keys/services/mgmt
 	chown 21000  /opt/engines/etc/ssh/keys/services/mgmt
 	chown 21000  /home/engines/db/production.sqlite3
 	chown 21000  /home/engines/db/development.sqlite3
