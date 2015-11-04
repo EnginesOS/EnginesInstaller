@@ -46,7 +46,7 @@ function configure_git {
   
   function install_docker_components {
   echo "Installing Docker"		
-		 apt-get install -y apt-transport-https  libreadline-dev  linux-image-extra-$(uname -r) lvm2 thin-provisioning-tools openssh-server >>/tmp/engines_install.log
+		 apt-get install -y apt-transport-https  libreadline-dev  linux-image-extra-$(uname -r) lvm2 thin-provisioning-tools openssh-server c++ >>/tmp/engines_install.log
 		 echo deb https://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list
 		 apt-get -y update >>/tmp/engines_install.log
  
