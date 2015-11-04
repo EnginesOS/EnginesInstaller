@@ -27,5 +27,6 @@ grep follow_start.sh ~engines/.bashrc
 			echo  /opt/engines/bin/follow_start.sh >> ~engines/.bashrc
 	fi
 
+setup_engines_crontab
 
 /opt/engines/bin/follow_start.sh 
