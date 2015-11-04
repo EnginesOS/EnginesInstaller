@@ -137,6 +137,7 @@ git clone git://github.com/sstephenson/rbenv.git /usr/local/rbenv >>/tmp/engines
 	echo 'eval "$(rbenv init -)"' >> ~engines/.bashrc
 	
 	/usr/local/rbenv/plugins/ruby-build/install.sh 
+	
 
   }
   
