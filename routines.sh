@@ -179,7 +179,7 @@ fi
   function install_docker_and_components {
  
   create_engines_user
-  update_os
+  #update_os
   setup_startup_script
   install_docker_components
   configure_docker
