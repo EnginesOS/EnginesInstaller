@@ -31,7 +31,7 @@ function configure_git {
   apt-get -y  --force-yes update >>/tmp/engines_install.log
   
   #Perhaps Not something we should do as can ask grub questions and will confuse no techy on aws
-  apt-get -y  upgrade  >>/tmp/engines_install.log
+  #apt-get -y  upgrade  >>/tmp/engines_install.log
   }
   
   function setup_startup_script {
@@ -179,7 +179,7 @@ fi
   function install_docker_and_components {
  
   create_engines_user
-  #update_os
+  update_os
   setup_startup_script
   install_docker_components
   configure_docker
