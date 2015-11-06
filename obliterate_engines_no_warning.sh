@@ -62,7 +62,7 @@ if test -d EnginesInstaller
 		service cron restart		
 		cat /etc/resolvconf/resolv.conf.d/head  | grep -v "nameserver 172.17.42.1"  >/tmp/.local
 		mv  /tmp/.local /etc/resolvconf/resolv.conf.d/head
-		cat /etc/resolv.conf  | grep -v "nameserver 172.17.42.1"  >/tmp/.local
+		cat /etc/resolv.conf  | grep -v "172.17.42.1"  >/tmp/.local
 		mv  /tmp/.local  /etc/resolv.conf 
 
 		cat /etc/rc.local |grep -v engines >/tmp/.local
