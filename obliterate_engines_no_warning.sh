@@ -65,6 +65,8 @@ if test -d EnginesInstaller
 		cat /etc/resolv.conf  | grep -v "172.17.42.1"  >/tmp/.local
 		mv  /tmp/.local  /etc/resolv.conf 
 
+ cat /etc/dhcp/dhclient.conf| grep -v 172.17.42.1>/tmp/.local
+ mv /tmp/.local /etc/dhcp/dhclient.conf
 		cat /etc/rc.local |grep -v engines >/tmp/.local
 		cp /tmp/.local   /etc/rc.local
 		 rm -r EnginesInstaller
