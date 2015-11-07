@@ -7,18 +7,30 @@ default_branch=`cat default_branch`
 if ! test `id |cut -f2 -d=|cut -f1 -d\(` -eq 0
 	then
 		echo "This script must be run as root or as sudo $0"
-		exit 
+		exit 127
 	fi
 	
  if dpkg-query -W -f'${Status}' "lxc-docker" 2>/dev/null | grep -q "ok installed"; then
  	echo "Cannot install onto an existing docker host"
- 	exit
+ 	exit 127
  fi
 
+ ps -ax |grep dnsmas
+ if test $? -eq 0
+  then
+  echo "Cannot Install on machine with dnsmasq enable, Please change your system "
+  exit 127
+ fi
+ ps -ax |grep named
+ if test $? -eq 0
+  then
+  echo "Cannot Install on machine with bind/named enable, Please change your system "
+  exit 127
+ fi
 if ! test -f ./routines.sh
  then
  	echo "Error: Script must be run from within the EnginesInstaller dir "
- 	exit
+ 	exit 127
  fi 
 
 touch /tmp/engines_install.log
