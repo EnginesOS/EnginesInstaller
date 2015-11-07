@@ -144,19 +144,19 @@ git clone git://github.com/sstephenson/rbenv.git /usr/local/rbenv >>/tmp/engines
   function setup_engines_crontab {
 		
 	echo "Setup engines cron tab"
-echo "*/10 * * * * /opt/engines/bin/engines.sh engine check_and_act all >>/opt/engines/logs/engines/restarts.log
-*/10 * * * * /opt/engines/bin/engines.sh  service  check_and_act all >>/opt/engines/logs/services/restarts.log" >/tmp/ct
-crontab -u engines /tmp/ct
-rm /tmp/ct
+#echo "*/10 * * * * /opt/engines/bin/engines.sh engine check_and_act all >>/opt/engines/logs/engines/restarts.log 
+#*/10 * * * * /opt/engines/bin/engines.sh  service  check_and_act all >>/opt/engines/logs/services/restarts.log
+#* 3 * * * /opt/engines/bin/engines_system_update_status.sh" >/tmp/ct
+
+crontab -u engines install_source/crontab
+
 }
 
 function setup_dns {
 #DHCP
  if test -f /etc/dhcp/dhclient.conf
  	then
-		echo "prepend domain-name-servers 172.17.42.1;;" >> /etc/dhcp/dhclient.conf
-		
-		
+		echo "prepend domain-name-servers 172.17.42.1;;" >> /etc/dhcp/dhclient.conf	
 	fi
 	#temp while we wait for next dhcp renewal if using dhcp
 	if test -f /etc/resolvconf/resolv.conf.d/head
