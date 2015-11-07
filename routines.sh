@@ -39,8 +39,7 @@ function configure_git {
 		 cat /etc/rc.local | sed "/^exit.*$/s//su -l engines \/opt\/engines\/bin\/engines_startup.sh/" > /tmp/rc.local		
 		 echo "exit 0"  >> /tmp/rc.local
 		 cp /tmp/rc.local /etc/rc.local
-		 rm  /tmp/rc.local
-		cp /etc/os-release /opt/engines/etc/os-release-host
+		 rm  /tmp/rc.local		
 		 chmod u+x  /etc/rc.local
   }
   
