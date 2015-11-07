@@ -1,3 +1,4 @@
 */10 * * * * /opt/engines/bin/engines.sh engine check_and_act all >>/opt/engines/logs/engines/restarts.log 
 */10 * * * * /opt/engines/bin/engines.sh  service  check_and_act all >>/opt/engines/logs/services/restarts.log
 * */2 * * * /opt/engines/bin/engines_system_update_status.sh
+*/30 * * * * /opt/engines/bin/update_system_status_flags.sh
