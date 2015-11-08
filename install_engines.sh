@@ -15,13 +15,13 @@ if ! test `id |cut -f2 -d=|cut -f1 -d\(` -eq 0
  	exit 127
  fi
 
- ps -ax |grep dnsmas
+ ps -ax |grep dnsmas | grep -v grep 
  if test $? -eq 0
   then
   echo "Cannot Install on machine with dnsmasq enable, Please change your system "
   exit 127
  fi
- ps -ax |grep named
+ ps -ax |grep named | grep -v grep 
  if test $? -eq 0
   then
   echo "Cannot Install on machine with bind/named enable, Please change your system "
