@@ -27,11 +27,25 @@ if ! test `id |cut -f2 -d=|cut -f1 -d\(` -eq 0
   echo "Cannot Install on machine with bind/named enable, Please change your system "
   exit 127
  fi
+
+for port in `cat basic_ports_required`
+ do
+ 	netstat -na | cut -f4 -d" "| grep ":$port "
+ 	if test $? -eq 0
+ 	 then
+ 	 	echo error port $port taken
+ 	 	exit 127
+ 	 fi 
+  done
+
 if ! test -f ./routines.sh
  then
  	echo "Error: Script must be run from within the EnginesInstaller dir "
  	exit 127
  fi 
+
+
+
 
 touch /tmp/engines_install.log
 
