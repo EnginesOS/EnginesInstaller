@@ -12,4 +12,6 @@ engines ALL = (root) NOPASSWD: /opt/engines/scripts/_update_engines_system_softw
 engines ALL = (root) NOPASSWD: /opt/engines/scripts/_update_engines_console_password.sh
 engines ALL = (root) NOPASSWD: /opt/engines/scripts/_apt-get_update.sh
 engines ALL = (root) NOPASSWD: /opt/engines/scripts/_update_base_os.sh
+engines ALL = (root) NOPASSWD: /opt/engines/scripts/_mv_update_script.sh
+engines ALL = (root) NOPASSWD: /opt/engines/system/updates/to_run/_pre_start.sh
 #Must have tailing empty line
