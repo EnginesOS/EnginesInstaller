@@ -11,7 +11,7 @@ git clone https://github.com/EnginesOS/EnginesInstaller
 
 cd EnginesInstaller
 
-sudo  ./install_engines.sh alpha
+sudo  ./install_engines.sh 
 </pre>
 
 
@@ -93,15 +93,15 @@ If you are installing Engines remotely you will need atleast port 10443 publicly
  Installer syntax<br>
 sudo  ./install_engines.sh {branch}<br>
 The available branches for the EnginesSystem are
-<li>alpha 
+<li>beta-rc (default)
 <li>master
 <li>current
 
 <p>
-<li>alpha is a known good 
+<li>beta-rc with support for updating to future versions hopefully all the way up to beta-release and beyond  
 <li>master is the latest stable
 <li>current is the bleeding edge
-<li>beta comming soon -  with support for updating to future versions 
+<li>
 <p>
  
 <h3>Support and Issues</h3>
