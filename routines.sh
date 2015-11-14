@@ -166,6 +166,12 @@ function setup_dns {
 	fi
 echo "nameserver 172.17.42.1" >> $resolv_file  
 
+if test -d   /etc/dhcp/dhclient-enter-hooks.d/
+	then
+		cp install_source/etc/dhcp/dhclient-enter-hooks.d/engines /etc/dhcp/dhclient-enter-hooks.d/
+	fi
+
+
 }
   
  function setup_ip_script {
@@ -240,6 +246,13 @@ function setup_nginx_dirs {
 	mkdir -p  /var/log/engines/services/nginx/nginx
 	mkdir -p /opt/engines/run/services/nginx/run/nginx/
 	chown -R 22005.22005 /var/log/engines/services/nginx /opt/engines/run/services/nginx/run/nginx
+}
+
+function setup_avahi_dirs {
+	echo "Setup avahi "
+	mkdir -p  /var/log/engines/services/avahi
+	mkdir -p /opt/engines/run/services/avahi/run
+	chown -R 22026.22026 /var/log/engines/services/avahi /opt/engines/run/services/avahi/run/
 }
 
 function setup_mysql_dirs {

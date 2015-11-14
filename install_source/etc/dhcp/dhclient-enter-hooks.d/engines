@@ -1,0 +1,19 @@
+
+
+
+ case "$reason" in
+	 BOUND|RENEW|REBIND)
+	   if test $if_up = true
+	    then
+
+	       new_ip=` /opt/engines/bin/get_ip.sh`
+
+	       curr_ip=`cat /opt/engines/etc/net/ip`
+	       if ! test "$curr_ip" = $new_ip
+	       	then
+	       	sudo /opt/engines/scripts/_refresh_local_hosted_domains.sh $new_ip	       		
+	       	fi
+	    
+	    fi
+ esac
+	
