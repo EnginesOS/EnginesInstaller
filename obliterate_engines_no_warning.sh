@@ -44,6 +44,7 @@ if test $# -eq 1
  
 if test -d EnginesInstaller
 	then
+	crontab -r engines
 	docker stop `docker ps -a |grep -i paused |awk '{print $1}' `
 	docker stop `docker ps -q |awk '{print $1}' `
 	 docker rm `docker ps -aq |awk '{print $1}' `
