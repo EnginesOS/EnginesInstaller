@@ -28,14 +28,14 @@ if ! test `id |cut -f2 -d=|cut -f1 -d\(` -eq 0
   exit 127
  fi
 
-used_ports=`netstat -nat inet  | awk ' {print $4}'  | awk -F ':' ' {print $NF}'`
+used_ports=`netstat -na --tcp --udp | awk ' {print $4}'  | awk -F ':' ' {print $NF}'`
 
 for port in `cat basic_ports_required`
  do 	
  	   for used_port in $used_ports
  	    do
  	    	echo compare $used_port = $port 
- 	     	if test $port -eq $used_port 
+ 	     	if test $port = $used_port 
  	 			then
  	 			echo error port $port taken
  	 			exit 127
