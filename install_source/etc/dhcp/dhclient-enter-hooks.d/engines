@@ -6,7 +6,16 @@
 #	   if test $if_up = true
 #	    then
 #
-	       new_ip=` /opt/engines/bin/get_ip.sh`
+set >>/tmp/dhcp_trigger_run
+echo " "  >>/tmp/dhcp_trigger_run
+
+#want for reason REBOOT and .... 
+	        #new_ip=` /opt/engines/bin/get_ip.sh`
+	        new_ip=$new_ip_address
+	        
+	 if ! test -z "$new_ip_address"
+	   then        
+	         
 	       
 			if test -f /opt/engines/etc/net/ip
 				then
@@ -18,6 +27,6 @@
 	       	sudo /opt/engines/scripts/_refresh_local_hosted_domains.sh $new_ip	       		
 	       	fi
 	    
-#	    fi
+   fi
 # esac
 #	
