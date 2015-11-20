@@ -155,7 +155,7 @@ function setup_dns {
 #DHCP
  if test -f /etc/dhcp/dhclient.conf
  	then
-		echo "prepend domain-name-servers 172.17.42.1;;" >> /etc/dhcp/dhclient.conf	
+		echo "append domain-name-servers 172.17.42.1;" >> /etc/dhcp/dhclient.conf	
 	fi
 	#temp while we wait for next dhcp renewal if using dhcp
 	if test -f /etc/resolvconf/resolv.conf.d/head
