@@ -33,8 +33,7 @@ used_ports=`netstat -na --tcp --udp | awk ' {print $4}'  | awk -F ':' ' {print $
 for port in `cat basic_ports_required`
  do 	
  	   for used_port in $used_ports
- 	    do
- 	    	echo compare $used_port = $port 
+ 	    do 	    	
  	     	if test $port = $used_port 
  	 			then
  	 			echo error port $port taken
