@@ -14,7 +14,7 @@ RUBY_VER=2.2.2
 function set_permissions {
 echo "Setting directory and file permissions"
 	
-	
+touch /opt/engines/etc/os-release-host
 chown  21000 /opt/engines/etc/os-release-host
 	}
 
