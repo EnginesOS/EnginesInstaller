@@ -59,6 +59,15 @@ if test -d EnginesInstaller
 		rm -rf /var/spool/cron/crontabs/engines
 		apt-get -y remove lxc-docker
 		apt-get -y autoremove
+		
+		engines_id=21000
+		pids=`ps -axl |grep -v grep | awk '{print "_" $2 "_ "  $3}'  |grep _21000_ | awk '{ print $2}'`
+		
+		if ! test -z "$pids"
+		 then
+		 	kill -TERM $pids
+		 fi
+		
 		userdel -r  engines
 		service cron restart		
 		cat /etc/resolvconf/resolv.conf.d/head  | grep -v "nameserver 172.17.42.1"  >/tmp/.local
@@ -72,6 +81,9 @@ if test -d EnginesInstaller
 		cp /tmp/.local   /etc/rc.local
 		 rm -r EnginesInstaller
 		groupdel containers
+		#usermod backup -r -G engines
+		usermod  -G backup backup
+		
 				groupdel engines
 		rm -rf /usr/local/rbenv
 		 rm /etc/network/if-up.d/set_ip.sh 
