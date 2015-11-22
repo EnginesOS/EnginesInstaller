@@ -40,7 +40,7 @@ for port in `cat ${top}/basic_ports_required`
 
   done
 
-if ! test -d .${top}/routines/
+if ! test -d ${top}/routines/
  then
  	
  	echo "Error: Script must be run from within the EnginesInstaller dir $top "
