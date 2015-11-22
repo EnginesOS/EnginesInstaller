@@ -1,5 +1,5 @@
 function copy_install_ssl_cert {
-echo "install installation ssl cert"
+echo "Installing installation ssl cert"
 
 mkdir -p /var/lib/engines/cert_auth/public/certs/ /var/lib/engines/cert_auth/public/keys/
 cp ${top}/install_source/ssl/server.crt /var/lib/engines/cert_auth/public/certs/engines.crt

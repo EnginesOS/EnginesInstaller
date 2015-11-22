@@ -21,23 +21,22 @@ top=`pwd`
 export top
 
 . ${top}/routines.sh
- . ${top}/routines/installer/create_service_dirs.sh
-  . ${top}/routines/installer/system_checks.sh
-  . ${top}/routines/installer/setup_engines_user.sh
-  . ${top}/routines/installer/os_routines.sh
-   . ${top}/routines/installer/setup_engines_user.sh
- . ${top}/routines/installer/install_engines_system.sh
-. ${top}/routines/installer/script_keys.sh
- . ${top}/routines/installer/configure_net.sh 
-  . ${top}/routines/installer/init_ssl_cert.sh 
-  
+ . ${top}/routines/root_user/create_service_dirs.sh
+  . ${top}/routines/root_user/system_checks.sh
+  . ${top}/routines/root_user/setup_engines_user.sh
+  . ${top}/routines/root_user/os_routines.sh
+   . ${top}/routines/root_user/setup_engines_user.sh
+ . ${top}/routines/root_user/install_engines_system.sh
+
+ . ${top}/routines/root_user/configure_net.sh 
+  . ${top}/routines/root_user/init_ssl_cert.sh 
+    . ${top}/routines/root_user/setup_docker.sh 
+ 
 can_install
 
 dpkg-reconfigure tzdata
 
-
-configure_git 
-
+  configure_git 
   create_engines_user
   update_os
   setup_startup_script
@@ -47,9 +46,8 @@ configure_git
   install_rbenv    	  		 
   setup_dns 	
   setup_ip_script
- set_permissions
-
-make_dirs
+  make_dirs
+  set_permissions
 
 chmod +x  ${top}/complete_install.sh
 

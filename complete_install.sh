@@ -5,7 +5,7 @@ export RUBY_VER
 top=`cat /tmp/.install_dir`
 .  ${top}/routines/engines_user/services_first_start.sh
 .  ${top}/routines/engines_user/crontab.sh
-
+. ${top}/routines/engines_user/script_keys.sh
 
 echo Installing Ruby 
 rbenv install 2.2.2 >/dev/null 

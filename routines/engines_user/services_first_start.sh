@@ -16,7 +16,7 @@ echo "Downloading Syslog image"
 	docker pull engines/syslog:$release >>/tmp/engines_install.log
 echo "Starting Syslog" 
 	 /opt/engines/bin/engines.rb service create syslog >>/tmp/engines_install.log
-	 echo "Downloading Avahi 
+	 echo "Downloading Avahi image"
 	docker pull engines/avahi:$release >>/tmp/engines_install.log
 echo "Starting Avahi"
 	  /opt/engines/bin/engines.rb service create avahi >>/tmp/engines_install.log
