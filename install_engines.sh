@@ -10,7 +10,7 @@ export top
 
 if ! test -d ./routines/
  then
- 	echo "Error: Script must be run from within the EnginesInstaller dir $top "
+ 	echo "Error: Script must be run from within the EnginesInstaller "
  	exit 127
  fi 
  
