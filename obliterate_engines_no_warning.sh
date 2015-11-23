@@ -68,15 +68,18 @@ if test -d EnginesInstaller
 		 	kill -TERM $pids
 		 fi
 		
+		gw_ifac=`netstat -nr |grep ^0.0.0.0 | awk '{print $8}' |head -1`
+		ip=`/sbin/ifconfig $gw_ifac |grep "inet addr"  |  cut -f 2 -d: |cut -f 1 -d" "`
+		
 		userdel -r  engines
 		service cron restart		
-		cat /etc/resolvconf/resolv.conf.d/head  | grep -v "nameserver 172.17.42.1"  >/tmp/.local
+		cat /etc/resolvconf/resolv.conf.d/head  | grep -v "nameserver $ip"  >/tmp/.local
 		mv  /tmp/.local /etc/resolvconf/resolv.conf.d/head
-		cat /etc/resolv.conf  | grep -v "172.17.42.1"  >/tmp/.local
+		cat /etc/resolv.conf  | grep -v "$ip"  >/tmp/.local
 		mv  /tmp/.local  /etc/resolv.conf 
 
- cat /etc/dhcp/dhclient.conf| grep -v 172.17.42.1>/tmp/.local
- mv /tmp/.local /etc/dhcp/dhclient.conf
+ #cat /etc/dhcp/dhclient.conf| grep -v 172.17.42.1>/tmp/.local
+ #mv /tmp/.local /etc/dhcp/dhclient.conf
 		cat /etc/rc.local |grep -v engines >/tmp/.local
 		cp /tmp/.local   /etc/rc.local
 		 rm -r EnginesInstaller
