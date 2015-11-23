@@ -14,8 +14,9 @@ function install_docker_components {
 
 function configure_docker {
   echo "Configuring Docker DNS settings"	 
-		# echo "DOCKER_OPTS=\"--storage-driver=devicemapper --dns  172.17.42.1 --dns 8.8.8.8  --bip=172.17.42.1/16\"" >> /etc/default/docker
-		 echo "DOCKER_OPTS=\" --storage-driver=aufs --dns  172.17.42.1 --dns 8.8.8.8  --bip=172.17.42.1/16\"" >> /etc/default/docker
+
+		
+		 echo "DOCKER_OPTS=\" --storage-driver=aufs  --dns 8.8.8.8  \"" > /etc/default/docker
 	
 	#for systemd
 		if test -f /lib/systemd/system/docker.service
@@ -31,7 +32,11 @@ function configure_docker {
 		 
 		 #need to restart to get dns set
 		 service docker stop
-		 sh -c echo 1 \> /sys/fs/cgroup/memory/memory.use_hierarchy
+		 
+		 ip=`ifconfig docker0  |grep "inet addr:" |cut -f2 -d: |awk '{print $1}'`
+		 echo "DOCKER_OPTS=\" --storage-driver=aufs --dns $ip --dns 8.8.8.8  \"" > /etc/default/docker
+		  
+		 sh -c echo 1 > /sys/fs/cgroup/memory/memory.use_hierarchy
 		 sleep 20
 		 service docker start
 		  

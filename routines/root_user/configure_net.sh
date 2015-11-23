@@ -1,12 +1,7 @@
 
 function setup_dns {
  echo "Applying Dns Settings"
-#DHCP
-#use hook instead as no longer using 172.17.42.1 but local ip
-# if test -f /etc/dhcp/dhclient.conf
-# 	then
-#		echo "append domain-name-servers 172.17.42.1;" >> /etc/dhcp/dhclient.conf	
-#	fi
+
 
 resolv_file=/etc/resolv.conf
 
