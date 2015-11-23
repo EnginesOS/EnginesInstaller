@@ -2,19 +2,7 @@
 #root section of install run as root
 RUBY_VER=2.2.2
 
-default_branch=`cat default_branch`
 
-touch /tmp/engines_install.log
-
-if test $# -gt 0
-	then
-		branch=$1
-	else
-		branch=$default_branch
-		echo "defaulting to $branch"
-	fi
-	
-export branch
 
 export RUBY_VER
 top=`pwd`
@@ -33,6 +21,21 @@ export top
     . ${top}/routines/root_user/setup_docker.sh 
  
 can_install
+
+
+default_branch=`cat default_branch`
+
+touch /tmp/engines_install.log
+
+if test $# -gt 0
+	then
+		branch=$1
+	else
+		branch=$default_branch
+		echo "defaulting to $branch"
+	fi
+	
+export branch
 
 dpkg-reconfigure tzdata
 
