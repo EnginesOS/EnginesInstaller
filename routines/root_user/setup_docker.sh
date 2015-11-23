@@ -19,12 +19,19 @@ function configure_docker {
 		 echo "DOCKER_OPTS=\" --storage-driver=aufs  --dns 8.8.8.8  \"" > /etc/default/docker
 	
 	#for systemd
+	ip=
 		if test -f /lib/systemd/system/docker.service
 			then
-				cp ${top}/install_source/lib/systemd/system/docker.service /lib/systemd/system/docker.service
+				cp ${top}/install_source/lib/systemd/system/docker.service.blank  /lib/systemd/system/docker.service
+				 service docker start	
+				  service docker stop
+				  cat ${top}/install_source/lib/systemd/system/docker.service | sed "/IP/s//$ip/" > /lib/systemd/system/docker.service
+				   service docker start	
 			fi
 		 update-rc.d docker defaults 
 		 service docker start	
+		ip=`ifconfig docker0  |grep "inet addr:" |cut -f2 -d: |awk '{print $1}'`
+		 
 		  if test -f /bin/systemctl
 		  then
 		 	systemctl enable docker
