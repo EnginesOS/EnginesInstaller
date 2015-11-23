@@ -8,6 +8,12 @@ export RUBY_VER
 top=`pwd`
 export top
 
+if ! test -d ./routines/
+ then
+ 	echo "Error: Script must be run from within the EnginesInstaller dir $top "
+ 	exit 127
+ fi 
+ 
 . ${top}/routines.sh
  . ${top}/routines/root_user/create_service_dirs.sh
   . ${top}/routines/root_user/system_checks.sh
