@@ -13,6 +13,7 @@ if ! test `id |cut -f2 -d=|cut -f1 -d\(` -eq 0
 		exit 
 	fi
 	
+	
 
 w |grep engines >/dev/null
 if test $? -eq 0
@@ -93,6 +94,10 @@ if test -d EnginesInstaller
 		rm -r /home/engines/.ssh
 		
 		rm -fr /home/engines/.rbenv
+		
+		cat /etc/defaut/grub | grep -v "RUB_CMDLINE_LINUX cgroup_enable=memory swapaccount=1 cgroup_enable=memory use_hierarchy" > /tmp/grub
+		cp /tmp/grub /etc/defaut/grub
+		update-grub
     else
       echo Script must be run as root from the dir that contains EnginesInstaller
 fi
