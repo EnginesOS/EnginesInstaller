@@ -15,11 +15,14 @@ function install_docker_components {
 function configure_docker {
   echo "Configuring Docker DNS settings"	 
 
+#echo GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1 cgroup_enable=memory use_hierarchy" >> /etc/default/grub
+echo GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX cgroup_enable=memory swapaccount=1 cgroup_enable=memory use_hierarchy" >> /etc/default/grub
+
 		 echo 1 > /sys/fs/cgroup/memory/memory.use_hierarchy
 		 echo "DOCKER_OPTS=\" --storage-driver=aufs  --dns 8.8.8.8  \"" > /etc/default/docker
 	
 	#for systemd
-	ip=
+	
 		if test -f /lib/systemd/system/docker.service
 			then
 				cp ${top}/install_source/lib/systemd/system/docker.service.blank  /lib/systemd/system/docker.service

@@ -30,5 +30,6 @@ grep follow_start.sh ~engines/.bashrc
 	fi
 
 setup_engines_crontab
-
+# pretend if install changed grub options
+touch /opt/engines/run/system/flags/engines_rebooting
 /opt/engines/bin/follow_start.sh 
