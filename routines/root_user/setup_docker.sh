@@ -15,7 +15,7 @@ function install_docker_components {
 function configure_docker {
   echo "Configuring Docker DNS settings"	 
 
-		
+		 echo 1 > /sys/fs/cgroup/memory/memory.use_hierarchy
 		 echo "DOCKER_OPTS=\" --storage-driver=aufs  --dns 8.8.8.8  \"" > /etc/default/docker
 	
 	#for systemd
@@ -43,7 +43,7 @@ function configure_docker {
 		 ip=`ifconfig docker0  |grep "inet addr:" |cut -f2 -d: |awk '{print $1}'`
 		 echo "DOCKER_OPTS=\" --storage-driver=aufs --dns $ip --dns 8.8.8.8  \"" > /etc/default/docker
 
-		 sh -c echo 1 > /sys/fs/cgroup/memory/memory.use_hierarchy
+		
 		 sleep 20
 		 service docker start
 		  
