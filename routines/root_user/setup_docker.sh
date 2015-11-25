@@ -18,7 +18,7 @@ function configure_docker {
 #echo GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1 cgroup_enable=memory use_hierarchy" >> /etc/default/grub
 echo GRUB_CMDLINE_LINUX="$GRUB_CMDLINE_LINUX cgroup_enable=memory swapaccount=1 cgroup_enable=memory use_hierarchy" >> /etc/default/grub
 update-grub
-		 echo 1 > /sys/fs/cgroup/memory/memory.use_hierarchy
+		# echo 1 > /sys/fs/cgroup/memory/memory.use_hierarchy
 		 echo "DOCKER_OPTS=\" --storage-driver=aufs  --dns 8.8.8.8  \"" > /etc/default/docker
 	
 	#for systemd
@@ -45,7 +45,6 @@ update-grub
 		 
 		 ip=`ifconfig docker0  |grep "inet addr:" |cut -f2 -d: |awk '{print $1}'`
 		 echo "DOCKER_OPTS=\" --storage-driver=aufs --dns $ip --dns 8.8.8.8  \"" > /etc/default/docker
-
 		
 		 sleep 20
 		 service docker start
