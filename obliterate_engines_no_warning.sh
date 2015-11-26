@@ -95,8 +95,8 @@ if test -d EnginesInstaller
 		
 		rm -fr /home/engines/.rbenv
 		
-		cat /etc/defaut/grub | grep -v "RUB_CMDLINE_LINUX cgroup_enable=memory swapaccount=1 cgroup_enable=memory use_hierarchy" > /tmp/grub
-		cp /tmp/grub /etc/defaut/grub
+		cat /etc/default/grub | grep -v "cgroup_enable=memory swapaccount=1 cgroup_enable=memory use_hierarchy" > /tmp/grub
+		cp /tmp/grub /etc/default/grub
 		update-grub
     else
       echo Script must be run as root from the dir that contains EnginesInstaller
