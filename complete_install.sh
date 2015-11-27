@@ -8,6 +8,7 @@ top=`cat /tmp/.install_dir`
 . ${top}/routines/engines_user/script_keys.sh
 
 echo Installing Ruby 
+echo Please wait this step will take 5 to 10 minutes
 rbenv install 2.2.2 >/dev/null 
 rbenv global 2.2.2 
 rbenv  local 2.2.2
