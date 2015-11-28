@@ -26,7 +26,7 @@ echo "Downloading Cert Auth image"
 echo "Starting Cert Auth"
 	/opt/engines/bin/engines.rb service create cert_auth >>/tmp/engines_install.log
 	
-echo "Downloading  MySQL image"
+echo "Downloading MySQL image"
 	 docker pull engines/mysql:$release >>/tmp/engines_install.log
 echo "Starting MySQL"	 
 	 /opt/engines/bin/engines.rb service create mysql_server  >>/tmp/engines_install.log

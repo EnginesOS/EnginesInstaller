@@ -25,7 +25,7 @@ echo "Configuring OS Specific Dockerfiles"
 }
 
  function update_os {
-   echo "updating OS to Latest"
+   echo "Updating OS to Latest"
   apt-get -y  --force-yes update >>/tmp/engines_install.log
   
   #Perhaps Not something we should do as can ask grub questions and will confuse no techy on aws

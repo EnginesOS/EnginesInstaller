@@ -59,14 +59,14 @@ echo "Creating Management Service Dirs"
 }
 
 function setup_nginx_dirs {
-	echo "Setup Nginx "
+	echo "Setting up Nginx "
 	mkdir -p  /var/log/engines/services/nginx/nginx
 	mkdir -p /opt/engines/run/services/nginx/run/nginx/
 	chown -R 22005.22005 /var/log/engines/services/nginx /opt/engines/run/services/nginx/run/nginx
 }
 
 function setup_avahi_dirs {
-	echo "Setup avahi "
+	echo "Setup Avahi "
 	mkdir -p  /var/log/engines/services/avahi
 	mkdir -p /opt/engines/run/services/avahi/run
 	chown -R 22026.22026 /var/log/engines/services/avahi /opt/engines/run/services/avahi/run/
@@ -123,7 +123,7 @@ cp -r /var/lib/engines/cert_auth/public/keys /opt/engines/etc/smtp/ssl
 }
 
 function setup_backup_dirs {
- echo "Seting up Backup "
+ echo "Setting up Backup "
  mkdir -p  /var/log/engines/services/backup
  mkdir -p  /var/lib/engines/backup_paths
  chown 22015 /var/lib/engines/backup_paths/
@@ -163,7 +163,7 @@ cp -r /var/lib/engines/cert_auth/public/keys /opt/engines/etc/ftp/ssl
  
  }
  function setup_mongo_dirs {
- echo "Setting up mongo "
+ echo "Setting up Mongo "
  mkdir -p /var/lib/engines/mongo /var/log/engines/services/mongo_server	/opt/engines/run/services/mongo_server/run/mongo/
  chown -R 22008.22008 /var/lib/engines/mongo /var/log/engines/services/mongo_server	/opt/engines/run/services/mongo_server/run/mongo/
  }

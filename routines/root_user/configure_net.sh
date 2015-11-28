@@ -1,6 +1,6 @@
 
 function setup_dns {
- echo "Applying Dns Settings"
+ echo "Applying DNS Settings"
 
 
 resolv_file=/etc/resolv.conf
@@ -19,8 +19,8 @@ echo "nameserver $ip" >> $resolv_file
 
 if test -d   /etc/dhcp/dhclient-enter-hooks.d/
 	then
-		cp install_source/etc/dhcp/dhclient-enter-hooks.d/engines /etc/dhcp/dhclient-enter-hooks.d/
-		echo "Dhcp DNS server hook installed"
+		cp ${top}/install_source/etc/dhcp/dhclient-enter-hooks.d/engines /etc/dhcp/dhclient-enter-hooks.d/
+		echo "DHCP DNS server hook installed"
 	fi
 
 
