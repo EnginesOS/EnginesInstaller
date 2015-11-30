@@ -41,10 +41,20 @@ update-grub
 		 	systemctl enable docker
 		 fi
 		 
+		  docker start --name test busybox
+		 		  
+		   ip=`ifconfig docker0  |grep "inet addr:" |cut -f2 -d: |awk '{print $1}'`
+		   
+		   docker stop test
+		  docker rmi test
 		 #need to restart to get dns set
 		 service docker stop
 		 
-		 ip=`ifconfig docker0  |grep "inet addr:" |cut -f2 -d: |awk '{print $1}'`
+		 if test -z "$ip"
+		  then 
+		  	ip='172.17.0.1'
+		  fi
+		
 		 echo "DOCKER_OPTS=\" --storage-driver=aufs --dns $ip --dns 8.8.8.8  \"" > /etc/default/docker
 		
 		 sleep 20
