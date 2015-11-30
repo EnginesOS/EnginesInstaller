@@ -1,7 +1,7 @@
 #!/bin/bash
 #engines section of install run as engines
 
-docker_ip=`ifconfig docker0 |grep "inet add" |cut -f2 -d: | cut -f1 -d\" \"`
+docker_ip=`ifconfig docker0 |grep "inet add" |cut -f2 -d: | cut -f1 -d" "`
 rm -f /opt/engines/etc/net/management
 echo -n $docker_ip > /opt/engines/etc/net/management
 
@@ -38,5 +38,6 @@ grep follow_start.sh ~engines/.bashrc
 
 setup_engines_crontab
 # pretend if install changed grub options
-touch /opt/engines/run/system/flags/reboot_required
+#dont reboot as well the cert error post first run
+#touch /opt/engines/run/system/flags/reboot_required
 /opt/engines/bin/follow_start.sh 
