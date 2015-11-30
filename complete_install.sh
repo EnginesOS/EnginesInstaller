@@ -1,6 +1,12 @@
 #!/bin/bash
 #engines section of install run as engines
+
+docker_ip=`ifconfig docker0 |grep "inet add" |cut -f2 -d: | cut -f1 -d\" \"`
+rm -f /opt/engines/etc/net/management
+echo -n $docker_ip > /opt/engines/etc/net/management
+
 RUBY_VER=2.2.2
+
 export RUBY_VER
 top=`cat /tmp/.install_dir`
 .  ${top}/routines/engines_user/services_first_start.sh

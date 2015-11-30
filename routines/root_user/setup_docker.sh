@@ -41,7 +41,8 @@ update-grub
 		 	systemctl enable docker
 		 fi
 		 
-		  docker start --name test busybox
+		 #ensure docker0 is configured
+		  docker run --name test busybox
 		 		  
 		   ip=`ifconfig docker0  |grep "inet addr:" |cut -f2 -d: |awk '{print $1}'`
 		   
