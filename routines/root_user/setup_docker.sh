@@ -47,7 +47,7 @@ update-grub
 		   ip=`ifconfig docker0  |grep "inet addr:" |cut -f2 -d: |awk '{print $1}'`
 		   
 		   docker stop test
-		  docker rmi test
+		  docker rm test
 		 #need to restart to get dns set
 		 service docker stop
 		 
