@@ -29,6 +29,10 @@ touch ~/.complete_install
 echo Downloading and starting services
 create_services  
 
+rm -f /opt/engines/run/system/flags/reboot_required 
+rm -f /opt/engines/run/system/flags/engines_rebooting 
+rm -f /opt/engines/run/system/flags/building_params 
+cp /etc/os-release /opt/engines/etc/os-release-host
 
 grep follow_start.sh ~engines/.bashrc
 	if test $? -ne 0
