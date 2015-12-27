@@ -130,6 +130,9 @@ function setup_backup_dirs {
  chown 22015 /var/log/engines/services/backup/
  mkdir -p /opt/engines/etc/backup/configs
  chown 22015 /opt/engines/etc/backup/configs
+ mkdir -p /opt/engines/etc/backup/keys/
+ chown 20015 /opt/engines/etc/backup/keys/
+ 
  }
  
  function setup_dns_dirs {
