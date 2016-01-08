@@ -46,6 +46,10 @@ if test $# -eq 1
 if test -d EnginesInstaller
 	then
 	crontab -u engines -r
+	rm -rf /var/spool/cron/crontabs/engines
+	service cron restart
+		service docker restart
+		sleep 5
 	docker stop `docker ps -a |grep -i paused |awk '{print $1}' `
 	docker stop `docker ps -q |awk '{print $1}' `
 	 docker rm `docker ps -aq |awk '{print $1}' `
@@ -57,7 +61,7 @@ if test -d EnginesInstaller
 		rm -rf /var/lib/engines
 		rm -rf /var/log/engines
 		rm -rf /opt/engines
-		rm -rf /var/spool/cron/crontabs/engines
+		
 		apt-get -y remove lxc-docker
 		apt-get -y autoremove
 		rm /etc/default/docker 

@@ -26,10 +26,13 @@ echo "Configuring OS Specific Dockerfiles"
 
  function update_os {
    echo "Updating OS to Latest"
-  apt-get -y  --force-yes update >>/tmp/engines_install.log
-  
-  #Perhaps Not something we should do as can ask grub questions and will confuse no techy on aws
-  #apt-get -y  upgrade  >>/tmp/engines_install.log
+   apt-get -y update >>/tmp/engines_install.log
+env DEBIAN_FRONTEND=noninteractive   apt-get -q -y -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confold" upgrade >>/tmp/engines_install.log
+#DEBIAN_PRIORITY=critical
+apt-get install -y apt-transport-https    linux-image-extra-$(uname -r) lvm2 thin-provisioning-tools >>/tmp/engines_install.log
+
+   
+
   }
   
     
