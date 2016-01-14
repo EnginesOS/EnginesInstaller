@@ -45,6 +45,9 @@ if test $# -eq 1
  
 if test -d EnginesInstaller
 	then
+	cd EnginesInstaller
+	git pull
+	cd ..
 	crontab -u engines -r
 	rm -rf /var/spool/cron/crontabs/engines
 	service cron restart
