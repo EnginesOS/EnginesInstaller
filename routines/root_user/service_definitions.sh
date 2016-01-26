@@ -2,7 +2,7 @@
 
 function setup_service_definitions {
 cd /opt/engines/etc
-if test -f services
+if test -d services
 	then
 		mv services services.old
 	fi
