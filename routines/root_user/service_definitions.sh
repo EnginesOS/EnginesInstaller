@@ -45,3 +45,5 @@ for service in $to_map
 		cp $service_def mapping/filesystem/local/filesystem
     done  
     
+    }
+    
