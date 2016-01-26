@@ -25,6 +25,7 @@ if ! test -d ./routines/
  . ${top}/routines/root_user/configure_net.sh 
   . ${top}/routines/root_user/init_ssl_cert.sh 
     . ${top}/routines/root_user/setup_docker.sh 
+ . ${top}/routines/root_user/service_definitions.sh 
  
 can_install
 
@@ -55,6 +56,7 @@ dpkg-reconfigure tzdata
   install_rbenv    	  		 
   setup_dns 	
   setup_ip_script
+  setup_service_definitions
   make_dirs
   set_permissions
 
