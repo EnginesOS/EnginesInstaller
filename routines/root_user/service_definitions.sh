@@ -24,6 +24,7 @@ to_map="cron backup avahi mongo pqsql mysql filesystem syslog"
 for service in $to_map
 	do
 		service_def=`find providers/ -name ${service}.yaml`
+		echo service_def  $service_def 
 		cp $service_def mapping/ManagedEngine
     done
     
@@ -32,6 +33,7 @@ to_map="backup"
 for service in $to_map
 	do
 		service_def=`find providers/ -name ${service}.yaml`
+		echo service_def  $service_def 
 		cp $service_def mapping/database/sql/mysql
 		cp $service_def mapping/database/pqsql/mysql
 		cp $service_def mapping/filesystem/local/filesystem
@@ -42,6 +44,7 @@ for service in $to_map
 for service in $to_map
 	do
 		service_def=`find providers/ -name ${service}.yaml`
+		echo service_def  $service_def 
 		cp $service_def mapping/filesystem/local/filesystem
     done  
     
