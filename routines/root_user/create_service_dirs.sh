@@ -18,9 +18,9 @@ function make_dirs {
 	setup_mongo_dirs	
 	setup_cron_dirs
 	setup_email_dirs
-	setup_nfs_dirs
+	setup_nfs_dirs	
 	setup_run_dirs
-
+	/opt/engines/bin/set_service_provider.sh syslog EnginesSystem
 }
 
 function setup_nfs_dirs {
@@ -57,6 +57,7 @@ echo "Creating Management Service Dirs"
 	
 
 }
+
 
 function setup_nginx_dirs {
 	echo "Setting up Nginx "
