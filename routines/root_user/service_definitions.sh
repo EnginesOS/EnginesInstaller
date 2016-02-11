@@ -4,6 +4,7 @@ function setup_service_definitions {
 cd /opt/engines/etc
 if test -d services
 	then
+	 rm -r services.old
 		mv services services.old
 	fi
 git clone https://github.com/EnginesOS/ServiceDefinitions services
