@@ -8,7 +8,7 @@ if test -d services
 	fi
 git clone https://github.com/EnginesOS/ServiceDefinitions services
 cd services
-#git checkout `cat /opt/engines/release`
+git checkout `cat /opt/engines/release`
 
 mkdir mapping
 cd mapping

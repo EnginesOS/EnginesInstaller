@@ -30,7 +30,7 @@ mkdir -p  /var/log/engines/services/nfs/
 
 function setup_mgmt_dirs {
 echo "Creating Management Service Dirs"
-	mkdir -p  /home/engines/db
+	mkdir -p  /home/engines/db 
 	
 	touch /home/engines/db/production.sqlite3
 	touch /home/engines/db/development.sqlite3
