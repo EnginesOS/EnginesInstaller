@@ -25,6 +25,12 @@ update-grub
 	
 		if test -f /lib/systemd/system/docker.service
 			then
+			if -f /bin/systemctl
+			 then
+				systemctl unmask docker.service
+				systemctl unmask docker.socket
+				systemctl start docker.service
+			 fi
 				cp ${top}/install_source/lib/systemd/system/docker.service.blank  /lib/systemd/system/docker.service
 				 service docker start	
 				  service docker stop
