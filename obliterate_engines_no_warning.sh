@@ -61,6 +61,7 @@ if test -d EnginesInstaller
 	 if test $keep -eq 0
 	 	then
 	 		docker rmi `docker images -q |awk '{print $1}' `
+	 		rm -r /var/lib/docker
 	 	fi
 		service docker stop
 		rm -rf /var/lib/engines
@@ -70,6 +71,7 @@ if test -d EnginesInstaller
 		apt-get -y remove lxc-docker
 		apt-get -y autoremove
 		rm /etc/default/docker 
+		
 		engines_id=21000
 		pids=`ps -axl |grep -v grep | awk '{print "_" $2 "_ "  $3}'  |grep _21000_ | awk '{ print $2}'`
 		
