@@ -30,7 +30,7 @@
 		echo "PATH=\"/opt/engines/bin:$PATH\"" >>~engines/.profile 
 		
 mkdir -p /etc/sudoers.d/
-cp ${top}/install_source/etc/sudoers.d/engines /etc/sudoers.d/engines 
+cp /opt/engines/system/src/sudoers.d/engines /etc/sudoers.d/engines 
 chmod g-rw /etc/sudoers.d/engines 
 		
   }
