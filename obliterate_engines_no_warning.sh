@@ -78,11 +78,8 @@ if test -d EnginesInstaller
 	 
 	 	if test $keep -eq 0
 	 		then
-	 		images=`docker images -q |awk '{print $1}'`
-			if ! test -z $images
-			 then
-	 			docker rmi $images
-	 		 fi
+	 		images=`docker images -q |awk '{print $1}'`			
+	 		docker rmi $images	 		
 	 	fi
 	 	
 			service docker stop
