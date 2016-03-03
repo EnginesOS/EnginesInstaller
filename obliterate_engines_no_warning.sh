@@ -140,7 +140,7 @@ if test -d EnginesInstaller
 		groupdel containers
 		#usermod backup -r -G engines
 		usermod  -G backup backup
-		
+		rm	/etc/sudoers.d/engines 
 		groupdel engines
 		if test $keep_rbenv -eq 0
 		 then

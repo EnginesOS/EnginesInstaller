@@ -1,10 +1,27 @@
 
+#packages="apt-transport-https  libreadline-dev  linux-image-extra-$(uname -r) lvm2 thin-provisioning-tools openssh-server haveged"
+. ${top}/pacakages
+
 function install_docker_components {
+
+for package in $packages
+ do
+ 	 dpkg -l $package
+ 	 if test $? -ne 0
+ 	 then
+ 	 	packages_to_install="$packages_to_install $package"
+ 	 fi
+ done
+
+echo $packages_to_install >/opt/engines/system/packages_installed
   echo "Installing Docker"		
-		 apt-get install -y apt-transport-https  libreadline-dev  linux-image-extra-$(uname -r) lvm2 thin-provisioning-tools openssh-server g++ >>/tmp/engines_install.log
+    if ! test -z $packages_to_install
+      then
+		 apt-get install -y  $packages_to_install >>/tmp/engines_install.log
+      fi
 		 echo deb https://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list
 		 apt-get -y update >>/tmp/engines_install.log
- 		apt-get -y install haveged
+ 	
 	
 		 wget -qO- https://get.docker.io/gpg | apt-key add - >>/tmp/engines_install.log
 		 apt-get -y  --force-yes install lxc-docker >>/tmp/engines_install.log
