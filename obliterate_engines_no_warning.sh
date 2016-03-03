@@ -118,7 +118,7 @@ if test -d EnginesInstaller
 		
 		if ! test -z "$pids"
 		 then
-		 	echo engines user still has processes running pid(s) $pids
+		 	echo "engines user still has processes running pid(s) $pids"
 		 	exit
 		 fi
 		 
