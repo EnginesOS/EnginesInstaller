@@ -15,7 +15,7 @@ function configure_git {
 
 mkdir -p /usr/local/  
 cd /usr/local/  
-git clone --depth 1qq git://github.com/sstephenson/rbenv.git /usr/local/rbenv >>/tmp/engines_install.log
+git clone --depth 1 git://github.com/sstephenson/rbenv.git /usr/local/rbenv >>/tmp/engines_install.log
 
 	chgrp -R engines rbenv
 	chmod -R g+rwxXs rbenv

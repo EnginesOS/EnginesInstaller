@@ -25,7 +25,7 @@ update-grub
 	
 		if test -f /lib/systemd/system/docker.service
 			then
-			if -f /bin/systemctl
+			if test -f /bin/systemctl
 			 then
 				systemctl unmask docker.service
 				systemctl unmask docker.socket
