@@ -3,6 +3,7 @@ function install_failed {
 
  echo please cd ../
  echo and sudo EnginesInstaller/obliterate.sh 
+ exit -1
 }
 
 function create_services {
