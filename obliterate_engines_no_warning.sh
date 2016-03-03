@@ -45,7 +45,7 @@ if test $# -eq 1
    elif test $1 = "-r"
    then 
    	keep_rbenv=1
-   	echo "Keeping Rbenv"
+   	echo "Keeping rbenv"
      fi
  fi
  
@@ -78,13 +78,13 @@ if test -d EnginesInstaller
 	 
 	 	if test $keep -eq 0
 	 		then
-	 		images=`docker images -q |awk '{print $1}'
-		if ! test -z $images
+	 		images=`docker images -q |awk '{print $1}'`
+			if ! test -z $images
 			 then
-
-	 			docker rmi `docker images -q |awk '{print $1}' `
+	 			docker rmi $images
 	 		 fi
-	 		fi
+	 	fi
+	 	
 			service docker stop
 			rm -rf /var/lib/engines
 			rm -rf /var/log/engines
@@ -150,7 +150,10 @@ if test -d EnginesInstaller
 		fi
 		
 		rm /etc/network/if-up.d/set_ip.sh 
-		rm -r /home/engines/.ssh
+		if test -d /home/engines/.ssh
+		 then
+			rm -r /home/engines/.ssh
+		fi
 		
 		rm -fr /home/engines/.rbenv
 		
