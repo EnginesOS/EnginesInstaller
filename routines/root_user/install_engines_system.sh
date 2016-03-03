@@ -15,7 +15,7 @@ function configure_git {
 
 mkdir -p /usr/local/  
 cd /usr/local/  
-git clone git://github.com/sstephenson/rbenv.git /usr/local/rbenv >>/tmp/engines_install.log
+git clone --depth 1qq git://github.com/sstephenson/rbenv.git /usr/local/rbenv >>/tmp/engines_install.log
 
 	chgrp -R engines rbenv
 	chmod -R g+rwxXs rbenv
@@ -26,12 +26,16 @@ git clone git://github.com/sstephenson/rbenv.git /usr/local/rbenv >>/tmp/engines
 	chgrp -R engines plugins/ruby-build
 	chmod -R g+rwxs plugins/ruby-build
 	
-	echo 'export PATH="/usr/local/rbenv/bin:$PATH"' >> ~/.bashrc 
-	echo 'eval "$(rbenv init -)"' >> ~/.bashrc ; .  ~/.bashrc
+	grep rbenv ~/.bashrc >/dev/null
+	 if test $? -ne 0
+	  then
+		echo 'export PATH="/usr/local/rbenv/bin:$PATH"' >> ~/.bashrc 
+		echo 'eval "$(rbenv init -)"' >> ~/.bashrc 
+	 fi
 	source ~/.bashrc 
 	 
 	echo 'export PATH="/usr/local/rbenv/bin:$PATH"' >> ~engines/.profile
-	 echo 'export PATH="/usr/local/rbenv/bin:$PATH"' >> ~engines/.bashrc
+	echo 'export PATH="/usr/local/rbenv/bin:$PATH"' >> ~engines/.bashrc
 	echo 'eval "$(rbenv init -)"' >> ~engines/.profile
 	echo 'eval "$(rbenv init -)"' >> ~engines/.bashrc
 	
