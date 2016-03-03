@@ -36,9 +36,12 @@ update-grub
 				  service docker stop
 				  ip=`ifconfig docker0  |grep "inet addr:" |cut -f2 -d: |awk '{print $1}'`
 				  cat ${top}/install_source/lib/systemd/system/docker.service | sed "/IP/s//$ip/" > /lib/systemd/system/docker.service
-				   systemctl  daemon-reload
 				  
-				   service docker start	
+				if test -f /bin/systemctl
+			 		then  
+				   systemctl  daemon-reload
+				  fi
+				service docker start	
 			fi
 		 update-rc.d docker defaults 
 		 service docker start	

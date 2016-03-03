@@ -35,11 +35,16 @@ echo "Docker and ALL docker Images will be Deleted -k to keep docker images"
 echo "Ctl-C now if this is not want you want"
 sleep 20
 keep=0
+keep_rbenv=0
+
 if test $# -eq 1
  then
    if test $1 = "-k"
      then 
        keep=1
+   elif test $1 = "-r"
+   then 
+   	keep_rbenv=1
      fi
  fi
  
@@ -49,29 +54,38 @@ if test -d EnginesInstaller
 	cd EnginesInstaller
 	git pull
 	cd ..
+	
 	#then obliterate
 	crontab -u engines -r
 	rm -rf /var/spool/cron/crontabs/engines
 	service cron restart
+	
+	docker info >/dev/null
+	 if test $? -eq 0
 		service docker restart
-		sleep 5
-	docker stop `docker ps -a |grep -i paused |awk '{print $1}' `
-	docker stop `docker ps -q |awk '{print $1}' `
-	 docker rm `docker ps -aq |awk '{print $1}' `
-	 if test $keep -eq 0
-	 	then
-	 		docker rmi `docker images -q |awk '{print $1}' `
-	 		rm -r /var/lib/docker
-	 	fi
-		service docker stop
-		rm -rf /var/lib/engines
-		rm -rf /var/log/engines
-		rm -rf /opt/engines
+			sleep 5
+		docker stop `docker ps -a |grep -i paused |awk '{print $1}' `
+		docker stop `docker ps -q |awk '{print $1}' `
+	 	docker rm `docker ps -aq |awk '{print $1}' `
+	 	if test $keep -eq 0
+	 		then
+	 			docker rmi `docker images -q |awk '{print $1}' `
+	 		
+	 		fi
+			service docker stop
+			rm -rf /var/lib/engines
+			rm -rf /var/log/engines
+			rm -rf /opt/engines
 		
-		apt-get -y remove lxc-docker
-		apt-get -y autoremove
-		rm /etc/default/docker 
-		
+			apt-get -y remove lxc-docker
+			apt-get -y autoremove
+			rm /etc/default/docker 
+			if test $keep -eq 0
+	 		then	 			
+	 			rm -rf /var/lib/docker
+	 		fi
+			
+		fi
 		engines_id=21000
 		pids=`ps -axl |grep -v grep | awk '{print "_" $2 "_ "  $3}'  |grep _21000_ | awk '{ print $2}'`
 		
@@ -79,7 +93,21 @@ if test -d EnginesInstaller
 		 then
 		 	kill -TERM $pids
 		 fi
+		pids=`ps -axl |grep -v grep | awk '{print "_" $2 "_ "  $3}'  |grep _21000_ | awk '{ print $2}'`
 		
+		if ! test -z "$pids"
+		 then
+		 	kill -KILL $pids
+		 fi
+		 sleep 6
+		 pids=`ps -axl |grep -v grep | awk '{print "_" $2 "_ "  $3}'  |grep _21000_ | awk '{ print $2}'`
+		
+		if ! test -z "$pids"
+		 then
+		 	echo engines users still running pid(s) $pids
+		 	exit
+		 fi
+		 
 		gw_ifac=`netstat -nr |grep ^0.0.0.0 | awk '{print $8}' |head -1`
 		ip=`/sbin/ifconfig $gw_ifac |grep "inet addr"  |  cut -f 2 -d: |cut -f 1 -d" "`
 		
@@ -99,9 +127,15 @@ if test -d EnginesInstaller
 		#usermod backup -r -G engines
 		usermod  -G backup backup
 		
-				groupdel engines
-		rm -rf /usr/local/rbenv
-		 rm /etc/network/if-up.d/set_ip.sh 
+		groupdel engines
+		if test $keep_rbenv -eq 0
+		 then
+			rm -rf /usr/local/rbenv
+			cat ~/.bashrc | grep -v rbenv >/tmp/.b
+			mv /tmp/.b  ~/.bashrc 
+		fi
+		
+		rm /etc/network/if-up.d/set_ip.sh 
 		rm -r /home/engines/.ssh
 		
 		rm -fr /home/engines/.rbenv

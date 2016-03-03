@@ -15,16 +15,22 @@ function configure_git {
 
 mkdir -p /usr/local/  
 cd /usr/local/  
-git clone --depth 1 git://github.com/sstephenson/rbenv.git /usr/local/rbenv >>/tmp/engines_install.log
+ if ! test -d /usr/local/rbenv
+  then
+	git clone --depth 1 git://github.com/sstephenson/rbenv.git /usr/local/rbenv >>/tmp/engines_install.log
 
-	chgrp -R engines rbenv
+	
 	chmod -R g+rwxXs rbenv
 	
 	cd /usr/local/rbenv   
 
 	git clone --depth 1  git://github.com/sstephenson/ruby-build.git /usr/local/rbenv/plugins/ruby-build  >>/tmp/engines_install.log
-	chgrp -R engines plugins/ruby-build
-	chmod -R g+rwxs plugins/ruby-build
+	
+ fi
+ 
+ chgrp -R engines /usr/local/rbenv
+ chgrp -R engines /usr/local/rbenv/plugins/ruby-build
+ chmod -R g+rwxs /usr/local/rbenv/plugins/ruby-build
 	
 	grep rbenv ~/.bashrc >/dev/null
 	 if test $? -ne 0
