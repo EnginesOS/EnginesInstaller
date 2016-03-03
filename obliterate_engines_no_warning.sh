@@ -45,6 +45,7 @@ if test $# -eq 1
    elif test $1 = "-r"
    then 
    	keep_rbenv=1
+   	echo "Keeping Rbenv"
      fi
  fi
  
@@ -64,13 +65,25 @@ if test -d EnginesInstaller
 	 if test $? -eq 0
 		service docker restart
 			sleep 5
-		docker stop `docker ps -a |grep -i paused |awk '{print $1}' `
-		docker stop `docker ps -q |awk '{print $1}' `
-	 	docker rm `docker ps -aq |awk '{print $1}' `
+			containers=`docker ps -a |grep -i paused |awk '{print $1}' `
+			if ! test -z $containers
+			 then
+				docker stop $containers
+			fi
+			containers=`docker ps -q |awk '{print $1}'` 
+		if ! test -z $containers
+			 then
+				docker rm $containers
+			fi
+	 
 	 	if test $keep -eq 0
 	 		then
+	 		images=`docker images -q |awk '{print $1}'
+		if ! test -z $images
+			 then
+
 	 			docker rmi `docker images -q |awk '{print $1}' `
-	 		
+	 		 fi
 	 		fi
 			service docker stop
 			rm -rf /var/lib/engines
@@ -104,7 +117,7 @@ if test -d EnginesInstaller
 		
 		if ! test -z "$pids"
 		 then
-		 	echo engines users still running pid(s) $pids
+		 	echo engines user still has processes running pid(s) $pids
 		 	exit
 		 fi
 		 
@@ -130,6 +143,7 @@ if test -d EnginesInstaller
 		groupdel engines
 		if test $keep_rbenv -eq 0
 		 then
+		 	echo "Removing rbenv"
 			rm -rf /usr/local/rbenv
 			cat ~/.bashrc | grep -v rbenv >/tmp/.b
 			mv /tmp/.b  ~/.bashrc 
