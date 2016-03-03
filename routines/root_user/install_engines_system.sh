@@ -22,7 +22,7 @@ git clone git://github.com/sstephenson/rbenv.git /usr/local/rbenv >>/tmp/engines
 	
 	cd /usr/local/rbenv   
 
-	git clone git://github.com/sstephenson/ruby-build.git /usr/local/rbenv/plugins/ruby-build  >>/tmp/engines_install.log
+	git clone --depth 1  git://github.com/sstephenson/ruby-build.git /usr/local/rbenv/plugins/ruby-build  >>/tmp/engines_install.log
 	chgrp -R engines plugins/ruby-build
 	chmod -R g+rwxs plugins/ruby-build
 	
