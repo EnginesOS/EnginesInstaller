@@ -61,18 +61,18 @@ if test -d EnginesInstaller
 	rm -rf /var/spool/cron/crontabs/engines
 	service cron restart
 	
-	docker info >/dev/null
-	 if test $? -eq 0
+	
+	 if test -f /usr/bin/docker
 	  then
 		service docker restart
 			sleep 5
 			containers=`docker ps -a |grep -i paused |awk '{print $1}' `
-			if ! test -z $containers
+			if ! test -z "$containers"
 			 then
 				docker stop $containers
 			fi
 			containers=`docker ps -q |awk '{print $1}'` 
-		if ! test -z $containers
+		if ! test -z "$containers"
 			 then
 				docker rm $containers
 			fi
@@ -80,7 +80,7 @@ if test -d EnginesInstaller
 	 	if test $keep -eq 0
 	 		then
 	 		images=`docker images -q |awk '{print $1}'`
-			if ! test -z $images
+			if ! test -z "$images"
 			 then
 	 			docker rmi $images
 	 		 fi
