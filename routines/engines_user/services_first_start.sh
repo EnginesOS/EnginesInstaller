@@ -147,10 +147,10 @@ echo "Starting FTP"
  	
 	
 echo "Downloading Volmanager image"
-	docker pull engines/volmanager:$release >>/tmp/engines_install.log
+	docker pull engines/fs:$release >>/tmp/engines_install.log
 	if test $? -ne 0
 	 then
-	  echo pull of engines/volmanager:$release failed check your network
+	  echo pull of engines/fs:$release failed check your network
 	    install_failed
 	fi
 echo "Starting Volmanager image"

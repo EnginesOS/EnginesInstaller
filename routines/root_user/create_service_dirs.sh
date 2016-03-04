@@ -55,7 +55,15 @@ echo "Creating Management Service Dirs"
 	mkdir -p /opt/engines/run/system/flags/
 	chown -R 21000 /opt/engines/run/system/
 	
-
+	mkdir -p /opt/engines/system/updates/failed/engines
+	mkdir -p /opt/engines/system/updates/has_run/engines
+	mkdir -p /opt/engines/system/updates/to_run/engines
+	
+	chown -R 21000 /opt/engines/system/updates/failed/engines /opt/engines/system/updates/has_run/engines /opt/engines/system/updates/to_run/engines
+	
+	mkdir -p /opt/engines/system/updates/failed/system
+	mkdir -p /opt/engines/system/updates/has_run/system
+	mkdir -p /opt/engines/system/updates/to_run/system
 }
 
 
