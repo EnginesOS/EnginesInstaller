@@ -5,6 +5,22 @@ function configure_git {
 	git clone https://github.com/EnginesOS/System.git --branch $branch  --single-branch /opt/engines/ 	>>/tmp/engines_install.log
 	echo $branch > /opt/engines/release
 
+	updates=`ls /opt/engines/system/updates/to_run/engines/ |grep keep`
+	cd /opt/engines/system/updates/to_run/engines/
+	for update in $updates
+	 do
+	  mkdir -p /opt/engines/system/updates/when_installed/engines/
+	  mv $update /opt/engines/system/updates/when_installed/engines/
+	 done
+
+updates=`ls /opt/engines/system/updates/to_run/system/ |grep keep`
+	cd /opt/engines/system/updates/to_run/system/
+	for update in $updates
+	 do
+	  mkdir -p /opt/engines/system/updates/when_installed/system/
+	  mv $update /opt/engines/system/updates/when_installed/system/
+	 done
+
 }
 
 
