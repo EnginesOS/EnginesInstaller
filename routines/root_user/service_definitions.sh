@@ -14,7 +14,14 @@ git clone https://github.com/EnginesOS/ServiceDefinitions services
 cd services
 git checkout `cat /opt/engines/release`
 
-mkdir mapping
+make_service_mapping
+
+}
+
+function make_service_mapping {
+cd /opt/engines/etc/services
+
+mkdir  -p mapping
 cd mapping
 
 mkdir ManagedEngine
@@ -23,7 +30,7 @@ mkdir -p database/sql/mysql
 mkdir -p filesystem/local/filesystem
 
 cd ../
-to_map="cron backup avahi mongo pgsql mysql filesystem syslog"
+to_map="cron backup avahi mongo pgsql mysql filesystem syslog dns nginx"
 
 for service in $to_map
 	do
