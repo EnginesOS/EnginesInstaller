@@ -7,6 +7,8 @@
  
  function configure_engines_user {
   echo "Configuring engines system user"
+		mkdir /opt/engines/tmp/{container,service) 
+		chown -R engines /opt/engines/tmp
 		
 		  apt-get -y install libssl-dev imagemagick cmake  dc mysql-client libmysqlclient-dev unzip wget git  >>/tmp/engines_install.log
 		 addgroup engines
