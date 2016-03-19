@@ -7,7 +7,7 @@
  
  function configure_engines_user {
   echo "Configuring engines system user"
-		mkdir /opt/engines/tmp/{container,service}
+		mkdir -p /opt/engines/tmp/{container,service}
 		chown -R engines /opt/engines/tmp
 		
 		  apt-get -y install g++ libssl-dev imagemagick libreadline-dev cmake  dc mysql-client libmysqlclient-dev unzip wget git  >>/tmp/engines_install.log
