@@ -21,7 +21,12 @@ echo $packages_to_install >/opt/engines/system/packages_installed
       fi
 		 echo deb https://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list
 		 apt-get -y update >>/tmp/engines_install.log
- 	
+		 apt-get -y upgrade
+		 #if virutal
+ 	 apt-get upgrade -y linux-headers-generic linux-headers-virtual linux-image-virtual  linux-virtual  linux-image-extra-$(uname -r) 
+ 		#else
+ 		# apt-get upgrade -y linux-headers-generic linux linux-image-extra-$(uname -r) 
+ 		
 	
 		 wget -qO- https://get.docker.io/gpg | apt-key add - >>/tmp/engines_install.log
 		 apt-get -y  --force-yes install lxc-docker >>/tmp/engines_install.log
@@ -32,8 +37,8 @@ echo $packages_to_install >/opt/engines/system/packages_installed
 function configure_docker {
   echo "Configuring Docker DNS settings"	 
 
-#echo GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1 cgroup_enable=memory use_hierarchy" >> /etc/default/grub
-echo GRUB_CMDLINE_LINUX=\"cgroup_enable=memory swapaccount=1 cgroup_enable=memory use_hierarchy\" >> /etc/default/grub
+#echo GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1 cgroup_enable=memory use_hierarchy=1" >> /etc/default/grub
+echo GRUB_CMDLINE_LINUX=\"cgroup_enable=memory swapaccount=1 cgroup_enable=memory use_hierarchy=1\" >> /etc/default/grub
 update-grub
 		# echo 1 > /sys/fs/cgroup/memory/memory.use_hierarchy
 		 echo "DOCKER_OPTS=\" --storage-driver=aufs  --dns 8.8.8.8  \"" > /etc/default/docker
