@@ -38,7 +38,7 @@ apt-get install -y apt-transport-https    linux-image-extra-$(uname -r) lvm2 thi
     
   function setup_startup_script {
   echo "Adding startup script"
-   cat /etc/rc.local | sed "/^exit.*$/s//su  engines \/opt\/engines\/bin\/engines_startup.sh \>  \/var\/log\/engines\/last_start\.log/" > /tmp/rc.local	
+   cat /etc/rc.local | sed "/^exit.*$/s//su  engines \/opt\/engines\/bin\/engines_startup.sh" > /tmp/rc.local	
 		
 		 echo "exit 0"  >> /tmp/rc.local
 		 cp /tmp/rc.local /etc/rc.local
