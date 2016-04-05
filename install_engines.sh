@@ -21,6 +21,8 @@ if ! test -d ./routines/
   . ${top}/routines/root_user/os_routines.sh
    . ${top}/routines/root_user/setup_engines_user.sh
  . ${top}/routines/root_user/install_engines_system.sh
+   . ${top}/routines/root_user/virtual_hw_install.sh
+ . ${top}/routines/root_user/physical_hw_install.sh
 
  . ${top}/routines/root_user/configure_net.sh 
   . ${top}/routines/root_user/init_ssl_cert.sh 
@@ -51,6 +53,16 @@ dpkg-reconfigure tzdata
   update_os
   setup_startup_script
   install_docker_components
+  
+   cat /proc/cpuinfo  |grep flags |grep hyper >/dev/null
+   if test $? -eq 0
+    then
+   	 	virutal_hw_install
+    else
+    	physical_hw_install
+  fi
+    
+ 
   configure_docker
   configure_engines_user
   install_rbenv    	  		 
