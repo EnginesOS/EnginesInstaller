@@ -100,5 +100,8 @@ update-grub
 		 sleep 20
 		 service docker start
 		  
+#stop appamour complaining about ptrace (caused be pas		  
+ ln -s /etc/apparmor.d/docker /etc/apparmor.d/force-complain/ 
+		  
   }
  
