@@ -77,4 +77,4 @@ chmod +x  ${top}/complete_install.sh
 echo -n ${top} >/tmp/.install_dir
 
 su -l engines -c  ${top}/complete_install.sh 
-
+ update_os
