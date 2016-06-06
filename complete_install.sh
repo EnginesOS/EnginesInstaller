@@ -25,7 +25,7 @@ setup_mgmt_keys
 
 echo Installation complete
 touch ~/.complete_install
- /opt/engines/bin/set_ip.sh
+ /opt/engines/system/scripts/startup/set_ip.sh
 echo Downloading and starting services
 create_services  
 
@@ -37,14 +37,14 @@ cp /etc/os-release /opt/engines/etc/os-release-host
 grep follow_start.sh ~engines/.bashrc
 	if test $? -ne 0
 		then
-			echo  /opt/engines/bin/follow_start.sh >> ~engines/.bashrc
+			
 	fi
 
 setup_engines_crontab
 # pretend if install changed grub options
 #dont reboot as well the cert error post first run
 #touch /opt/engines/run/system/flags/reboot_required
-/opt/engines/bin/follow_start.sh 
+
 
 
 

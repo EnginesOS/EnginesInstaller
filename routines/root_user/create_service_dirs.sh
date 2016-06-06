@@ -101,6 +101,7 @@ chown -R 21000 /var/lib/engines
 function setup_log_dir {
 echo "Creating Log Dirs"
 mkdir -p  /var/log/engines
+mkdir -p /var/log/engines/raw
 mkdir -p /var/log/engines/containers/
 chown -R 21000 /var/log/engines 
 mkdir -p /var/log/engines/services/syslog/rmt
