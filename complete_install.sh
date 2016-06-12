@@ -34,11 +34,7 @@ rm -f /opt/engines/run/system/flags/engines_rebooting
 rm -f /opt/engines/run/system/flags/building_params 
 cp /etc/os-release /opt/engines/etc/os-release-host
 
-grep follow_start.sh ~engines/.bashrc
-	if test $? -ne 0
-		then
-			
-	fi
+
 
 setup_engines_crontab
 # pretend if install changed grub options
