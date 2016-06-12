@@ -3,6 +3,7 @@ function make_dirs {
 	
 	setup_fs_dir
 	setup_log_dir
+	setup_system_dirs
 	setup_cert_auth_dirs
 	copy_install_ssl_cert
 	setup_auth_dirs
@@ -22,7 +23,11 @@ function make_dirs {
 	setup_run_dirs
 	/opt/engines/bin/set_service_provider.sh syslog EnginesSystem
 }
-
+function setup_system_dirs {
+	mkdir -p  /var/log/engines/system_services/system/engines/
+	mkdir -p   /opt/engines/run/system_services/system/run
+	chown 21000 /opt/engines/run/system_services/system/run /var/log/engines/system_services/system/engines/
+}
 function setup_nfs_dirs {
 echo "Creating NFS Service Dirs"
 mkdir -p  /var/log/engines/services/nfs/

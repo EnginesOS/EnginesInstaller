@@ -18,7 +18,16 @@ echo "Downloading Registry image"
 	  echo pull of engines/registry:$release failed check your network
 	  install_failed
 	fi
-	/opt/engines/bin/engines.rb service stop dns  >>/tmp/engines_install.log
+	/opt/engines/bin/system_service.rb registry create
+	
+	docker pull engines/system:$release >>/tmp/engines_install.log
+	if test $? -ne 0
+	 then
+	  echo pull of engines/system:$release failed check your network
+	  install_failed
+	fi
+	/opt/engines/bin/system_service.rb system create
+	
 	
 echo "Starting DNS"
 echo "Downloading DNS image"
@@ -29,7 +38,7 @@ echo "Downloading DNS image"
 	    install_failed
 	fi
 echo "Starting DNS"
-	 /opt/engines/bin/engines.rb service create dns >>/tmp/engines_install.log
+	 /opt/engines/bin/engines service dns create >>/tmp/engines_install.log
 
 
 echo "Downloading Syslog image"
@@ -40,7 +49,7 @@ echo "Downloading Syslog image"
 	    install_failed
 	fi
 echo "Starting Syslog" 
-	 /opt/engines/bin/engines.rb service create syslog >>/tmp/engines_install.log
+	 /opt/engines/bin/engines service syslog create >>/tmp/engines_install.log
 	 
 echo "Downloading Avahi image"
 	docker pull engines/avahi:$release >>/tmp/engines_install.log
@@ -50,7 +59,7 @@ echo "Downloading Avahi image"
 	    install_failed
 	fi
 echo "Starting Avahi"
-	  /opt/engines/bin/engines.rb service create avahi >>/tmp/engines_install.log
+	 /opt/engines/bin/engines service avahi create >>/tmp/engines_install.log
 	  
 echo "Downloading Cert Auth image"
 	 docker pull engines/certs:$release >>/tmp/engines_install.log
@@ -60,7 +69,7 @@ echo "Downloading Cert Auth image"
 	    install_failed
 	fi
 echo "Starting Cert Auth"
-	/opt/engines/bin/engines.rb service create cert_auth >>/tmp/engines_install.log
+	/opt/engines/bin/engines service  cert_auth create >>/tmp/engines_install.log
 	
 echo "Downloading MySQL image"
 	 docker pull engines/mysql:$release >>/tmp/engines_install.log
@@ -70,7 +79,7 @@ echo "Downloading MySQL image"
 	    install_failed
 	fi
 echo "Starting MySQL"	 
-	 /opt/engines/bin/engines.rb service create mysql_server  >>/tmp/engines_install.log
+	 /opt/engines/bin/engines service  mysql_server create >>/tmp/engines_install.log
 	  
 echo "Downloading Management  image"
 	  docker pull engines/mgmt:$release >>/tmp/engines_install.log
@@ -80,7 +89,7 @@ echo "Downloading Management  image"
 	    install_failed
 	fi
 echo "Starting Management"
-	/opt/engines/bin/engines.rb service create mgmt >>/tmp/engines_install.log
+	/opt/engines/bin/engines service syscontrol create >>/tmp/engines_install.log
 	
 echo "Downloading Auth image"
 	 docker pull engines/auth:$release >>/tmp/engines_install.log 
@@ -90,7 +99,7 @@ echo "Downloading Auth image"
 	    install_failed
 	fi
 echo "Starting Auth"
-	 /opt/engines/bin/engines.rb service create auth >>/tmp/engines_install.log
+	 /opt/engines/bin/engines service auth create  >>/tmp/engines_install.log
 	 
 echo "Downloading Web Router image"
 	  docker pull engines/nginx:$release >>/tmp/engines_install.log
@@ -100,7 +109,7 @@ echo "Downloading Web Router image"
 	    install_failed
 	fi
 echo "Starting Web Router"
-	 /opt/engines/bin/engines.rb service create nginx >>/tmp/engines_install.log
+	 /opt/engines/bin/engines service nginx create >>/tmp/engines_install.log
 	 
 echo "Downloading Backup image"
 	 docker pull engines/backup:$release >>/tmp/engines_install.log
@@ -110,7 +119,7 @@ echo "Downloading Backup image"
 	    install_failed
 	fi
 echo "Starting Backup"
-	 /opt/engines/bin/engines.rb service create backup >>/tmp/engines_install.log
+	 /opt/engines/bin/engines service backup create >>/tmp/engines_install.log
 	 
 echo "Downloading Cron image"
 	 docker pull engines/cron:$release >>/tmp/engines_install.log
@@ -120,7 +129,7 @@ echo "Downloading Cron image"
 	    install_failed
 	fi
  echo "Starting Cron"
-	 /opt/engines/bin/engines.rb service create cron >>/tmp/engines_install.log
+	 /opt/engines/bin/engines service cron create >>/tmp/engines_install.log
  	 
 
 echo "Downloading SMTP image"
@@ -131,7 +140,7 @@ echo "Downloading SMTP image"
 	    install_failed
 	fi
  echo "Starting SMTP"
-	 /opt/engines/bin/engines.rb service create smtp >>/tmp/engines_install.log
+	 /opt/engines/bin/engines service smtp create >>/tmp/engines_install.log
  	 
 
 	  
@@ -143,7 +152,7 @@ echo "Downloading FTP image"
 	    install_failed
 	fi
 echo "Starting FTP"
-	 /opt/engines/bin/engines.rb service create ftp >>/tmp/engines_install.log
+	 /opt/engines/bin/engines service  ftp create >>/tmp/engines_install.log
  	
 	
 echo "Downloading Volmanager image"
@@ -154,10 +163,10 @@ echo "Downloading Volmanager image"
 	    install_failed
 	fi
 echo "Starting Volmanager image"
-	/opt/engines/bin/engines.rb service create volmanager >>/tmp/engines_install.log
+	//opt/engines/bin/engines service volmanager create >>/tmp/engines_install.log
 
 	
 echo "Starting System Services"
-	 /opt/engines/bin/eservices check_and_act  >>/tmp/engines_install.log &
+	 /opt/engines/bin/engines containers  check_and_act  >>/tmp/engines_install.log &
 	
 }
