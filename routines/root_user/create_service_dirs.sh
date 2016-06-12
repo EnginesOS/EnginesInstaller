@@ -24,9 +24,9 @@ function make_dirs {
 	/opt/engines/bin/set_service_provider.sh syslog EnginesSystem
 }
 function setup_system_dirs {
-	mkdir -p  /var/log/engines/system_services/system/engines/
+	mkdir -p  /var/log/engines/system_services/system/
 	mkdir -p   /opt/engines/run/system_services/system/run
-	chown 21000 /opt/engines/run/system_services/system/run /var/log/engines/system_services/system/engines/
+	chown 21000 /opt/engines/run/system_services/system/run /var/log/engines/system_services/system/
 }
 function setup_nfs_dirs {
 echo "Creating NFS Service Dirs"
