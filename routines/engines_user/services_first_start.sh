@@ -27,6 +27,8 @@ echo "Downloading Registry image"
 	  install_failed
 	fi
 	/opt/engines/bin/system_service.rb system create
+	sleep 60 
+	/opt/engines/bin/engines login t t
 	
 	
 echo "Starting DNS"
