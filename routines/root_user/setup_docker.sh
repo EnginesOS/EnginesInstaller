@@ -19,7 +19,15 @@ echo $packages_to_install >/opt/engines/system/packages_installed
       then
 		 apt-get install -y  $packages_to_install >>/tmp/engines_install.log
       fi
+       grep UBUNTU_CODENAME=xenial /etc/os-release >/dev/null
+       if test $? -eq 0
+       then
+		 echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" | sudo tee /etc/apt/sources.list.d/docker.list
+		 apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+        else
 		 echo deb https://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list
+fi
+		 
 		 apt-get -y update >>/tmp/engines_install.log
 		 apt-get -y upgrade
 		 #if virutal

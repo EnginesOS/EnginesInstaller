@@ -33,31 +33,41 @@ echo "Creating NFS Service Dirs"
 mkdir -p  /var/log/engines/services/nfs/
 }
 
-function setup_mgmt_dirs {
-echo "Creating Management Service Dirs"
+function setup_mgmt_dirs{
+	echo "Creating Management Service Dirs"
+	mkdir -p  /var/log/engines/services/mgmt
+	chown -R 22050 /var/log/engines/services/mgmt 
+	mkdir -p  /opt/engines/run//services/mgmt/run
+	chown -R 22050 /opt/engines/run//services/mgmt/run
+	
+		}
+function setup_system_dirs {
+echo "Creating System Service Dirs"
 	mkdir -p  /home/engines/db 
 	
 	touch /home/engines/db/production.sqlite3
 	touch /home/engines/db/development.sqlite3
-	mkdir -p  /var/log/engines/services/mgmt
+
 	mkdir -p /home/engines/deployment/deployed/
 	mkdir -p  /var/lib/engines/mgmt/public/system/
 	mkdir -p /home/engines/.ssh/mgmt/
 	mkdir -p /opt/engines/etc/ssh/keys/services/mgmt
 	chmod og-w /opt/engines/etc/ssh/keys/services/mgmt
 	chmod o-r /opt/engines/etc/ssh/keys/services/mgmt
-	chown 21000  /opt/engines/etc/ssh/keys/services/mgmt
-	chown 21000  /home/engines/db/production.sqlite3
-	chown 21000  /home/engines/db/development.sqlite3
+	chown 22050  /opt/engines/etc/ssh/keys/services/mgmt
+	#chown 21000  /home/engines/db/production.sqlite3
+	#chown 21000  /home/engines/db/development.sqlite3
 	
-	chown -R 21000 /home/engines/db/
+	#chown -R 21000 /home/engines/db/
 	mkdir -p /opt/engines/run/service_manager/
 	mkdir -p /var/log/engines/updates/ 
 	chown -R 21000 /opt/engines/run/service_manager/
 	chown -R 21000 /home/engines/deployment/deployed/
 	chown 21000 /var/lib/engines  /var/log/engines/containers  /var/log/engines/ /var/log/engines/updates/ /var/log/engines/services/ /var/log/engines/containers/
 	
-	chown -R 21000 ~engines/  /var/lib/engines/mgmt/public/system/ /var/log/engines/services/mgmt 
+	chown -R 21000 ~engines/  /var/lib/engines/mgmt/public/system/ 
+
+	
 	mkdir -p /opt/engines/run/system/flags/
 	chown -R 21000 /opt/engines/run/system/
 	

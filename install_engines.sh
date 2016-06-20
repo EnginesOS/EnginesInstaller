@@ -57,7 +57,7 @@ dpkg-reconfigure tzdata
    cat /proc/cpuinfo  |grep flags |grep hyper >/dev/null
    if test $? -eq 0
     then
-   	 	virutal_hw_install
+   	 	virtual_hw_install
     else
     	physical_hw_install
   fi
