@@ -33,7 +33,7 @@ echo "Creating NFS Service Dirs"
 mkdir -p  /var/log/engines/services/nfs/
 }
 
-function setup_mgmt_dirs{
+function setup_mgmt_dirs {
 	echo "Creating Management Service Dirs"
 	mkdir -p  /var/log/engines/services/mgmt
 	chown -R 22050 /var/log/engines/services/mgmt 
