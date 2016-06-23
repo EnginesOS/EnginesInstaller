@@ -1,6 +1,6 @@
 
 function make_dirs {
-	
+
 	setup_fs_dir
 	setup_log_dir
 	setup_system_dirs
@@ -59,6 +59,13 @@ echo "Creating System Service Dirs"
 	#chown 21000  /home/engines/db/development.sqlite3
 	
 	#chown -R 21000 /home/engines/db/
+	mkdir -p /var/log/engines/system_services/system/
+	chown -R 21000  /var/log/engines/system_services/system/
+	
+	mkdir -p  /opt/engines/run/system_services/system/run/
+	chown -R 21000  /opt/engines/run/system_services/system/run/
+	chgrp containers  -R opt/engines/run/system_services/system
+	
 	mkdir -p /opt/engines/run/service_manager/
 	mkdir -p /var/log/engines/updates/ 
 	chown -R 21000 /opt/engines/run/service_manager/
