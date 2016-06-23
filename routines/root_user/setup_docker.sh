@@ -105,7 +105,7 @@ update-grub
 		  	ip='172.17.0.1'
 		  fi
 		
-		 echo "DOCKER_OPTS=\" --storage-driver=aufs --dns $ip --dns 8.8.8.8  \"" > /etc/default/docker
+		 echo "DOCKER_OPTS=\"-H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock  --storage-driver=aufs --dns $ip --dns 8.8.8.8  \"" > /etc/default/docker
 		
 		 sleep 20
 		 service docker start
