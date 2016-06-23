@@ -91,7 +91,7 @@ echo "Downloading Management  image"
 	    install_failed
 	fi
 echo "Starting Management"
-	/opt/engines/bin/engines service syscontrol create >>/tmp/engines_install.log
+	/opt/engines/bin/engines service mgmt create >>/tmp/engines_install.log
 	
 echo "Downloading Auth image"
 	 docker pull engines/auth:$release >>/tmp/engines_install.log 
