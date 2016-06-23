@@ -51,7 +51,7 @@ function configure_docker {
 echo GRUB_CMDLINE_LINUX=\"cgroup_enable=memory swapaccount=1 cgroup_enable=memory use_hierarchy=1\" >> /etc/default/grub
 update-grub
 		# echo 1 > /sys/fs/cgroup/memory/memory.use_hierarchy
-		 echo "DOCKER_OPTS=\" --storage-driver=aufs  --dns 8.8.8.8  \"" > /etc/default/docker
+		 echo "DOCKER_OPTS=\"  -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock --storage-driver=aufs  --dns 8.8.8.8  \"" > /etc/default/docker
 	
 	#for systemd
 	
