@@ -3,7 +3,7 @@ set >>/tmp/dhcp_trigger_run
 echo " "  >>/tmp/dhcp_trigger_run
 
 
- new_ip=` /opt/engines/system/scripts/get_ip.sh`
+ new_ip=` /opt/engines/system/scripts/system_ip.sh`
  
 if ! test -z $new_domain_name_servers
         then

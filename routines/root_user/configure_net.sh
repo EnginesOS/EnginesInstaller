@@ -14,7 +14,7 @@ resolv_file=/etc/resolv.conf
 			echo "nameserver $ip" >> /etc/resolvconf/resolv.conf.d/head
 	  fi
 	fi
-ip=`/opt/engines/bin/get_ip.sh`
+ip=`/opt/engines/bin/system_ip.sh`
 echo "nameserver $ip" >> $resolv_file  
 
 if test -d   /etc/dhcp/dhclient-enter-hooks.d/
