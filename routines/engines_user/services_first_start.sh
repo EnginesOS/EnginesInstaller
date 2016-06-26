@@ -18,6 +18,8 @@ echo "Downloading Registry image"
 	  echo pull of engines/registry:$release failed check your network
 	  install_failed
 	fi
+	CONTROL_IP=`/opt/engines/bin/system_ip.sh`
+	export CONTROL_IP
 	/opt/engines/bin/system_service.rb registry create
 	
 	docker pull engines/system:$release >>/tmp/engines_install.log
