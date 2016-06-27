@@ -54,7 +54,7 @@ echo "Creating System Service Dirs"
 	mkdir -p /opt/engines/etc/ssh/keys/services/mgmt
 	chmod og-w /opt/engines/etc/ssh/keys/services/mgmt
 	chmod o-r /opt/engines/etc/ssh/keys/services/mgmt
-	chown 22050  /opt/engines/etc/ssh/keys/services/mgmt
+	chown 21000  /opt/engines/etc/ssh/keys/services/mgmt
 	#chown 21000  /home/engines/db/production.sqlite3
 	#chown 21000  /home/engines/db/development.sqlite3
 	
