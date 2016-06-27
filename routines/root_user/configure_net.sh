@@ -30,6 +30,6 @@ if test -d   /etc/dhcp/dhclient-enter-hooks.d/
  echo "Installing ip-up hook"
   if ! test -f  /etc/network/if-up.d/set_ip.sh
  then 
-	ln -s /opt/engines/bin/set_ip.sh /etc/network/if-up.d/
+	ln -s /opt/engines/system scripts/dhcpd/set_ip.sh /etc/network/if-up.d/
 fi
   }
