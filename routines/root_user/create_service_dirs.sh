@@ -64,7 +64,7 @@ echo "Creating System Service Dirs"
 	
 	mkdir -p  /opt/engines/run/system_services/system/run/
 	chown -R 21000  /opt/engines/run/system_services/system/run/
-	chgrp containers  -R opt/engines/run/system_services/system
+	chgrp containers  -R /opt/engines/run/system_services/system
 	
 	mkdir -p /opt/engines/run/service_manager/
 	mkdir -p /var/log/engines/updates/ 
