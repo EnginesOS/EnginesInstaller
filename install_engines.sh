@@ -78,3 +78,5 @@ echo -n ${top} >/tmp/.install_dir
 
 su -l engines -c  ${top}/complete_install.sh 
  update_os
+ apt-get upgrade -y linux-headers-generic linux-headers-virtual linux-image-virtual  linux-virtual  linux-image-extra-$(uname -r) 
+ 

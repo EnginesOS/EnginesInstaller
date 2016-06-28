@@ -171,6 +171,9 @@ echo "Downloading Volmanager image"
 	  echo pull of engines/fs:$release failed check your network
 	    install_failed
 	fi
+	
+	docker pull engines/volbuilder:current
+	
 echo "Starting Volmanager image"
 	//opt/engines/bin/engines service volmanager create >>/tmp/engines_install.log
 
