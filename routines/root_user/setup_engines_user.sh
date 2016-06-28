@@ -30,6 +30,8 @@
 		   
 		  chown engines /tmp/engines_install.log
 		echo "PATH=\"/opt/engines/bin:$PATH\"" >>~engines/.profile 
+		echo "export DOCKER_IP=`/opt/engines/bin/docker_ip.sh`" >>~engines/.profile 
+		echo "export CONTROL_IP=`/opt/engines/bin/system_ip.sh`" >>~engines/.profile 
 		
 mkdir -p /etc/sudoers.d/
 cp /opt/engines/system/updates/src/etc/sudoers.d/engines /etc/sudoers.d/engines 
