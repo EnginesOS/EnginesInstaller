@@ -22,6 +22,7 @@ echo $packages_to_install >/opt/engines/system/packages_installed
        grep UBUNTU_CODENAME=xenial /etc/os-release >/dev/null
        if test $? -eq 0
        then
+       	echo "setting up for xenial"
 		 echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" | sudo tee /etc/apt/sources.list.d/docker.list
 		 apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 		  apt-get -y  --force-yes install docker.io >>/tmp/engines_install.log
