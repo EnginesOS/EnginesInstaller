@@ -90,15 +90,15 @@ echo "Downloading MySQL image"
 echo "Starting MySQL"	 
 	 /opt/engines/bin/engines service  mysql_server create >>/tmp/engines_install.log
 	  
-echo "Downloading Management  image"
-	  docker pull engines/mgmt:$release >>/tmp/engines_install.log
+echo "Downloading First Run Wizard  image"
+	  docker pull engines/firstrun:$release >>/tmp/engines_install.log
 	if test $? -ne 0
 	 then
-	  echo pull of engines/mgmt:$release failed check your network
+	  echo pull of engines/firstrun:$release failed check your network
 	    install_failed
 	fi
-echo "Starting Management"
-	/opt/engines/bin/engines service mgmt create >>/tmp/engines_install.log
+echo "Starting First Run Wizard "
+	/opt/engines/bin/engines service firstrun create >>/tmp/engines_install.log
 	
 echo "Downloading Auth image"
 	 docker pull engines/auth:$release >>/tmp/engines_install.log 
