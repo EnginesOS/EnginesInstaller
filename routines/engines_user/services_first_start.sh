@@ -9,6 +9,8 @@ function install_failed {
 function create_services {
 echo "Creating and starting Engines Services"
 
+mv /opt/engines/run/services-available/firstrun /opt/engines/run/services/
+
 release=`cat /opt/engines/release`
 
 echo "Downloading Registry image"
@@ -100,6 +102,7 @@ echo "Downloading First Run Wizard  image"
 echo "Starting First Run Wizard "
 	/opt/engines/bin/engines service firstrun create >>/tmp/engines_install.log
 	
+	
 echo "Downloading Auth image"
 	 docker pull engines/auth:$release >>/tmp/engines_install.log 
 	if test $? -ne 0
@@ -180,5 +183,7 @@ echo "Starting Volmanager image"
 	
 echo "Starting System Services"
 	 /opt/engines/bin/engines containers  check_and_act  >>/tmp/engines_install.log &
+	 
+	 docker pull engines/mgmt:$release
 	
 }
