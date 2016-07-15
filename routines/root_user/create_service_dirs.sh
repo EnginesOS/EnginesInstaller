@@ -21,6 +21,7 @@ function make_dirs {
 	setup_email_dirs
 	setup_nfs_dirs	
 	setup_run_dirs
+	chown 21000 -R /opt/engines/run/services-available/
 	/opt/engines/bin/set_service_provider.sh syslog EnginesSystem
 }
 function setup_system_dirs {
