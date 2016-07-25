@@ -23,6 +23,10 @@ function make_dirs {
 	setup_run_dirs
 	chown 21000 -R /opt/engines/run/services-available/
 	/opt/engines/bin/set_service_provider.sh syslog EnginesSystem
+	
+	mkdir -p /opt/engines/run//utilities/fsconfigurator/
+	chown 21000 /opt/engines/run//utilities/fsconfigurator/
+	
 }
 function setup_system_dirs {
 	mkdir -p  /var/log/engines/system_services/system/

@@ -179,6 +179,8 @@ echo "Downloading Volmanager image"
 	
 echo "Starting Volmanager image"
 	//opt/engines/bin/engines service volmanager create >>/tmp/engines_install.log
+	
+ docker pull engines/fsconfigurator:$release
 
 	
 echo "Starting System Services"
