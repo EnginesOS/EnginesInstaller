@@ -39,7 +39,7 @@ echo $packages_to_install >/opt/engines/system/packages_installed
 		 #if virutal
  	 apt-get upgrade -y linux-headers-generic linux-headers-virtual linux-image-virtual  linux-virtual  linux-image-extra-$(uname -r) 
  		#else
- 		# apt-get upgrade -y linux-headers-generic linux linux-image-extra-$(uname -r) 
+ 		# apt-get upgrade -y linux-headers-generic linux-headers-virtual linux-image-virtual  linux-virtual  linux-image-extra-$(uname -r) 
  		
 	
 		
