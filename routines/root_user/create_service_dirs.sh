@@ -92,6 +92,9 @@ echo "Creating System Service Dirs"
 	mkdir -p /opt/engines/system/updates/failed/system
 	mkdir -p /opt/engines/system/updates/has_run/system
 	mkdir -p /opt/engines/system/updates/to_run/system
+	
+	mkdir -p  /opt/engines/etc/ssh/keys
+	chown -R 21000 /opt/engines/etc/ssh/keys
 }
 
 
