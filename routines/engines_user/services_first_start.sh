@@ -37,7 +37,7 @@ echo "Downloading Registry image"
 	fi
 	/opt/engines/bin/system_service.rb system create
 	sleep 60 
-	/opt/engines/bin/engines login t t
+	/opt/engines/bin/engines login t t > ~engines/.engines_token
 	
 	
 echo "Starting DNS"
