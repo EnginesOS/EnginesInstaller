@@ -1,5 +1,5 @@
 
-#packages="apt-transport-https  libreadline-dev  linux-image-extra-$(uname -r) lvm2 thin-provisioning-tools openssh-server haveged"
+#packages="apt-transport-https  aufs-tools libreadline-dev  linux-image-extra-$(uname -r) lvm2 thin-provisioning-tools openssh-server haveged"
 . ${top}/packages
 
 function install_docker_components {
