@@ -184,8 +184,8 @@ echo "Starting Volmanager image"
 
 	
 echo "Starting System Services"
-	 /opt/engines/bin/engines containers  check_and_act  >>/tmp/engines_install.log &
+	# /opt/engines/bin/engines containers  check_and_act  >>/tmp/engines_install.log &
 	 
-	 docker pull engines/mgmt:$release
+	# docker pull engines/mgmt:$release
 	
 }
