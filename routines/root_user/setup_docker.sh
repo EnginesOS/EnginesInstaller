@@ -37,7 +37,7 @@ echo $packages_to_install >/opt/engines/system/packages_installed
 		 apt-get -y update >>/tmp/engines_install.log
 		 apt-get -y upgrade
 		 #if virutal
- 	 apt-get upgrade -y linux-headers-generic linux-headers-virtual linux-image-virtual  linux-virtual  linux-image-extra-$(uname -r) 
+ 	 apt-get upgrade -y linux-headers-generic linux-headers-virtual linux-image-virtual  linux-virtual  linux-image-extra-$(uname -r) aufs-tools 
  		#else
  		# apt-get upgrade -y linux-headers-generic linux-headers-virtual linux-image-virtual  linux-virtual  linux-image-extra-$(uname -r) 
  		
