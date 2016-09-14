@@ -2,4 +2,5 @@
 */10 * * * * /opt/engines/bin/engines_tools  containers  check_and_act all >> /opt/engines/logs/containers_restarts.log
 * */2 * * * /opt/engines/system/scripts/ssh/check_engines_system_update_status.sh >>/dev/null
 */30 * * * * /opt/engines/system/scripts/cron/update_system_status_flags.sh
+1 21 * * * /opt/engines/system/scripts/ssh/deb_update_status.sh  >/opt/engines/run/system/flags/update_pending
 #needs eol at end of file
