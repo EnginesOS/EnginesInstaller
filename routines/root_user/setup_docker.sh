@@ -3,7 +3,7 @@
 . ${top}/packages
 
 function install_docker_components {
-
+/usr/sbin/addgroup --gid 21999 docker
 for package in $packages
  do
  	 dpkg -l $package
@@ -108,13 +108,16 @@ update-grub
 		  	ip='172.17.0.1'
 		  fi
 		
-		 echo "DOCKER_OPTS=\"-H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock  --storage-driver=aufs --dns $ip --dns 8.8.8.8  \"" > /etc/default/docker
+		 echo "DOCKER_OPTS=\" -H unix:///var/run/docker.sock  --storage-driver=aufs --dns $ip --dns 8.8.8.8  \"" > /etc/default/docker
 		
 		 sleep 20
 		 service docker start
 		  
-#stop appamour complaining about ptrace (caused be pas		  
- ln -s /etc/apparmor.d/docker /etc/apparmor.d/force-complain/ 
+#stop appamour complaining about ptrace (caused be pas		
+if ! test -f   /etc/apparmor.d/force-complain/docker
+ then
+ ln -s /etc/apparmor.d/docker /etc/apparmor.d/force-complain/
+ fi 
 		  
   }
  
