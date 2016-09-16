@@ -34,7 +34,9 @@
 		echo "export CONTROL_IP=`/opt/engines/bin/system_ip.sh`" >>~engines/.profile 
 		
 mkdir -p /etc/sudoers.d/
-cp /opt/engines/system/updates/src/etc/sudoers.d/engines /etc/sudoers.d/engines 
+cp /opt/engines/system/updates/src/etc/sudoers.d/engines /etc/sudoers.d/engines
+ cp /opt/engines/system/updates/src/etc/sudoers.d/engines_system /etc/sudoers.d/engines_system
 chmod g-rw /etc/sudoers.d/engines 
-		
+chmod g-rw /etc/sudoers.d/engines_system 		
+
   }
