@@ -3,6 +3,24 @@
 . ${top}/packages
 
 function install_docker_components {
+
+dmesg |grep -i Xen >/dev/null
+if test $? -eq 0
+ then
+ echo Xen Detected
+ XEN=yes
+  
+ln -s /dev/null /etc/udev/rules.d/40-vm-hotadd.rules
+ fi
+ 
+ 
+ dmesg |grep amazon>/dev/null
+if test $? -eq 0
+ then
+ 	echo AWS Detected
+ 	AWS=yes
+ fi
+ 
 /usr/sbin/addgroup --gid 21999 docker
 for package in $packages
  do
@@ -26,12 +44,12 @@ echo $packages_to_install >/opt/engines/system/packages_installed
 		 echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" | sudo tee /etc/apt/sources.list.d/docker.list
 		 apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 		 apt-get update
-		  apt-get -y  --force-yes install docker.io >>/tmp/engines_install.log
+		  apt-get -y   install docker.io >>/tmp/engines_install.log
         else
 		 echo deb https://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list
 		  wget -qO- https://get.docker.io/gpg | apt-key add - >>/tmp/engines_install.log
 		   apt-get update
-		 apt-get -y  --force-yes install lxc-docker >>/tmp/engines_install.log
+		 apt-get -y  install lxc-docker >>/tmp/engines_install.log
 		fi
 		 
 		 apt-get -y update >>/tmp/engines_install.log
