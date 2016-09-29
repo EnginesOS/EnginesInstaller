@@ -158,6 +158,9 @@ if test -d EnginesInstaller
 		
 		rm -fr /home/engines/.rbenv
 		
+		groupdel docker
+		
+		
 		cat /etc/default/grub | grep -v "cgroup_enable=memory swapaccount=1 cgroup_enable=memory use_hierarchy" > /tmp/grub
 		cp /tmp/grub /etc/default/grub
 		update-grub
