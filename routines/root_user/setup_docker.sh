@@ -1,6 +1,6 @@
 
 #packages="apt-transport-https  aufs-tools libreadline-dev  linux-image-extra-$(uname -r) lvm2 thin-provisioning-tools openssh-server haveged"
-. ${top}/packages
+
 
 function install_docker_components {
 
@@ -21,7 +21,10 @@ if test $? -eq 0
  	AWS=yes
  fi
  
-/usr/sbin/addgroup --gid 21999 docker
+/usr/sbin/addgroup --gid 21999 edocker
+
+packages=`cat ${top}/packages`
+
 for package in $packages
  do
  	 dpkg -l $package
@@ -137,5 +140,6 @@ if ! test -f   /etc/apparmor.d/force-complain/docker
  ln -s /etc/apparmor.d/docker /etc/apparmor.d/force-complain/
  fi 
 		  
+		  chgrp edocker /var/run/docker.sock
   }
  
