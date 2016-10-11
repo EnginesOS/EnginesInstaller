@@ -47,7 +47,7 @@ echo $packages_to_install >/opt/engines/system/packages_installed
 		 echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" |  tee /etc/apt/sources.list.d/docker.list
 		 apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 		 apt-get update
-		  apt-get -y   install docker.io >>/tmp/engines_install.log
+		  apt-get -y   install docker-engine >>/tmp/engines_install.log
         else
 		 echo deb https://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list
 		  wget -qO- https://get.docker.io/gpg | apt-key add - >>/tmp/engines_install.log
