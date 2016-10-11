@@ -21,7 +21,7 @@ if test $? -eq 0
  	AWS=yes
  fi
  
-/usr/sbin/addgroup --gid 909 edocker
+#/usr/sbin/addgroup --gid 909 edocker
 
 packages=`cat ${top}/packages`
 
@@ -36,7 +36,7 @@ for package in $packages
 
 echo $packages_to_install >/opt/engines/system/packages_installed
   echo "Installing Docker"		
-    if ! test -z $packages_to_install
+    if ! test -z '$packages_to_install'
       then
 		 apt-get install -y  $packages_to_install >>/tmp/engines_install.log
       fi
