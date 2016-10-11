@@ -90,8 +90,9 @@ if test -d EnginesInstaller
 			rm -rf /var/lib/engines
 			rm -rf /var/log/engines
 			rm -rf /opt/engines
-		
-			apt-get -y remove lxc-docker
+		    apt-get -y remove docker-engine
+			apt-get -y remove lxc-docker 
+			apt-get -y remove docker.io 
 			apt-get -y autoremove
 			rm /etc/default/docker 
 			if test $keep -eq 0
