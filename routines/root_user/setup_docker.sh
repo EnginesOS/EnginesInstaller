@@ -21,7 +21,7 @@ if test $? -eq 0
  	AWS=yes
  fi
  
-/usr/sbin/addgroup --gid 21999 edocker
+/usr/sbin/addgroup --gid 909 edocker
 
 packages=`cat ${top}/packages`
 
@@ -140,6 +140,6 @@ if ! test -f   /etc/apparmor.d/force-complain/docker
  ln -s /etc/apparmor.d/docker /etc/apparmor.d/force-complain/
  fi 
 		  
-		  chgrp edocker /var/run/docker.sock
+		#  chgrp edocker /var/run/docker.sock
   }
  
