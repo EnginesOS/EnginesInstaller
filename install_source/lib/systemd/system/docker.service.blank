@@ -5,7 +5,8 @@ After=network.target docker.socket
 Requires=docker.socket
 
 [Service]
-ExecStart=/usr/bin/docker -d -H fd://  --dns 8.8.8.8  --bip=172.17.42.1/16  --storage-driver=aufs
+ExecStart=/usr/bin/docker -d -H fd://  --dns 8.8.8.8  --bip=172.17.42.1/16  --storage-driver=aufs   --userland-proxy=false
+
 MountFlags=slave
 LimitNOFILE=1048576
 LimitNPROC=1048576
