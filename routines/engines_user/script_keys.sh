@@ -43,7 +43,7 @@ keys=""
 	      cat $key.pub | awk '{ print $1 " " $2}' >$key.p
 	      mv  $key.p $key.pub
 	      mv $key /opt/engines/etc/keys/
-	      cp $key.pub /opt/engines/system/images/03.serviceImages/$key/
+	     # cp $key.pub /opt/engines/system/images/03.serviceImages/$key/
 	   done
 	
 }
