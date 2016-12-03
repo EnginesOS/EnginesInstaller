@@ -21,6 +21,7 @@ updates=`ls /opt/engines/system/updates/to_run/system/ |grep -v keep`
 	  mv $update /opt/engines/system/updates/when_installed/system/
 	 done
 
+	touch /opt/engines/etc/no_obliterate 
 }
 
 
