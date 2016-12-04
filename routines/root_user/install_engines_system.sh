@@ -1,4 +1,7 @@
 function configure_git {
+mkdir -p /opt/engines/etc/ssl/ca/certs/system_CA.pem
+touch /opt/engines/etc/ssl/ca/certs/system_CA.pem
+
 	echo "Installing base Engines System"
 	apt-get install -y git	>>/tmp/engines_install.log
 	mkdir -p /opt/	

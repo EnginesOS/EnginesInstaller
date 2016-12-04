@@ -9,7 +9,6 @@ function install_failed {
 function create_services {
 echo "Creating and starting Engines Services"
 
-touch /opt/engines/etc/ssl/ca/certs/system_CA.pem
 
 mv /opt/engines/run/services-available/firstrun /opt/engines/run/services/
 

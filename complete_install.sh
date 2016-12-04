@@ -18,7 +18,7 @@ rbenv global 2.2.2
 rbenv  local 2.2.2
 echo Installing Ruby Gems
 
- 	~/.rbenv/shims/gem install bundler excon multi_json rspec rubytree git net_http_unix yajl-ruby rest-client >/dev/null
+ 	gem install bundler excon multi_json rspec rubytree git net_http_unix yajl-ruby rest-client >/dev/null
 echo Installing Mgmt Keys
 setup_mgmt_keys
 
