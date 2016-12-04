@@ -13,12 +13,12 @@ top=`cat /tmp/.install_dir`
 
 echo Installing Ruby 
 echo Please wait this step will take 5 to 10 minutes
-rbenv install 2.2.2 >/dev/null 
-rbenv global 2.2.2 
-rbenv  local 2.2.2
+#rbenv install 2.2.2 >/dev/null 
+#rbenv global 2.2.2 
+#rbenv  local 2.2.2
 echo Installing Ruby Gems
 
- 	gem install bundler excon multi_json rspec rubytree git net_http_unix yajl-ruby rest-client >/dev/null
+ 
 echo Installing Mgmt Keys
 setup_mgmt_keys
 

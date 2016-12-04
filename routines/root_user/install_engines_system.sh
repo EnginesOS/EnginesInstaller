@@ -1,6 +1,4 @@
 function configure_git {
-mkdir -p /opt/engines/etc/ssl/ca/certs/system_CA.pem
-touch /opt/engines/etc/ssl/ca/certs/system_CA.pem
 
 	echo "Installing base Engines System"
 	apt-get install -y git	>>/tmp/engines_install.log
@@ -23,6 +21,8 @@ updates=`ls /opt/engines/system/updates/to_run/system/ |grep -v keep`
 	  mkdir -p /opt/engines/system/updates/when_installed/system/
 	  mv $update /opt/engines/system/updates/when_installed/system/
 	 done
+mkdir -p /opt/engines/etc/ssl/ca/certs/system_CA.pem
+touch /opt/engines/etc/ssl/ca/certs/system_CA.pem
 
 	touch /opt/engines/etc/no_obliterate 
 }
@@ -30,7 +30,7 @@ updates=`ls /opt/engines/system/updates/to_run/system/ |grep -v keep`
 
    function install_ruby {
    apt-get install -y ruby-dev
-   
+   	gem install bundler excon multi_json rspec rubytree git net_http_unix yajl-ruby rest-client >/dev/null
    }
   function install_rbenv {
   echo "Installing rbenv"
