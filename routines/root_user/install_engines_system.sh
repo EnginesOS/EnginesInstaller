@@ -26,7 +26,7 @@ updates=`ls /opt/engines/system/updates/to_run/system/ |grep -v keep`
 
 
    function install_ruby {
-   apt-get install ruby-dev
+   apt-get install -y ruby-dev
    
    }
   function install_rbenv {
