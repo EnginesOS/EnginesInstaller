@@ -65,7 +65,8 @@ dpkg-reconfigure tzdata
  
   configure_docker
   configure_engines_user
-  install_rbenv    	  		 
+ # install_rbenv
+  install_ruby
   setup_dns 	
   setup_ip_script
   setup_service_definitions
