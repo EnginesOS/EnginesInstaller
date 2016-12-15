@@ -52,7 +52,8 @@ echo "Creating System Service Dirs"
 	mkdir -p  /home/engines/db 
 	
 	touch /home/engines/db/production.sqlite3
-	touch /home/engines/db/development.sqlite3
+	chown 21000 /home/engines/db/development.sqlite3
+	chmod og-rwx /home/engines/db/development.sqlite3
 
 	mkdir -p /home/engines/deployment/deployed/
 	mkdir -p  /var/lib/engines/mgmt/public/system/
