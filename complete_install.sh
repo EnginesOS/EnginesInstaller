@@ -29,6 +29,7 @@ touch ~/.complete_install
 DOCKER_IP=`/opt/engines/bin/docker_ip.sh`
 export DOCKER_IP
 
+
 echo Downloading and starting services
 create_services  
 
