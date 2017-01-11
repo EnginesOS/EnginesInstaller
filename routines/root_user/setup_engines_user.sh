@@ -10,7 +10,7 @@
 		mkdir -p /opt/engines/tmp/{container,service}
 		chown -R engines /opt/engines/tmp
 		 mkdir /opt/engines/etc/debug/
-		chown /opt/engines/etc/debug/
+		chown  -R engines /opt/engines/etc/debug/
 		  apt-get -y install g++ libssl-dev imagemagick libreadline-dev cmake  dc mysql-client libmysqlclient-dev unzip wget git  >>/tmp/engines_install.log
 		 addgroup engines
 		 addgroup -gid 22020 containers
