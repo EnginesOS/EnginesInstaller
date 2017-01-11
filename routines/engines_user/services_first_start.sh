@@ -28,7 +28,7 @@ echo "Downloading Registry image"
 	DOCKER_IP=`/opt/engines/bin/docker_ip.sh`
 	export DOCKER_IP
 	
-	/opt/engines/bin/system_service.rb registry create
+	/opt/engines/bin/system_service.rb registry create >& /dev/null
 	
 	docker pull engines/system:$release >>/tmp/engines_install.log
 	if test $? -ne 0
@@ -36,7 +36,7 @@ echo "Downloading Registry image"
 	  echo pull of engines/system:$release failed check your network
 	  install_failed
 	fi
-	/opt/engines/bin/system_service.rb system create
+	/opt/engines/bin/system_service.rb system create >& /dev/null
 	sleep 60 
 	/opt/engines/bin/engines system login admin EnginesDemo > ~engines/.engines_token
 	
