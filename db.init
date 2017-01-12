@@ -1,0 +1,13 @@
+ create table systemaccess (
+              username varchar(30),
+              email varchar(128),
+              password varchar(30),
+              authtoken varchar(128),
+              ip_addr varchar(64),
+              ip_mask varchar(64),
+              uid int,
+              guid int
+            );
+INSERT INTO systemaccess (username, password, email, authtoken, uid,guid)
+                VALUES ('admin','EnginesDemo', 'admin@local', 'TOKEN',0,0);
+                

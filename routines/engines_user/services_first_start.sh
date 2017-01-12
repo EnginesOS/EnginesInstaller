@@ -6,9 +6,16 @@ function install_failed {
  exit -1
 }
 
+function create_db {
+
+ toke=`dd if=/dev/urandom count=16 bs=1  | od -h | awk '{ print $2$3$4$6$6$7$8$9}'`
+  cat ${top}/db.init | sed "/TOKEN/s//$toke/" |sqlite3 ~/db/production.sqlite3
+  echo $toke > ~/.engines_token
+}
+
 function create_services {
 echo "Creating and starting Engines Services"
-
+create_db
 
 mv /opt/engines/run/services-available/firstrun /opt/engines/run/services/
 
@@ -154,8 +161,10 @@ echo "Downloading SMTP image"
 	fi
  echo "Starting SMTP"
 	 /opt/engines/bin/engines service smtp create >>/tmp/engines_install.log
+  
+  echo "Downloading mgmt image"
  	 
-
+docker pull engines/mgmt:$release >>/tmp/engines_install.log
 	  
 echo "Downloading FTP image"
 	docker pull engines/ftp:$release >>/tmp/engines_install.log
