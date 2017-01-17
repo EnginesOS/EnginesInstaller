@@ -37,12 +37,9 @@ apt-get install -y apt-transport-https    linux-image-extra-$(uname -r) lvm2 thi
   }
   
     
-  function setup_startup_script {
-  echo "Adding startup script"
-   cat /etc/rc.local | sed "/^exit.*$/s//su  engines \/opt\/engines\/bin\/engines_startup.sh/" > /tmp/rc.local	
-		
-		 echo "exit 0"  >> /tmp/rc.local
-		 cp /tmp/rc.local /etc/rc.local
-		 rm  /tmp/rc.local		
-		 chmod u+x  /etc/rc.local
+  function setup_engines_service {
+  echo "Adding systemd"
+  cp  ${top}/install_source/lib/systemd/system/engines.service /lib/systemd/system/engines.service 
+  service engines enable
+ 
   }

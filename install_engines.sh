@@ -51,7 +51,7 @@ dpkg-reconfigure tzdata
   configure_git 
   create_engines_user
   update_os
-  setup_startup_script
+
   install_docker_components
   
    cat /proc/cpuinfo  |grep flags |grep hyper >/dev/null
@@ -64,6 +64,7 @@ dpkg-reconfigure tzdata
     
  
   configure_docker
+  setup_engines_service
   configure_engines_user
  # install_rbenv
   install_ruby
