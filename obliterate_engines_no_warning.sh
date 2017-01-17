@@ -13,7 +13,7 @@ if ! test `id |cut -f2 -d=|cut -f1 -d\(` -eq 0
 		exit 
 	fi
 	
-	
+
 
 w |grep engines >/dev/null
 if test $? -eq 0
@@ -34,6 +34,13 @@ echo "15 seconds until destruction with no visual countdown starting now"
 echo "Docker and ALL docker Images will be Deleted -k to keep docker images"
 echo "Ctl-C now if this is not want you want"
 sleep 20
+
+echo Stopping Engines
+
+	service engines stop
+	
+	rm /lib/systemd/system/engines.service
+
 keep=0
 keep_rbenv=0
 
