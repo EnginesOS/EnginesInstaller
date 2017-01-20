@@ -30,7 +30,7 @@ touch /opt/engines/etc/ssl/ca/certs/system_CA.pem
 
    function install_ruby {
    apt-get install -y ruby-dev
-   	gem install bundler excon multi_json rspec rubytree git net_http_unix yajl-ruby rest-client >/dev/null
+   	gem install bundler excon multi_json rspec rubytree git net_http_unix yajl-ruby rest-client  ffi-yajl >/dev/null
    }
   function install_rbenv {
   echo "Installing rbenv"
