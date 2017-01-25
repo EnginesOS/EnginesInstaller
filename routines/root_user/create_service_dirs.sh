@@ -221,6 +221,7 @@ cp -r /var/lib/engines/cert_auth/public/keys /opt/engines/etc/ftp/ssl
  mkdir -p /var/lib/engines/cert_auth/public/certs
  mkdir -p /var/lib/engines/cert_auth/public/certs
 
+touch /var/lib/engines/cert_auth/public/ca/certs/system_CA.pem
 mkdir -p  /var/log/engines/services/cert_auth/
 
 mkdir -p /opt/engines/etc/certs/engines/
