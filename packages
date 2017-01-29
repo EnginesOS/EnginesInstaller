@@ -1,1 +1,1 @@
-haveged apt-transport-https  libreadline-dev  lvm2 thin-provisioning-tools openssh-server g++ sqlite
+haveged apt-transport-https  libreadline-dev  lvm2 thin-provisioning-tools openssh-server g++ sqlite3
