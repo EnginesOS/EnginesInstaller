@@ -3,7 +3,7 @@ set >>/tmp/dhcp_trigger_run
 echo " "  >>/tmp/dhcp_trigger_run
 
 
- new_ip=` /opt/engines/system/scripts/system_ip.sh`
+ new_ip=`/opt/engines/bin/system_ip.sh`
  
 if ! test -z $new_domain_name_servers
         then
@@ -25,3 +25,4 @@ if ! test -z $new_domain_name_servers
 	       	sudo /opt/engines/system/scripts/refresh_local_hosted_domains.sh $new_ip_address	       		
 	       	fi    
    fi
+   echo $new_ip > /opt/engines/etc/net/ip
