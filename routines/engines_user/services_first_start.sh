@@ -16,7 +16,7 @@ function create_db {
 function create_services {
 echo "Creating and starting Engines Services"
 create_db
- read -n1  -p "Press any key to continue..." key
+
 mv /opt/engines/run/services-available/firstrun /opt/engines/run/services/
 
 release=`cat /opt/engines/release`
