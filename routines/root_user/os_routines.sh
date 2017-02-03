@@ -41,6 +41,6 @@ apt-get install -y apt-transport-https    linux-image-extra-$(uname -r) lvm2 thi
   echo "Adding systemd"
   cp  ${top}/install_source/lib/systemd/system/engines.service /lib/systemd/system/engines.service
   systemctl daemon-reload 
-  service engines enable
+  systemctl enable engines
  
   }
