@@ -13,9 +13,7 @@ top=`cat /tmp/.install_dir`
 
 echo Installing Ruby 
 echo Please wait this step will take 5 to 10 minutes
-#rbenv install 2.2.2 >/dev/null 
-#rbenv global 2.2.2 
-#rbenv  local 2.2.2
+
 echo Installing Ruby Gems
 
  
@@ -45,6 +43,20 @@ setup_engines_crontab
 #dont reboot as well the cert error post first run
 #touch /opt/engines/run/system/flags/reboot_required
 
+while ! test -f /opt/engines/run/services/firstrun/run/flags/startup_complete 
+ do
+    sleep 5
+ done
 
 
+gw_ifac=`netstat -nr |grep ^0.0.0.0 | awk '{print $8}' | head -1`
 
+lan_ip=`/sbin/ifconfig $gw_ifac |grep "inet addr"  |  cut -f 2 -d: |cut -f 1 -d" "`
+ ext_ip=`curl -s http://ipecho.net/ |grep "Your IP is" | sed "/^.* is /s///" | sed "/<.*$/s///"`
+if ! test -n $ext_ip
+ then
+   ext_ip=`curl -s http://ipecho.net/ |grep "Your IP is" | sed "/^.* is /s///" | sed "/<.*$/s///"`
+  # `curl -s http://ipecho.net/plain`
+ fi
+  
+echo please visit https://$lan_ip:10443/ or https://${ext_ip}:10443/ to complete installation
