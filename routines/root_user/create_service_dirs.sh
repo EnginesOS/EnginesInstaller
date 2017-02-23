@@ -28,6 +28,7 @@ function make_dirs {
 	chown 21000 /opt/engines/run//utilities/fsconfigurator/
 	mkdir -p /var/lib/engines/mgmt/public/
 	chown -R 22050 /var/lib/engines/mgmt/public/
+	touch /var/lib/engines/local_host
 }
 function setup_system_dirs {
 	mkdir -p  /var/log/engines/system_services/system/
