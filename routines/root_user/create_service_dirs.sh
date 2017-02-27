@@ -21,15 +21,27 @@ function make_dirs {
 	setup_email_dirs
 	setup_nfs_dirs	
 	setup_run_dirs
+	setup_key_dirs
 	chown 21000 -R /opt/engines/run/services-available/
 	/opt/engines/bin/set_service_provider.sh syslog EnginesSystem
 	
-	mkdir -p /opt/engines/run//utilities/fsconfigurator/
-	chown 21000 /opt/engines/run//utilities/fsconfigurator/
+	mkdir -p /opt/engines/run//utilities/fsconfigurator/ /var/log/engines//utilitys/fsconfigurator
+	chown -R 21000 /opt/engines/run//utilities/fsconfigurator/ /var/log/engines//utilitys/
 	mkdir -p /var/lib/engines/mgmt/public/
 	chown -R 22050 /var/lib/engines/mgmt/public/
 	touch /var/lib/engines/local_host
 }
+
+function setup_key_dirs {
+
+mkdir -p /opt/engines/etc/ssh/keys/containers
+mkdir -p /opt/engines/etc/ssh/keys/services
+mkdir -p /opt/engines/etc/ssh/keys/utilitys
+chown -R 21000 /opt/engines/etc/ssh/keys/
+
+}
+
+
 function setup_system_dirs {
 	mkdir -p  /var/log/engines/system_services/system/
 	mkdir -p   /opt/engines/run/system_services/system/run
