@@ -34,6 +34,7 @@ echo "Downloading Registry image"
 	
 	DOCKER_IP=`/opt/engines/bin/docker_ip.sh`
 	export DOCKER_IP
+	echo Docker IP $DOCKER_IP Control IP $CONTROL_IP
 	
 	/opt/engines/bin/system_service.rb registry create >& /dev/null
 	
