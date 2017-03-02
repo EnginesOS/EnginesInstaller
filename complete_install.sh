@@ -58,4 +58,4 @@ if ! test -n $ext_ip
    ext_ip=`curl -s http://ipecho.net/ |grep "Your IP is" | sed "/^.* is /s///" | sed "/<.*$/s///"`
  fi
   
-echo please visit https://$lan_ip:10443/ or https://${ext_ip}:10443/ to complete installation
+echo please visit http://$lan_ip:10443/ or http://${ext_ip}:10443/ to complete installation
