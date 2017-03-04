@@ -36,6 +36,7 @@ function setup_key_dirs {
 
 mkdir -p /opt/engines/etc/ssh/keys/containers
 mkdir -p /opt/engines/etc/ssh/keys/services
+mkdir -p /opt/engines/etc/ssh/keys/system_services
 mkdir -p /opt/engines/etc/ssh/keys/utilitys
 chown -R 21000 /opt/engines/etc/ssh/keys/
 
