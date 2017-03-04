@@ -36,7 +36,7 @@ echo "Downloading Registry image"
 	export DOCKER_IP
 	echo Docker IP $DOCKER_IP Control IP $CONTROL_IP
 	
-	/opt/engines/bin/system_service.rb registry create >& /dev/null
+	/opt/engines/bin/system_service.rb registry create 
 	
 	docker pull engines/system:$release >>/tmp/engines_install.log
 	if test $? -ne 0
@@ -60,6 +60,14 @@ echo "Downloading DNS image"
 echo "Starting DNS"
 	 /opt/engines/bin/engines service dns create >>/tmp/engines_install.log
 
+#Do this so DNS gets sets as docker will not set dns on create to non functioning dns server 
+/opt/engines/bin/system_service.rb registry stop  >& /dev/null 
+/opt/engines/bin/system_service.rb registry destroy  >& /dev/null
+/opt/engines/bin/system_service.rb registry create  >& /dev/null
+/opt/engines/bin/system_service.rb system stop  >& /dev/null
+/opt/engines/bin/system_service.rb system destroy  >& /dev/null
+/opt/engines/bin/system_service.rb system create  >& /dev/null
+/opt/engines/bin/engines service dns restart >& /dev/null
 
 echo "Downloading Syslog image"
 	docker pull engines/syslog:$release >>/tmp/engines_install.log

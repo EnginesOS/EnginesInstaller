@@ -11,10 +11,10 @@ top=`cat /tmp/.install_dir`
 .  ${top}/routines/engines_user/crontab.sh
 . ${top}/routines/engines_user/script_keys.sh
 
-echo Installing Ruby 
-echo Please wait this step will take 5 to 10 minutes
+#echo Installing Ruby 
+#echo Please wait this step will take 5 to 10 minutes
 
-echo Installing Ruby Gems
+#echo Installing Ruby Gems
 
  
 echo Installing Mgmt Keys
