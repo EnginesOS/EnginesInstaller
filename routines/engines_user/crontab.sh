@@ -2,6 +2,6 @@ function setup_engines_crontab {
 		
 	echo "Setup engines cron tab"
 
-crontab -u engines ${top}/install_source/etc/crontab
+crontab -u engines /opt/engines/system/updates/src/etc/crontab
 
 }
