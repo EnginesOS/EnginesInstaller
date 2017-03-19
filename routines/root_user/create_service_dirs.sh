@@ -25,8 +25,8 @@ function make_dirs {
 	chown 21000 -R /opt/engines/run/services-available/
 	/opt/engines/bin/set_service_provider.sh syslog EnginesSystem
 	
-	mkdir -p /opt/engines/run//utilities/fsconfigurator/ /var/log/engines//utilitys/fsconfigurator
-	chown -R 21000 /opt/engines/run//utilities/fsconfigurator/ /var/log/engines//utilitys/
+	mkdir -p /opt/engines/run//utilitys/fsconfigurator/ /var/log/engines//utilitys/fsconfigurator
+	chown -R 21000 /opt/engines/run/utilitys/fsconfigurator/ /var/log/engines//utilitys/
 	mkdir -p /var/lib/engines/mgmt/public/
 	chown -R 22050 /var/lib/engines/mgmt/public/
 	touch /var/lib/engines/local_host
