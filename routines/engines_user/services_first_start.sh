@@ -48,7 +48,7 @@ echo "Downloading Registry image"
 	sleep 60 
 #	/opt/engines/bin/engines system login admin EnginesDemo > ~engines/.engines_token
 	
-	
+	read -p "Check it? " -n 1 -r
 echo "Starting DNS"
 echo "Downloading DNS image"
 	docker pull engines/dns:$release >>/tmp/engines_install.log
@@ -68,7 +68,7 @@ echo "Starting DNS"
 /opt/engines/bin/system_service.rb system destroy  >& /dev/null
 /opt/engines/bin/system_service.rb system create  >& /dev/null
 /opt/engines/bin/engines service dns restart >& /dev/null
-
+read -p "Check it? " -n 1 -r
 echo "Downloading Syslog image"
 	docker pull engines/syslog:$release >>/tmp/engines_install.log
 	if test $? -ne 0
