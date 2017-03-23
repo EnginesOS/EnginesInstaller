@@ -45,6 +45,7 @@ echo "Downloading Registry image"
 	  install_failed
 	fi
 	/opt/engines/bin/system_service.rb system create >& /dev/null
+	/opt/engines/bin/system_service.rb system start  >& /dev/null
 	sleep 10 
 #	/opt/engines/bin/engines system login admin EnginesDemo > ~engines/.engines_token
 	echo "System Services Started"
@@ -67,6 +68,7 @@ echo "Starting DNS"
 /opt/engines/bin/system_service.rb system stop  >& /dev/null
 /opt/engines/bin/system_service.rb system destroy  >& /dev/null
 /opt/engines/bin/system_service.rb system create  >& /dev/null
+/opt/engines/bin/system_service.rb system start  >& /dev/null
 /opt/engines/bin/engines service dns restart >& /dev/null
 echo "System services restarted"
 read -p "Check it? " -n 1 -r
