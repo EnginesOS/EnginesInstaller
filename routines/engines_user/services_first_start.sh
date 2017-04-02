@@ -29,6 +29,7 @@ echo "Downloading Registry image"
 	  install_failed
 	fi
 	
+	
 	CONTROL_IP=`/opt/engines/bin/system_ip.sh`
 	export CONTROL_IP
 	
@@ -37,7 +38,7 @@ echo "Downloading Registry image"
 	echo Docker IP $DOCKER_IP Control IP $CONTROL_IP
 	
 	/opt/engines/bin/system_service.rb registry create 
-	
+	/opt/engines/bin/system_service.rb registry start
 	docker pull engines/system:$release >>/tmp/engines_install.log
 	if test $? -ne 0
 	 then
@@ -65,6 +66,7 @@ echo "Starting DNS"
 /opt/engines/bin/system_service.rb registry stop  >& /dev/null 
 /opt/engines/bin/system_service.rb registry destroy  >& /dev/null
 /opt/engines/bin/system_service.rb registry create  >& /dev/null
+/opt/engines/bin/system_service.rb registry start  >& /dev/null
 /opt/engines/bin/system_service.rb system stop  >& /dev/null
 /opt/engines/bin/system_service.rb system destroy  >& /dev/null
 /opt/engines/bin/system_service.rb system create  >& /dev/null
