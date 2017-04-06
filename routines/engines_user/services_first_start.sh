@@ -38,6 +38,7 @@ echo "Downloading Registry image"
 	echo Docker IP $DOCKER_IP Control IP $CONTROL_IP
 	
 	/opt/engines/bin/system_service.rb registry create 
+	sleep 2
 	/opt/engines/bin/system_service.rb registry start
 	docker pull engines/system:$release >>/tmp/engines_install.log
 	if test $? -ne 0
@@ -46,6 +47,7 @@ echo "Downloading Registry image"
 	  install_failed
 	fi
 	/opt/engines/bin/system_service.rb system create >& /dev/null
+	sleep 2
 	/opt/engines/bin/system_service.rb system start  >& /dev/null
 	sleep 10 
 #	/opt/engines/bin/engines system login admin EnginesDemo > ~engines/.engines_token
