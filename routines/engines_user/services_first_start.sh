@@ -207,13 +207,18 @@ echo "Downloading Volmanager image"
 	
 	docker pull engines/volbuilder:$release
 	
-echo "Starting Volmanager image"
+echo "Starting Volmanager Service"
 	//opt/engines/bin/engines service volmanager create >>/tmp/engines_install.log
 	
  docker pull engines/fsconfigurator:$release
 
+
+echo "Downloading Volmanager image"
+	docker pull engines/logrotate:$release
+echo "Starting Log Rotate Service"	
+	/opt/engines/bin/engines service log_rotate create
 	
-echo "Starting System Services"
+echo "Started System Services"
 	# /opt/engines/bin/engines containers  check_and_act  >>/tmp/engines_install.log &
 	 
 	# docker pull engines/mgmt:$release
