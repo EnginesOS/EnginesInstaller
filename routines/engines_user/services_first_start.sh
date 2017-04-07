@@ -37,20 +37,20 @@ echo "Downloading Registry image"
 	export DOCKER_IP
 	echo Docker IP $DOCKER_IP Control IP $CONTROL_IP
 	
-	/opt/engines/bin/system_service.rb registry create  >& /dev/null
+	/opt/engines/bin/system_service.rb registry create # >& /dev/null
 	sleep 2
-	docker start registry  >& /dev/null
+	docker start registry  #>& /dev/null
 	docker pull engines/system:$release >>/tmp/engines_install.log
 	if test $? -ne 0
 	 then
 	  echo pull of engines/system:$release failed check your network
 	  install_failed
 	fi
-	/opt/engines/bin/system_service.rb system create >& /dev/null
+	/opt/engines/bin/system_service.rb system create # >& /dev/null
 	sleep 2
-	docker start system  >& /dev/null
+	docker start system # >& /dev/null
 	sleep 10 
-#	/opt/engines/bin/engines system login admin EnginesDemo > ~engines/.engines_token
+
 	echo "System Services Started"
 
 echo "Starting DNS"
@@ -65,18 +65,18 @@ echo "Starting DNS"
 	 /opt/engines/bin/engines service dns create >>/tmp/engines_install.log
 
 #Do this so DNS gets sets as docker will not set dns on create to non functioning dns server 
-/opt/engines/bin/system_service.rb registry stop  >& /dev/null
+/opt/engines/bin/system_service.rb registry stop # >& /dev/null
 sleep 15 
-/opt/engines/bin/system_service.rb registry destroy  >& /dev/null
-/opt/engines/bin/system_service.rb registry create  >& /dev/null
+/opt/engines/bin/system_service.rb registry destroy  #>& /dev/null
+/opt/engines/bin/system_service.rb registry create # >& /dev/null
 sleep 2
-docker registry start  >& /dev/null
-/opt/engines/bin/system_service.rb system stop  >& /dev/null
+docker registry start # >& /dev/null
+/opt/engines/bin/system_service.rb system stop # >& /dev/null
 sleep 15
-/opt/engines/bin/system_service.rb system destroy  >& /dev/null
-/opt/engines/bin/system_service.rb system create  >& /dev/null
+/opt/engines/bin/system_service.rb system destroy # >& /dev/null
+/opt/engines/bin/system_service.rb system create # >& /dev/null
 sleep 2
-docker start system  >& /dev/null
+docker start system  #>& /dev/null
 /opt/engines/bin/engines service dns restart >& /dev/null
 echo "System services restarted"
 
