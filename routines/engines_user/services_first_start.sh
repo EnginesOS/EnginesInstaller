@@ -65,18 +65,21 @@ echo "Starting DNS"
 	 /opt/engines/bin/engines service dns create >>/tmp/engines_install.log
 
 #Do this so DNS gets sets as docker will not set dns on create to non functioning dns server 
-/opt/engines/bin/system_service.rb registry stop # >& /dev/null
+/opt/engines/bin/system_service.rb system stop # >& /dev/null
 sleep 15 
+/opt/engines/bin/system_service.rb system destroy # >& /dev/null
+
+/opt/engines/bin/system_service.rb registry stop # >& /dev/null
 /opt/engines/bin/system_service.rb registry destroy  #>& /dev/null
 /opt/engines/bin/system_service.rb registry create # >& /dev/null
 sleep 2
-docker registry start # >& /dev/null
-/opt/engines/bin/system_service.rb system stop # >& /dev/null
-sleep 15
-/opt/engines/bin/system_service.rb system destroy # >& /dev/null
+docker start registry  #>& /dev/null
+
 /opt/engines/bin/system_service.rb system create # >& /dev/null
 sleep 2
-docker start system  #>& /dev/null
+docker  start system # >& /dev/null
+
+sleep 15
 /opt/engines/bin/engines service dns restart >& /dev/null
 echo "System services restarted"
 
