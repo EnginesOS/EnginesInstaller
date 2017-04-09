@@ -52,7 +52,8 @@ echo "Downloading Registry image"
 	sleep 10 
 
 	echo "System Services Started"
-
+	echo "enter key to continue"
+read next
 echo "Starting DNS"
 echo "Downloading DNS image"
 	docker pull engines/dns:$release >>/tmp/engines_install.log
@@ -64,23 +65,37 @@ echo "Downloading DNS image"
 echo "Starting DNS"
 	 /opt/engines/bin/engines service dns create >>/tmp/engines_install.log
 
-#Do this so DNS gets sets as docker will not set dns on create to non functioning dns server 
+#Do this so DNS gets sets as docker will not set dns on create to non functioning dns server
+ echo "enter key to continue"
+read next
 /opt/engines/bin/system_service.rb system stop # >& /dev/null
 sleep 15 
 /opt/engines/bin/system_service.rb system destroy # >& /dev/null
+echo "enter key to continue"
+read next
+
 
 /opt/engines/bin/system_service.rb registry stop # >& /dev/null
 sleep 5
 /opt/engines/bin/system_service.rb registry destroy  #>& /dev/null
 sleep 5
+echo "enter key to continue"
+read next
 /opt/engines/bin/system_service.rb registry create # >& /dev/null
 sleep 5
+echo "enter key to continue"
+read next
 docker start registry  #>& /dev/null
 sleep 5
+echo "enter key to continue"
+read next
 /opt/engines/bin/system_service.rb system create # >& /dev/null
 sleep 5
+echo "enter key to continue"
+read next
 docker  start system # >& /dev/null
-
+echo "enter key to continue"
+read next
 sleep 15
 /opt/engines/bin/engines service dns restart >& /dev/null
 echo "System services restarted"
