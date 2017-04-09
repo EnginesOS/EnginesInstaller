@@ -8,6 +8,7 @@ function create_mgmt_script_key {
 	cat ~/.ssh/_${script_name}_authorized_keys >> ~/.ssh/authorized_keys.system
 	cp ~/.ssh/mgmt/${script_name} ~/.ssh/mgmt/${script_name}.pub /opt/engines/etc/ssh/keys/services/mgmt
 	echo cp ~/.ssh/mgmt/${script_name} ~/.ssh/mgmt/${script_name}.pub /opt/engines/etc/ssh/keys/services/mgmt
+
 }
 
 

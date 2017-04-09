@@ -70,13 +70,15 @@ sleep 15
 /opt/engines/bin/system_service.rb system destroy # >& /dev/null
 
 /opt/engines/bin/system_service.rb registry stop # >& /dev/null
+sleep 5
 /opt/engines/bin/system_service.rb registry destroy  #>& /dev/null
+sleep 5
 /opt/engines/bin/system_service.rb registry create # >& /dev/null
-sleep 2
+sleep 5
 docker start registry  #>& /dev/null
-
+sleep 5
 /opt/engines/bin/system_service.rb system create # >& /dev/null
-sleep 2
+sleep 5
 docker  start system # >& /dev/null
 
 sleep 15
