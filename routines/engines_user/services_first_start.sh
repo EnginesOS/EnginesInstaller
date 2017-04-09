@@ -71,7 +71,7 @@ read next
 /opt/engines/bin/system_service.rb system stop # >& /dev/null
 sleep 15 
 /opt/engines/bin/system_service.rb system destroy # >& /dev/null
-echo "enter key to continue"
+echo "system destroy enter to continue"
 read next
 
 
@@ -79,15 +79,15 @@ read next
 sleep 5
 /opt/engines/bin/system_service.rb registry destroy  #>& /dev/null
 sleep 5
-echo "enter key to continue"
+echo "rgistry destroy enter to continue"
 read next
 /opt/engines/bin/system_service.rb registry create # >& /dev/null
 sleep 5
-echo "enter key to continue"
+echo "rgistry create enter to continue"
 read next
 docker start registry  #>& /dev/null
 sleep 5
-echo "enter key to continue"
+echo "rgistry start enter to continue"
 read next
 /opt/engines/bin/system_service.rb system create # >& /dev/null
 sleep 5
