@@ -37,23 +37,23 @@ echo "Downloading Registry image"
 	export DOCKER_IP
 	echo Docker IP $DOCKER_IP Control IP $CONTROL_IP
 	
-	/opt/engines/bin/system_service.rb registry create # >& /dev/null
+	/opt/engines/bin/system_service.rb registry create  >& /dev/null
 	sleep 2
-	docker start registry  #>& /dev/null
+	docker start registry  >& /dev/null
 	docker pull engines/system:$release >>/tmp/engines_install.log
 	if test $? -ne 0
 	 then
 	  echo pull of engines/system:$release failed check your network
 	  install_failed
 	fi
-	/opt/engines/bin/system_service.rb system create # >& /dev/null
+	/opt/engines/bin/system_service.rb system create  >& /dev/null
 	sleep 2
-	docker start system # >& /dev/null
-	sleep 10 
+	docker start system  >& /dev/null
+	sleep 5
 
 	echo "System Services Started"
-	echo "enter key to continue"
-read next
+	#echo "enter key to continue"
+#read next
 echo "Starting DNS"
 echo "Downloading DNS image"
 	docker pull engines/dns:$release >>/tmp/engines_install.log
@@ -66,37 +66,37 @@ echo "Starting DNS"
 	 /opt/engines/bin/engines service dns create >>/tmp/engines_install.log
 
 #Do this so DNS gets sets as docker will not set dns on create to non functioning dns server
- echo "enter key to continue"
-read next
-/opt/engines/bin/system_service.rb system stop # >& /dev/null
-sleep 15 
-/opt/engines/bin/system_service.rb system destroy # >& /dev/null
-echo "system destroy enter to continue"
-read next
+ #echo "enter key to continue"
+#read next
+/opt/engines/bin/system_service.rb system stop >& /dev/null
+sleep 1 
+/opt/engines/bin/system_service.rb system destroy  >& /dev/null
+#echo "system destroy enter to continue"
+#read next
 
 
-/opt/engines/bin/system_service.rb registry stop # >& /dev/null
+/opt/engines/bin/system_service.rb registry stop  >& /dev/null
 sleep 5
-/opt/engines/bin/system_service.rb registry destroy  #>& /dev/null
+/opt/engines/bin/system_service.rb registry destroy  >& /dev/null
 sleep 5
 echo "rgistry destroy enter to continue"
 read next
-/opt/engines/bin/system_service.rb registry create # >& /dev/null
+/opt/engines/bin/system_service.rb registry create  >& /dev/null
 sleep 5
-echo "rgistry create enter to continue"
-read next
-docker start registry  #>& /dev/null
+#echo "rgistry create enter to continue"
+#read next
+docker start registry  >& /dev/null
 sleep 5
-echo "rgistry start enter to continue"
-read next
-/opt/engines/bin/system_service.rb system create # >& /dev/null
+#echo "rgistry start enter to continue"
+#read next
+/opt/engines/bin/system_service.rb system create  >& /dev/null
 sleep 5
-echo "enter key to continue"
-read next
-docker  start system # >& /dev/null
-echo "enter key to continue"
-read next
-sleep 15
+#echo "enter key to continue"
+#read next
+docker  start system  >& /dev/null
+#echo "enter key to continue"
+#read next
+sleep 5
 /opt/engines/bin/engines service dns restart >& /dev/null
 echo "System services restarted"
 
