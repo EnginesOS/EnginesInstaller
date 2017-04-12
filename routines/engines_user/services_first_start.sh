@@ -79,8 +79,8 @@ sleep 1
 sleep 5
 /opt/engines/bin/system_service.rb registry destroy  >& /dev/null
 sleep 5
-echo "rgistry destroy enter to continue"
-read next
+#echo "rgistry destroy enter to continue"
+#read next
 /opt/engines/bin/system_service.rb registry create  >& /dev/null
 sleep 5
 #echo "rgistry create enter to continue"
