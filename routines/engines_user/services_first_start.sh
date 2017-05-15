@@ -108,9 +108,9 @@ echo "Downloading Syslog image"
  	  echo pull of engines/syslog:$release failed check your network
  	    install_failed
  	fi
-#echo "Starting Syslog" 
-#	 /opt/engines/bin/engines service syslog create >>/tmp/engines_install.log
-#	 
+echo "Starting Syslog" 
+	 /opt/engines/bin/engines service syslog create >>/tmp/engines_install.log
+	 
 echo "Downloading Avahi image"
 	docker pull engines/avahi:$release >>/tmp/engines_install.log
  	if test $? -ne 0
