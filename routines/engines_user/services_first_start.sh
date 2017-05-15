@@ -128,8 +128,8 @@ echo "Downloading Cert Auth image"
  	  echo pull of engines/certs:$release failed check your network
  	    install_failed
  	fi
-#echo "Starting Cert Auth"
-#	/opt/engines/bin/engines service  cert_auth create >>/tmp/engines_install.log
+echo "Starting Cert Auth"
+	/opt/engines/bin/engines service  cert_auth create >>/tmp/engines_install.log
 #	
 echo "Downloading MySQL image"
 	 docker pull engines/mysql:$release >>/tmp/engines_install.log
