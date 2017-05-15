@@ -159,8 +159,8 @@ echo "Downloading Auth image"
 	  echo pull of engines/auth:$release failed check your network
 	    install_failed
 	fi
-echo "Starting Auth"
-	 /opt/engines/bin/engines service auth create  >>/tmp/engines_install.log
+#echo "Starting Auth"
+#	 /opt/engines/bin/engines service auth create  >>/tmp/engines_install.log
 	 
 echo "Downloading Web Router image"
 	  docker pull engines/nginx:$release >>/tmp/engines_install.log
