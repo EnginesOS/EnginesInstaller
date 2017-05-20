@@ -66,6 +66,9 @@ echo $packages_to_install >/opt/engines/system/packages_installed
 		
 		 update-rc.d docker defaults 
 		 service docker start
+		 
+		  systemctl  disable avahi-daemon
+		 
   }
 
 function configure_docker {
