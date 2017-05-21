@@ -38,7 +38,7 @@ cp /etc/os-release /opt/engines/etc/os-release-host
 
 
 
-setup_engines_crontab
+#setup_engines_crontab
 # pretend if install changed grub options
 #dont reboot as well the cert error post first run
 #touch /opt/engines/run/system/flags/reboot_required
@@ -59,3 +59,15 @@ if ! test -n $ext_ip
  fi
   
 echo please visit http://$lan_ip:10443/ or http://${ext_ip}:10443/ to complete installation
+
+echo 'Waiting for Installation complete
+while ! test -f /opt/engines/bin/engines/run/system/flags/first_start_complete
+ do
+    sleep 5
+ done
+ if test -f /opt/engines/run/system/flags/install_mgmt
+  then
+ echo Management is now at https://$lan_ip:10443/ or https://${ext_ip}:10443/
+ fi
+ echo sudo su -l engines 
+ echo to use the engines management tool on the commandline
