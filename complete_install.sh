@@ -60,7 +60,7 @@ if ! test -n $ext_ip
   
 echo please visit http://$lan_ip:10443/ or http://${ext_ip}:10443/ to complete installation
 
-echo 'Waiting for Installation complete
+echo 'Waiting for Installation complete'
 while ! test -f /opt/engines/bin/engines/run/system/flags/first_start_complete
  do
     sleep 5
