@@ -56,9 +56,3 @@ while ! test -f /tmp/first_start.log
     sleep 5
  done
  tail -f /tmp/first_start.log
-# if test -f /opt/engines/run/system/flags/install_mgmt
-#  then
-# echo Management is now at https://$lan_ip:10443/ or https://${ext_ip}:10443/
-# fi
-# echo sudo su -l engines 
-# echo to use the engines management tool on the commandline

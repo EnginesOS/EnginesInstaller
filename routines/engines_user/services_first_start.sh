@@ -226,16 +226,16 @@ echo "Downloading Volmanager image"
 	    install_failed
 	fi
 	
-	docker pull engines/volbuilder:$release
+	docker pull engines/volbuilder:$release >>/tmp/engines_install.log
 	
 #echo "Starting Volmanager Service"
 #	//opt/engines/bin/engines service volmanager create >>/tmp/engines_install.log
 	
- docker pull engines/fsconfigurator:$release
+ docker pull engines/fsconfigurator:$release >>/tmp/engines_install.log
 
 
 echo "Downloading Volmanager image"
-	docker pull engines/logrotate:$release
+	docker pull engines/logrotate:$release >>/tmp/engines_install.log
 #echo "Starting Log Rotate Service"	
 #	/opt/engines/bin/engines service log_rotate create
 	
