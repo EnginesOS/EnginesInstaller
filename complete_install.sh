@@ -36,17 +36,7 @@ rm -f /opt/engines/run/system/flags/engines_rebooting
 rm -f /opt/engines/run/system/flags/building_params 
 cp /etc/os-release /opt/engines/etc/os-release-host
 
-
-
-
-# pretend if install changed grub options
-#dont reboot as well the cert error post first run
-#touch /opt/engines/run/system/flags/reboot_required
-
-while ! test -f /opt/engines/run/services/firstrun/run/flags/startup_complete 
- do
-    sleep 5
- done
+/opt/engines/bin/engines service firstrun wait_for_startup 45
 
 
 gw_ifac=`netstat -nr |grep ^0.0.0.0 | awk '{print $8}' | head -1`
@@ -60,14 +50,15 @@ if ! test -n $ext_ip
   
 echo please visit http://$lan_ip:10443/ or http://${ext_ip}:10443/ to complete installation
 
-echo 'Waiting for Installation complete'
-while ! test -f /opt/engines/bin/engines/run/system/flags/first_start_complete
+echo 'Waiting for First run Form Submission' 
+while ! test -f /tmp/first_start.log
  do
     sleep 5
  done
- if test -f /opt/engines/run/system/flags/install_mgmt
-  then
- echo Management is now at https://$lan_ip:10443/ or https://${ext_ip}:10443/
- fi
- echo sudo su -l engines 
- echo to use the engines management tool on the commandline
+ tail -f /tmp/first_start.log
+# if test -f /opt/engines/run/system/flags/install_mgmt
+#  then
+# echo Management is now at https://$lan_ip:10443/ or https://${ext_ip}:10443/
+# fi
+# echo sudo su -l engines 
+# echo to use the engines management tool on the commandline
