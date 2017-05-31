@@ -138,6 +138,13 @@ echo "Downloading MySQL image"
  	  echo pull of engines/mysql:$release failed check your network
  	    install_failed
  	fi
+echo "Downloading Reds image"
+	 docker pull engines/redis:$release >>/tmp/engines_install.log
+ 	if test $? -ne 0
+ 	 then
+ 	  echo pull of engines/mysql:$release failed check your network
+ 	    install_failed
+ 	fi
 #echo "Starting MySQL"	 
 #	 /opt/engines/bin/engines service  mysql_server create >>/tmp/engines_install.log
 #	  
