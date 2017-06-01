@@ -46,7 +46,7 @@ if test $# -gt 0
 	
 export branch
 
-dpkg-reconfigure tzdata
+#dpkg-reconfigure tzdata
 
   configure_git 
   create_engines_user
