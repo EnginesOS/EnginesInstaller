@@ -42,13 +42,15 @@ cp /etc/os-release /opt/engines/etc/os-release-host
 gw_ifac=`netstat -nr |grep ^0.0.0.0 | awk '{print $8}' | head -1`
 
 lan_ip=`/sbin/ifconfig $gw_ifac |grep "inet addr"  |  cut -f 2 -d: |cut -f 1 -d" "`
- ext_ip=`curl -s http://ipecho.net/ |grep "Your IP is" | sed "/^.* is /s///" | sed "/<.*$/s///"`
+
+ext_ip=`curl -s http://ipecho.net/ |grep "Your IP is" | sed "/^.* is /s///" | sed "/<.*$/s///"`
+
 if ! test -n $ext_ip
  then
    ext_ip=`curl -s http://ipecho.net/ |grep "Your IP is" | sed "/^.* is /s///" | sed "/<.*$/s///"`
  fi
   
-echo please visit http://$lan_ip:10443/ or http://${ext_ip}:10443/ to complete installation
+echo please visit http://${lan_ip}:10443/ or http://${ext_ip}:10443/ to complete installation
 
 echo 'Waiting for First run Form Submission' 
 while ! test -f /tmp/first_start.log
