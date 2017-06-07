@@ -256,20 +256,20 @@ mkdir -p /opt/engines/etc/auth/access  /opt/engines/etc/auth/scripts  /opt/engin
  
  function setup_run_dirs {
   echo "Setting up Run Dirs"
-   chown 21000 /opt/engines/run/services/ /opt/engines/run/containers/
+    chown 21000 /opt/engines/run/services/ /opt/engines/run/containers/
  	chgrp -R 22020 /opt/engines/run/services/
 	chmod g+w -R  /opt/engines/run/services/
-	 chgrp containers /opt/engines/run/services/*/run
-	 chmod g+w /opt/engines/run/services/*/run
-	 chown root /opt/engines/etc/auth/
-	 mkdir /opt/engines/run/cid
-	 chown 21000 /opt/engines/run/cid
-	 chown 21000 -R /opt/engines/run/services/
-	 chown 21000 -R /opt/engines/run/containers/
-	 mkdir -p /opt/engines/etc/domains/
-	 chown 21000 -R /opt/engines/etc/domains/
-	 mkdir -p /opt/engines/etc/net/  
-	 chown 21000 -R /opt/engines/etc/net/  
+	chgrp containers /opt/engines/run/services/*/run
+	chmod g+w /opt/engines/run/services/*/run
+	chown root /opt/engines/etc/auth/
+	mkdir /opt/engines/run/cid
+	chown 21000 /opt/engines/run/cid
+	chown 21000 -R /opt/engines/run/services/
+	chown 21000 -R /opt/engines/run/containers/
+	mkdir -p /opt/engines/etc/domains/
+	chown 21000 -R /opt/engines/etc/domains/
+	mkdir -p /opt/engines/etc/net/  
+	chown 21000 -R /opt/engines/etc/net/  
 	 mkdir -p /opt/engines/run/system/flags/
 	 chown 21000 /opt/engines/run/system/
 	 mkdir -p /opt/engines/etc/preferences/
@@ -286,10 +286,10 @@ mkdir -p /opt/engines/etc/auth/access  /opt/engines/etc/auth/scripts  /opt/engin
 	 
  function setup_email_dirs {
    echo "Setting up Email Dirs"
- mkdir -p /var/log/engines/services/email/apache2 /opt/engines/etc/email/ssl
- chown 22003 -R /var/log/engines/services/email/
+  mkdir -p /var/log/engines/services/email/apache2 /opt/engines/etc/email/ssl
+  chown 22003 -R /var/log/engines/services/email/
   cp -r /var/lib/engines/cert_auth/public/certs /opt/engines/etc/email/ssl
-cp -r /var/lib/engines/cert_auth/public/keys /opt/engines/etc/email/ssl
+  cp -r /var/lib/engines/cert_auth/public/keys /opt/engines/etc/email/ssl
   chown 22003 -R /opt/engines/etc/email/ssl
  }
  
