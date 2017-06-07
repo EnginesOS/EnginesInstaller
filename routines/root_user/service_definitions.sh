@@ -30,7 +30,7 @@ mkdir -p database/sql/mysql
 mkdir -p filesystem/local/filesystem
 
 cd ../
-to_map="cron backup avahi cert_auth mongo pgsql mysql filesystem syslog dns nginx logview log_rotate"
+to_map="schedule cron backup avahi cert_auth mongo pgsql mysql filesystem syslog dns nginx logview log_rotate"
 
 for service in $to_map
 	do
