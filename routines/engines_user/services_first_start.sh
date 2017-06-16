@@ -52,8 +52,7 @@ echo "Downloading Registry image"
 	sleep 5
 
 	echo "System Services Started"
-	#echo "enter key to continue"
-#read next
+	
 echo "Starting DNS"
 echo "Downloading DNS image"
 	docker pull engines/dns:$release >>/tmp/engines_install.log
@@ -66,39 +65,33 @@ echo "Starting DNS"
 	 /opt/engines/bin/engines service dns create >>/tmp/engines_install.log
 
 #Do this so DNS gets sets as docker will not set dns on create to non functioning dns server
- #echo "enter key to continue"
-#read next
 /opt/engines/bin/system_service.rb system stop >& /dev/null
-sleep 1 
+/opt/engines/bin/system_service.rb system wait_for stop 10
 /opt/engines/bin/system_service.rb system destroy  >& /dev/null
-#echo "system destroy enter to continue"
-#read next
+/opt/engines/bin/system_service.rb system wait_for destroy 10
 
 
 /opt/engines/bin/system_service.rb registry stop  >& /dev/null
-sleep 5
+/opt/engines/bin/system_service.rb registry wait_for stop 10
 /opt/engines/bin/system_service.rb registry destroy  >& /dev/null
-sleep 5
-#echo "rgistry destroy enter to continue"
-#read next
+/opt/engines/bin/system_service.rb registry wait_for destroy 10
+
 /opt/engines/bin/system_service.rb registry create  >& /dev/null
-sleep 5
-#echo "rgistry create enter to continue"
-#read next
+/opt/engines/bin/system_service.rb registry wait_for create 10
 docker start registry  >& /dev/null
-sleep 5
-#echo "rgistry start enter to continue"
-#read next
+/opt/engines/bin/system_service.rb registry wait_for start 20
+/opt/engines/bin/system_service.rb registry wait_for_startup 10
+
+
 /opt/engines/bin/system_service.rb system create  >& /dev/null
-sleep 5
-#echo "enter key to continue"
-#read next
+/opt/engines/bin/system_service.rb system wait_for create 10
 docker  start system  >& /dev/null
-#echo "enter key to continue"
-#read next
-sleep 5
+/opt/engines/bin/system_service.rb system wait_for start 20
+/opt/engines/bin/system_service.rb system wait_for_startup 15
+
 
 /opt/engines/bin/engines service dns restart >& /dev/null
+/opt/engines/bin/engines service dns wait_for start 20
 echo "System services restarted"
 
 echo "Downloading Syslog image"
@@ -118,8 +111,7 @@ echo "Downloading Avahi image"
  	  echo pull of engines/avahi:$release failed check your network
  	    install_failed
  	fi
-#echo "Starting Avahi"
-#	 /opt/engines/bin/engines service avahi create >>/tmp/engines_install.log
+
 	  
 echo "Downloading Cert Auth image"
 	 docker pull engines/certs:$release >>/tmp/engines_install.log
@@ -130,7 +122,7 @@ echo "Downloading Cert Auth image"
  	fi
 echo "Starting Cert Auth"
 	/opt/engines/bin/engines service  cert_auth create >>/tmp/engines_install.log
-#	
+	
 echo "Downloading MySQL image"
 	 docker pull engines/mysql:$release >>/tmp/engines_install.log
  	if test $? -ne 0
@@ -138,17 +130,15 @@ echo "Downloading MySQL image"
  	  echo pull of engines/mysql:$release failed check your network
  	    install_failed
  	fi
-echo "Downloading Reds image"
+echo "Downloading Redis image"
 	 docker pull engines/redis:$release >>/tmp/engines_install.log
  	if test $? -ne 0
  	 then
  	  echo pull of engines/mysql:$release failed check your network
  	    install_failed
  	fi
-#echo "Starting MySQL"	 
-#	 /opt/engines/bin/engines service  mysql_server create >>/tmp/engines_install.log
-#	  
-echo "Downloading First Run Wizard  image"
+  
+echo "Downloading First Run Wizard image"
 	  docker pull engines/firstrun:$release >>/tmp/engines_install.log
 	if test $? -ne 0
 	 then
@@ -166,9 +156,7 @@ echo "Downloading Auth image"
 	  echo pull of engines/auth:$release failed check your network
 	    install_failed
 	fi
-#echo "Starting Auth"
-#	 /opt/engines/bin/engines service auth create  >>/tmp/engines_install.log
-	 
+
 echo "Downloading Web Router image"
 	  docker pull engines/nginx:$release >>/tmp/engines_install.log
  	if test $? -ne 0
@@ -176,8 +164,7 @@ echo "Downloading Web Router image"
  	  echo pull of engines/nginx:$release failed check your network
  	    install_failed
  	fi
-#echo "Starting Web Router"
-#	 /opt/engines/bin/engines service nginx create >>/tmp/engines_install.log
+
 	 
 echo "Downloading Backup image"
 	 docker pull engines/backup:$release >>/tmp/engines_install.log
@@ -186,8 +173,7 @@ echo "Downloading Backup image"
  	  echo pull of engines/backup:$release failed check your network
  	    install_failed
  	fi
-#echo "Starting Backup"
-#	 /opt/engines/bin/engines service backup create >>/tmp/engines_install.log
+
 	 
 echo "Downloading Cron image"
 	 docker pull engines/cron:$release >>/tmp/engines_install.log
@@ -196,9 +182,7 @@ echo "Downloading Cron image"
  	  echo pull of engines/cron:$release failed check your network
  	    install_failed
  	fi
-# echo "Starting Cron"
-#	 /opt/engines/bin/engines service cron create >>/tmp/engines_install.log
- 	 
+
 
 echo "Downloading SMTP image"
 	 docker pull engines/smtp:$release >>/tmp/engines_install.log
@@ -207,9 +191,7 @@ echo "Downloading SMTP image"
  	  echo pull of engines/smtp:$release failed check your network
  	    install_failed
  	fi
-# echo "Starting SMTP"
-#	 /opt/engines/bin/engines service smtp create >>/tmp/engines_install.log
-  
+
   echo "Downloading mgmt image"
  	 
 docker pull engines/mgmt:$release >>/tmp/engines_install.log
@@ -221,9 +203,7 @@ echo "Downloading FTP image"
  	  echo pull of engines/ftp:$release failed check your network
  	    install_failed
  	fi
-#echo "Starting FTP"
-#	 /opt/engines/bin/engines service  ftp create >>/tmp/engines_install.log
- 	
+
 	
 echo "Downloading Volmanager image"
 	docker pull engines/fs:$release >>/tmp/engines_install.log
@@ -235,20 +215,13 @@ echo "Downloading Volmanager image"
 	
 	docker pull engines/volbuilder:$release >>/tmp/engines_install.log
 	
-#echo "Starting Volmanager Service"
-#	//opt/engines/bin/engines service volmanager create >>/tmp/engines_install.log
+
 	
  docker pull engines/fsconfigurator:$release >>/tmp/engines_install.log
 
 
 echo "Downloading Volmanager image"
 	docker pull engines/logrotate:$release >>/tmp/engines_install.log
-#echo "Starting Log Rotate Service"	
-#	/opt/engines/bin/engines service log_rotate create
-	
-#echo "Started System Services"
-#	# /opt/engines/bin/engines containers  check_and_act  >>/tmp/engines_install.log &
-#	 
-#	# docker pull engines/mgmt:$release
+
 	
 }
