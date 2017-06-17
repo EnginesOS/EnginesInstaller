@@ -8,12 +8,11 @@ if test -f /opt/engines/etc/no_obliterate
  fi
  
 if ! test `id |cut -f2 -d=|cut -f1 -d\(` -eq 0
-	then
-		echo "This script must be run as root or as sudo $0"
-		exit 
-	fi
+ then
+   echo "This script must be run as root or as sudo $0"
+   exit 
+fi
 	
-
 
 w |grep engines >/dev/null
 if test $? -eq 0
@@ -26,8 +25,8 @@ fi
 read -p "Are you sure? " -n 1 -r
 echo    # (optional) move to a new line
 if [[ ! $REPLY =~ ^[Yy]$ ]]
-then
-    exit 1
+ then
+   exit 1
 fi
 
 echo "15 seconds until destruction with no visual countdown starting now"

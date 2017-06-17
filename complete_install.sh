@@ -2,12 +2,12 @@
 #engines section of install run as engines
 
 
-RUBY_VER=2.2.2
+RUBY_VER=2.3.1
 
 export RUBY_VER
 top=`cat /tmp/.install_dir`
-.  ${top}/routines/engines_user/services_first_start.sh
-.  ${top}/routines/engines_user/crontab.sh
+. ${top}/routines/engines_user/services_first_start.sh
+. ${top}/routines/engines_user/crontab.sh
 . ${top}/routines/engines_user/script_keys.sh
 
 #echo Installing Ruby 
@@ -21,7 +21,7 @@ setup_mgmt_keys
 
 echo Installation complete
 touch ~/.complete_install
- /opt/engines/system/scripts/startup/set_ip.sh
+/opt/engines/system/scripts/startup/set_ip.sh
  
 DOCKER_IP=`/opt/engines/bin/docker_ip.sh`
 export DOCKER_IP
@@ -47,7 +47,7 @@ ext_ip=`curl -s http://ipecho.net/ |grep "Your IP is" | sed "/^.* is /s///" | se
 if ! test -n $ext_ip
  then
    ext_ip=`curl -s http://ipecho.net/ |grep "Your IP is" | sed "/^.* is /s///" | sed "/<.*$/s///"`
- fi
+fi
   
 echo please visit http://${lan_ip}:10443/ or http://${ext_ip}:10443/ to complete installation
 
@@ -55,5 +55,6 @@ echo 'Waiting for First run Form Submission'
 while ! test -f /tmp/first_start.log
  do
     sleep 5
- done
+done
+
  tail -f /tmp/first_start.log
