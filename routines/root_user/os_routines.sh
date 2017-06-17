@@ -1,5 +1,5 @@
 function set_os_flavor {
-echo "Configuring OS Specific Dockerfiles"
+	echo "Configuring OS Specific Dockerfiles"
 	if test `uname -v |grep -i ubuntu |wc -c` -gt 0
 	then
 	 files=`find /opt/engines/system/images/ -name "*.ubuntu"`
