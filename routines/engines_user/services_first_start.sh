@@ -14,7 +14,9 @@ function create_db {
 function create_services {
 	echo "Creating and starting Engines Services"
 	create_db
-
+	CONTROL_HTTP=yes
+	export CONTROL_HTTP
+	
 	mv /opt/engines/run/services-available/firstrun /opt/engines/run/services/
 
 	release=`cat /opt/engines/release`
