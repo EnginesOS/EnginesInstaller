@@ -8,5 +8,5 @@
               uid int,
               guid int
             );
-INSERT INTO systemaccess (username, password, email, authtoken, uid,guid) VALUES ('admin','EnginesDemo', 'admin@local', 'TOKEN',0,0);
+INSERT INTO systemaccess (username, password, email, authtoken, uid,guid,ip_addr,ip_mask) VALUES ('admin','EnginesDemo', 'admin@local', 'TOKEN',0,0 ,'','');
                 
