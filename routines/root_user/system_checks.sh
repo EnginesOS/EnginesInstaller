@@ -12,14 +12,14 @@ if dpkg-query -W -f'${Status}' "lxc-docker" 2>/dev/null | grep -q "ok installed"
  	exit 127
 fi
 
-ps -ax |grep dnsmas | grep -v grep 
-
-if test $? -eq 0
-  then
-  echo "Cannot Install on machine with dnsmasq enable, Please change your system "
-  exit 127
-fi
-
+#ps -ax |grep dnsmas | grep -v grep 
+#
+#if test $? -eq 0
+#  then
+#  echo "Cannot Install on machine with dnsmasq enable, Please change your system "
+#  exit 127
+#fi
+#
 ps -ax |grep named | grep -v grep 
 
 if test $? -eq 0
@@ -28,7 +28,7 @@ if test $? -eq 0
   exit 127
 fi
 
-used_ports=`netstat -na --tcp --udp | awk ' {print $4}'  | awk -F ':' ' {print $NF}'`
+used_ports=`netstat -na --tcp --udp | grep -v 127. | awk ' {print $4}'  | awk -F ':' ' {print $NF}'`
 
 for port in `cat ${top}/basic_ports_required`
  do 	
