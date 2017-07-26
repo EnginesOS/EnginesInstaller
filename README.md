@@ -78,7 +78,7 @@ The user name and password combination for the initial login is admin:password<b
 If you are installing Engines remotely you will need atleast port 10443 publicly acessible to access the management interface<br>
 
  <b>RequiredPorts</b>
- <li>Management Interface 10443/TCP
+ <li>Management Interface 8484/TCP
  <li>Webpages hosted 80,443/TCP
  
  <b>Optional Ports</b>
