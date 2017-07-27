@@ -33,8 +33,8 @@ function make_service_mapping {
 	  for service in $to_map
 	   do
 		 service_def=`find providers/ -name ${service}.yaml`
-		 echo service_def  $service_def 
-		  if ! test -z $service_def
+		 echo service_def $service_def 
+		  if ! test -z "$service_def"
 		   then
 		     cp $service_def mapping/ManagedEngine
 		  fi
