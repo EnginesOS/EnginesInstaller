@@ -33,10 +33,18 @@ default_branch=`cat default_branch`
 touch /tmp/engines_install.log
 
 if test $# -gt 0
- then
-	branch=$1
+ then	
+	flavor=`echo $1 | cut -f1 -d/`
+	branch=`echo $1 | cut -f2 -d/`
+	 if test -z $branch
+	  then
+	   branch=$flavor
+	   flavor=engines
+	  fi
+	 echo -n $flavor > /opt/engines/flavor
 else
 	branch=$default_branch
+	flavor=engines
 	echo "defaulting to $branch"
 fi
 	
