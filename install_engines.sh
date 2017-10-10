@@ -34,8 +34,8 @@ touch /tmp/engines_install.log
 
 if test $# -gt 0
  then	
-	flavor=`echo $1 | cut -f1 -d/`
-	branch=`echo $1 | cut -f2 -d/`
+	flavor=`echo $1 | awk -F/ '{print $1}' `
+	branch=`echo $1 | awk -F/ '{print $2}'`
 	 if test -z $branch
 	  then
 	   branch=$flavor
