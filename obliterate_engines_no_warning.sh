@@ -72,17 +72,17 @@ if test -d EnginesInstaller
 	  then
 		service docker restart
 			sleep 5
-			containers=`docker ps -a |grep -i running |awk '{print $1}' `
+			containers=`docker ps -q | awk '{print $1}' `
 			if ! test -z "$containers"
 			 then
 				docker stop $containers
 			fi
-			containers=`docker ps -a |grep -i paused |awk '{print $1}' `
+			containers=`docker ps -aq | grep -i paused |awk '{print $1}' `
 			if ! test -z "$containers"
 			 then
 				docker stop $containers
 			fi
-			containers=`docker ps -q |awk '{print $1}'` 
+			containers=`docker ps -qa |awk '{print $1}'` 
 		if ! test -z "$containers"
 			 then
 				docker rm $containers
