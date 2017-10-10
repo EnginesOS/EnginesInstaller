@@ -26,10 +26,10 @@ echo "Starting $service"
 
 function pull_image {
 	echo "Downloading $image"
-	docker pull engines/$service:$release >>/tmp/engines_install.log
+	docker pull engines/$image:$release >>/tmp/engines_install.log
 		if test $? -ne 0
 	      then
-	  		echo pull of engines/$service:$release failed check your network
+	  		echo pull of engines/$image:$release failed check your network
 	    	install_failed
 		fi
 }
@@ -68,16 +68,19 @@ function create_services {
 	export DOCKER_IP
 	echo Docker IP $DOCKER_IP Control IP $CONTROL_IP
 	
-	service=registry
+	image=registry
 	pull_image
 	system_service=registry
 	create_system_service
 
-	service=system
+	image=system
 	pull_image
 	system_service=system	
 	create_system_service
 	echo "System Services Started"
+	
+	image=dns
+	pull_image
 	
 	service=dns
 	create_service
