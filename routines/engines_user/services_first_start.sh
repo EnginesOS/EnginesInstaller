@@ -13,13 +13,7 @@ function create_db {
 
 function create_service {
 echo "Starting $service"
-	echo "Downloading $service image"
-	docker pull engines/$service:$release >>/tmp/engines_install.log
-		if test $? -ne 0
-	      then
-	  		echo pull of engines/$service:$release failed check your network
-	    	install_failed
-		fi
+	
 	 echo "Starting $service"
 	 /opt/engines/bin/engines service $service create >>/tmp/engines_install.log
 }
