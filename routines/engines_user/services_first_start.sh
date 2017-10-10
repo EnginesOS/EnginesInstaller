@@ -100,7 +100,7 @@ function create_services {
 	echo "System services restarted"
 	
 	
-images=syslog\
+images="syslog\
  			avahi\
  			cert_auth\
  			mysql_server\
@@ -117,14 +117,14 @@ images=syslog\
  			fs \
  			logrotate \
  			volbuilder \
- 			fsconfigurator
+ 			fsconfigurator"
  			
  for image in $images
   do 
 	pull_image
   done
    			
-services=syslog\
+services="syslog\
  			avahi\
  			cert_auth\
  			mysql\
@@ -140,7 +140,7 @@ services=syslog\
  			uadmin \
  			fs \
  			logrotate \
- 			ftp
+ 			ftp"
  			
  for service in $services
   do 
