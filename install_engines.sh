@@ -41,18 +41,18 @@ if test $# -gt 0
 	   branch=$flavor
 	   flavor=engines
 	  fi
-	 echo -n $flavor > /opt/engines/flavor
 else
 	branch=$default_branch
 	flavor=engines
 	echo "defaulting to $branch"
 fi
-	
+	export flavor
 export branch
 
 #dpkg-reconfigure tzdata
 
 configure_git 
+echo -n $flavor > /opt/engines/flavor
 create_engines_user
 update_os
 
