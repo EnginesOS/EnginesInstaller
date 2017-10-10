@@ -80,7 +80,7 @@ function create_services {
 	echo "System Services Started"
 	
 	service=dns
-	start_service
+	create_service
 
 	#Do this so DNS gets sets as docker will not set dns on create to non functioning dns server
 	system_service=system
@@ -141,7 +141,7 @@ services=syslog\
  			
  for service in $services
   do 
-	start_service
+	create_service
   done
 
 
