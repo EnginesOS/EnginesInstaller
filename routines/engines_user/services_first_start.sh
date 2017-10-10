@@ -102,8 +102,8 @@ function create_services {
 	
 images="syslog\
  			avahi\
- 			cert_auth\
- 			mysql_server\
+ 			certs\
+ 			mysql\
  			redis\
  			firstrun\
  			auth\
@@ -127,7 +127,7 @@ images="syslog\
 services="syslog\
  			avahi\
  			cert_auth\
- 			mysql\
+ 			mysql_server\
  			redis\
  			firstrun\
  			auth\
