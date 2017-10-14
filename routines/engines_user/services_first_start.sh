@@ -112,7 +112,7 @@ images="syslog\
 	pull_image
   done
    			
-services= syslog cert_auth firstrun
+services=syslog cert_auth firstrun
 #syslog\
 #			avahi\
 #			cert_auth\
