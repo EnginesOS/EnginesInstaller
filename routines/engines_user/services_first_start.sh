@@ -47,19 +47,13 @@ function destroy_system_service {
 
 function create_services {
 	echo "Creating and starting Engines Services"
-	create_db
-	CONTROL_HTTP=yes
-	export CONTROL_HTTP
+	create_db	
 	
 	mv /opt/engines/run/services-available/firstrun /opt/engines/run/services/
 
 	release=`cat /opt/engines/release`
 	
-	CONTROL_IP=`/opt/engines/bin/system_ip.sh`
-	export CONTROL_IP
-	
-	DOCKER_IP=`/opt/engines/bin/docker_ip.sh`
-	export DOCKER_IP
+
 	echo Docker IP $DOCKER_IP Control IP $CONTROL_IP
 	
 	image=registry
@@ -129,11 +123,9 @@ services="syslog\
  			backup \
  			cron \
  			smtp \
- 			ftp \
  			ldap \
  			uadmin \
- 			fs \
- 			logrotate \
+ 			log_rotate \
  			ftp"
  			
  for service in $services

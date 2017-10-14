@@ -22,10 +22,15 @@ setup_mgmt_keys
 echo Installation complete
 touch ~/.complete_install
 /opt/engines/system/scripts/startup/set_ip.sh
- 
+
+CONTROL_HTTP=yes
+export CONTROL_HTTP
+
+CONTROL_IP=`/opt/engines/bin/system_ip.sh`
+export CONTROL_IP
+	
 DOCKER_IP=`/opt/engines/bin/docker_ip.sh`
 export DOCKER_IP
-
 
 echo Downloading and starting services
 create_services  
