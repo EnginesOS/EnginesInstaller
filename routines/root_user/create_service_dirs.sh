@@ -1,7 +1,7 @@
 function setup_dirs {
 	mkdir -p  /var/log/engines/services/$service/nginx
 	mkdir -p /opt/engines/run/services/$service/run
-	owner=`/opt/engines/system/scripts/get_service_uid.sh $service`
+	owner=`/opt/engines/system/scripts/system/get_service_uid.sh $service`
 	chown -R $owner /var/log/engines/services/$service /opt/engines/run/services/$service/run
 }
 function make_dirs {
