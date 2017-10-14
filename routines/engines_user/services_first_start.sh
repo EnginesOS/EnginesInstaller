@@ -112,21 +112,20 @@ images="syslog\
 	pull_image
   done
    			
-services="syslog\
- 			avahi\
- 			cert_auth\
- 			mysql_server\
- 			redis\
- 			firstrun\
- 			auth\
- 			nginx \
- 			backup \
- 			cron \
- 			smtp \
- 			ldap \
- 			uadmin \
- 			log_rotate \
- 			ftp"
+services= syslog cert_auth firstrun
+#syslog\
+#			avahi\
+#			cert_auth\
+#			firstrun"\
+#			auth\
+#			nginx \
+#			backup \
+#			cron \
+#			smtp \
+#			ldap \
+#			uadmin \
+#			log_rotate \
+#			ftp"
  			
  for service in $services
   do 
