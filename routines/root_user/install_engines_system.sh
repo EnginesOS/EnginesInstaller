@@ -1,5 +1,5 @@
 function configure_git {
-	echo "Installing base Engines System"
+	echo "Installing base Engines System $branch "
 	apt-get install -y git	>>/tmp/engines_install.log
 	mkdir -p /opt/	
 	git clone https://github.com/EnginesOS/System.git --branch $branch  --single-branch /opt/engines/ 	>>/tmp/engines_install.log
