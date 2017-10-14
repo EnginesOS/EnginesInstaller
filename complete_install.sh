@@ -41,7 +41,7 @@ cp /etc/os-release /opt/engines/etc/os-release-host
 if test running = `/opt/engines/bin/engines service firstrun state`
  then
    echo "INSTALLATION FAILED"
-   echo First Run is not running"
+   echo "First Run is not running"
    exit
   fi
 
