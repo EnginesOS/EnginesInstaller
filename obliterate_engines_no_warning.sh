@@ -34,6 +34,11 @@ echo "Docker and ALL docker Images will be Deleted -k to keep docker images"
 echo "Ctl-C now if this is not want you want"
 sleep 20
 
+if test -f /tmp/first_start.log
+ then 
+  rm  /tmp/first_start.log
+ fi
+
 echo Stopping Engines
 
 	service engines stop
