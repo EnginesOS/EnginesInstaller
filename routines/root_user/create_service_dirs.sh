@@ -1,4 +1,4 @@
-function_setup_dirs {
+function setup_dirs {
 	mkdir -p  /var/log/engines/services/$service/nginx
 	mkdir -p /opt/engines/run/services/$service/run
 	owner=`/opt/engines/system/scripts/get_service_uid.sh $service`
