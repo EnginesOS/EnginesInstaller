@@ -51,11 +51,7 @@ if ! test running = `/opt/engines/bin/engines service firstrun state`
   fi
 
 
-echo 'Waiting for First run Form Submission' 
-while ! test -f /tmp/first_start.log
- do
-    sleep 5
-done
+
 
 gw_ifac=`netstat -nr |grep ^0.0.0.0 | awk '{print $8}' | head -1`
 
@@ -69,6 +65,10 @@ if ! test -n $ext_ip
 fi
   
 echo please visit http://${lan_ip}:8484/ or http://${ext_ip}:8484/ to complete installation
-
+echo 'Waiting for First run Form Submission' 
+while ! test -f /tmp/first_start.log
+ do
+    sleep 5
+done
 tail -f /tmp/first_start.log
  
