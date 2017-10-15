@@ -243,7 +243,7 @@ function setup_cert_auth_dirs {
 	touch /var/lib/engines/cert_auth/public/ca/certs/system_CA.pem
 	#mkdir -p /opt/engines/etc/certs/engines/
 	#mkdir -p /opt/engines/etc/certs/ca
-	chown -R 22022 /var/lib/engines/cert_auth/ /opt/engines/etc/certs/
+	chown -R 22022 /var/lib/engines/cert_auth/ 
 		
   	service=cert_auth
   	setup_dirs
@@ -306,7 +306,7 @@ function setup_run_dirs {
 #  	cp -r /var/lib/engines/cert_auth/public/keys /opt/engines/etc/email/ssl
 #  	chown 22003 -R /opt/engines/etc/email/ssl
   	
-  	service=mail
+  	service=email
   	setup_dirs
 }
  
