@@ -112,7 +112,7 @@ images="syslog\
 	pull_image
   done
    			
-services=syslog cert_auth firstrun
+
 #syslog\
 #			avahi\
 #			cert_auth\
@@ -127,7 +127,7 @@ services=syslog cert_auth firstrun
 #			log_rotate \
 #			ftp"
  			
- for service in $services
+ for service in syslog cert_auth firstrun
   do 
 	create_service
   done
