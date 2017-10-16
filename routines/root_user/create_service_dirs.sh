@@ -244,24 +244,15 @@ function setup_cert_auth_dirs {
 
 	#empty file as CA so mapped by dockers as a file and not an auto create dir
 	touch /var/lib/engines/cert_auth/public/ca/certs/system_CA.pem
-	
-	chown -R 22022 /var/lib/engines/cert_auth/ 
+	cert_uid=`/opt/engines/system/scripts/system/get_service_uid.sh  cert_auth`
+	chown -R $cert_uid /var/lib/engines/cert_auth/ 
 		
   	service=cert_auth
   	setup_dirs
 } 
 
 function setup_auth_dirs {
-  	echo "Setting up Auth "
-#	mkdir -p /opt/engines/etc/auth/keys/
-#	mkdir -p /var/lib/engines/auth/
-#	mkdir -p /var/log/engines/services/auth/ 
-#	mkdir -p /opt/engines/etc/auth/access  /opt/engines/etc/auth/scripts  /opt/engines/etc/auth/keys
-#	chown 22017 -R /var/log/engines/services/auth/ /var/lib/engines/auth/
-#	chown -R 22017 /opt/engines/etc/auth/scripts
-#	chown -R 22017 /opt/engines/etc/auth/access
-#    chown 22017 -R  /opt/engines/etc/auth/keys/
- 	
+  	echo "Setting up Auth " 	
   	service=auth
   	setup_dirs
  }
