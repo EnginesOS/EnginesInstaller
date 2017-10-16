@@ -215,9 +215,10 @@ function setup_cert_auth_dirs {
 	mkdir -p /var/lib/engines/services/cert_auth/public/certs
 	mkdir -p /var/lib/engines/services/cert_auth/public/ca/certs/
 	mkdir -p /var/lib/engines/services/cert_auth/public/ca/keys
-	mkdir -p /var/lib/engines/services/cert_auth/public/certs/systems/system/
-	mkdir -p /var/lib/engines/services/cert_auth/public/certs/systems/registry
-
+	mkdir -p /var/lib/engines/services/cert_auth/public/certs/system/system/
+	mkdir -p /var/lib/engines/services/cert_auth/public/certs/system/registry
+	mkdir -p /var/lib/engines/services/cert_auth/public/keys/system/system/
+	
 	#empty file as CA so mapped by dockers as a file and not an auto create dir
 	touch /var/lib/engines/services/cert_auth/public/ca/certs/system_CA.pem
 	cert_uid=`/opt/engines/system/scripts/system/get_service_uid.sh  cert_auth`
