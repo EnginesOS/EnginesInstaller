@@ -1,8 +1,9 @@
 function setup_dirs {
-	mkdir -p  /var/log/engines/services/$service/nginx
+	mkdir -p  /var/log/engines/services/$service
 	mkdir -p /opt/engines/run/services/$service/run
+	mkdir -p /var/lib/engines/services/$service
 	owner=`/opt/engines/system/scripts/system/get_service_uid.sh $service`
-	chown -R $owner /var/log/engines/services/$service /opt/engines/run/services/$service/run
+	chown -R $owner /var/log/engines/services/$service /opt/engines/run/services/$service/run /var/lib/engines/services/$service
 }
 function make_dirs {
 	setup_fs_dir
@@ -11,6 +12,7 @@ function make_dirs {
 	setup_cert_auth_dirs
 	copy_install_ssl_cert
 	
+	setup_syslog_dirs
 	setup_auth_dirs
 	setup_mgmt_dirs
 	setup_nginx_dirs
@@ -127,8 +129,6 @@ function setup_avahi_dirs {
 
 function setup_mysql_dirs {
 	echo "Creating MySQL Service Dirs"
-	mkdir -p  /var/lib/engines/mysql
-	chown -R  /var/lib/engines/mysql
 	service=mysql
 	setup_dirs	
 }
@@ -144,33 +144,23 @@ function setup_log_dir {
 	mkdir -p /var/log/engines
 	mkdir -p /var/log/engines/raw
 	mkdir -p /var/log/engines/containers/
+	mkdir -p /var/log/engines/services/
 	chown -R 21000 /var/log/engines 
+}
+
+function setup_syslog_dirs{
 	mkdir -p /var/lib/engines/services/syslog/rmt
-	chown  22012 -R  /var/lib/engines/services/syslog
 	service=syslog
 	setup_dirs
 }
 
 function setup_pqsql_dirs {
-	echo "Setting up PostgreSQL"
-	mkdir -p  /var/lib/engines/pgsql
-	#mkdir -p /opt/engines/etc/pgsql/ssl
-	#cp -r /var/lib/engines/cert_auth/public/certs /opt/engines/etc/pgsql/ssl
-	##cp -r /var/lib/engines/cert_auth/public/keys /opt/engines/etc/pgsql/ssl/private
-	#chown -R 22002 /opt/engines/etc/pgsql/ssl
-	#chmod og-rw -R /opt/engines/etc/pgsql/ssl
-	chown -R 22002	/var/lib/engines/pgsql
 	service=pgsql_server
 	setup_dirs
 }
 
 function setup_smtp_dirs {
 	echo "Setting up SMTP "
-	mkdir -p /opt/engines/etc/smtp/ssl/
-	cp -r /var/lib/engines/cert_auth/public/certs /opt/engines/etc/smtp/ssl
-	cp -r /var/lib/engines/cert_auth/public/keys /opt/engines/etc/smtp/ssl
- 	chown 22003 -R /opt/engines/etc/smtp/ssl 
- 	chmod og-rw -R /opt/engines/etc/smtp/ssl/keys/
 	service=smtp
 	setup_dirs
  	
@@ -200,12 +190,6 @@ function setup_imap_dirs {
  	echo "Setting up Imap "
  	mkdir -p /var/lib/engines/imap/lib
 	mkdir -p /var/lib/engines/imap/mail
-#	mkdir -p /opt/engines/etc/imap/ssl
-#	cp -r /var/lib/engines/cert_auth/public/certs /opt/engines/etc/imap/ssl
-#	cp -r /var/lib/engines/cert_auth/public/keys /opt/engines/etc/imap/ssl
-#	chown -R 22013 /var/lib/engines/imap
-#	chown -R 22013 /opt/engines/etc/imap/ssl
-#	chmod og-rw -R /opt/engines/etc/imap/ssl	
 	service=imap
 	setup_dirs 
 	
@@ -214,38 +198,30 @@ function setup_imap_dirs {
  
 function setup_ftp_dirs {
 	echo "Setting up FTP "
-#  	mkdir -p  /var/log/engines/services/ftp/proftpd /opt/engines/etc/ftp/ssl
-#	cp -r /var/lib/engines/cert_auth/public/certs /opt/engines/etc/ftp/ssl
-#	cp -r /var/lib/engines/cert_auth/public/keys /opt/engines/etc/ftp/ssl
-#	chown -R 22010 /opt/engines/etc/ftp/ssl
-#	chmod og-rw -R /opt/engines/etc/ftp/ssl
  	service=ftp
   	setup_dirs
 }
  
 function setup_mongo_dirs {
-	echo "Setting up Mongo "
- 	mkdir -p /var/lib/engines/mongo 
- 	chown -R 22008.22008 /var/lib/engines/mongo
- 	
+	echo "Setting up Mongo " 	
  	service=mongo_server
   	setup_dirs
 }
  
 function setup_cert_auth_dirs {
  	echo "Setting up Cert Auth "
-	mkdir -p /var/lib/engines/cert_auth/private/ca/keys
-	mkdir -p /var/lib/engines/cert_auth/public/certs
-	mkdir -p /var/lib/engines/cert_auth/public/certs
-	mkdir -p /var/lib/engines/cert_auth/public/ca/certs/
-	mkdir -p /var/lib/engines/cert_auth/public/ca/keys
-	mkdir -p /var/lib/engines/cert_auth/public/certs/systems/system/
-	mkdir -p /var/lib/engines/cert_auth/public/certs/systems/registry
+	mkdir -p /var/lib/engines/services/cert_auth/private/ca/keys
+	mkdir -p /var/lib/engines/services/cert_auth/public/certs
+	mkdir -p /var/lib/engines/services/cert_auth/public/certs
+	mkdir -p /var/lib/engines/services/cert_auth/public/ca/certs/
+	mkdir -p /var/lib/engines/services/cert_auth/public/ca/keys
+	mkdir -p /var/lib/engines/services/cert_auth/public/certs/systems/system/
+	mkdir -p /var/lib/engines/services/cert_auth/public/certs/systems/registry
 
 	#empty file as CA so mapped by dockers as a file and not an auto create dir
-	touch /var/lib/engines/cert_auth/public/ca/certs/system_CA.pem
+	touch /var/lib/engines/services/cert_auth/public/ca/certs/system_CA.pem
 	cert_uid=`/opt/engines/system/scripts/system/get_service_uid.sh  cert_auth`
-	chown -R $cert_uid /var/lib/engines/cert_auth/ 
+	chown -R $cert_uid /var/lib/engines/services/cert_auth/ 
 		
   	service=cert_auth
   	setup_dirs
@@ -293,12 +269,7 @@ function setup_run_dirs {
 }
 	 
  function setup_email_dirs {
-   	echo "Setting up Email Dirs"
-#  	mkdir -p /opt/engines/etc/email/ssl
-#  	cp -r /var/lib/engines/cert_auth/public/certs /opt/engines/etc/email/ssl
-#  	cp -r /var/lib/engines/cert_auth/public/keys /opt/engines/etc/email/ssl
-#  	chown 22003 -R /opt/engines/etc/email/ssl
-  	
+   	echo "Setting up Email Dirs"  	
   	service=email
   	setup_dirs
 }
