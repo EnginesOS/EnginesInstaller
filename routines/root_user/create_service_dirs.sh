@@ -29,13 +29,16 @@ function make_dirs {
 	setup_nfs_dirs	
 	setup_run_dirs
 	setup_key_dirs
+	
 	chown 21000 -R /opt/engines/run/services-available/
 	/opt/engines/bin/set_service_provider.sh syslog EnginesSystem
 	
 	mkdir -p /opt/engines/run//utilitys/fsconfigurator/ /var/log/engines//utilitys/fsconfigurator
 	chown -R 21000 /opt/engines/run/utilitys/fsconfigurator/ /var/log/engines//utilitys/
+
 	mkdir -p /var/lib/engines/mgmt/public/
-	chown -R 22050 /var/lib/engines/mgmt/public/
+	chown -R 22050 /var/lib/engines/services/mgmt/public/
+
 	touch /var/lib/engines/local_host
 }
 
@@ -75,11 +78,13 @@ function setup_system_dirs {
 
 	mkdir -p /home/engines/deployment/deployed/
 	mkdir -p  /var/lib/engines/mgmt/public/system/
-	mkdir -p /home/engines/.ssh/mgmt/
+	mkdir -p /home/engines/.ssh/system/
+	
 	mkdir -p /opt/engines/etc/ssh/keys/services/mgmt
 	chmod og-w /opt/engines/etc/ssh/keys/services/mgmt
 	chmod o-r /opt/engines/etc/ssh/keys/services/mgmt
 	chown 21000  /opt/engines/etc/ssh/keys/services/mgmt
+	
 	mkdir -p /var/log/engines/system_services/system/
 	chown -R 21000  /var/log/engines/system_services/system/
 	
@@ -108,9 +113,7 @@ function setup_system_dirs {
 	mkdir -p /opt/engines/system/updates/failed/system
 	mkdir -p /opt/engines/system/updates/has_run/system
 	mkdir -p /opt/engines/system/updates/to_run/system
-	
-	mkdir -p  /opt/engines/etc/ssh/keys
-	chown -R 21000 /opt/engines/etc/ssh/keys
+
 }
 
 
@@ -192,8 +195,6 @@ function setup_imap_dirs {
 	mkdir -p /var/lib/engines/imap/mail
 	service=imap
 	setup_dirs 
-	
-	
 }
  
 function setup_ftp_dirs {
