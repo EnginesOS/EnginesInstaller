@@ -148,7 +148,7 @@ function setup_log_dir {
 	chown -R 21000 /var/log/engines 
 }
 
-function setup_syslog_dirs{
+function setup_syslog_dirs {
 	mkdir -p /var/lib/engines/services/syslog/rmt
 	service=syslog
 	setup_dirs
