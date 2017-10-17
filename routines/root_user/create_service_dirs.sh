@@ -132,7 +132,7 @@ function setup_avahi_dirs {
 
 function setup_mysql_dirs {
 	echo "Creating MySQL Service Dirs"
-	service=mysql
+	service=mysql_server
 	setup_dirs	
 }
 
