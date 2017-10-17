@@ -6,8 +6,8 @@ function create_mgmt_script_key {
 	pubkey=`cat ~/.ssh/system/${script_name}.pub`
 	echo "command=\"/opt/engines/system/scripts/ssh/${script_name}.sh\",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty  $pubkey " >  ~/.ssh/_${script_name}_authorized_keys
 	cat ~/.ssh/_${script_name}_authorized_keys >> ~/.ssh/authorized_keys.system
-	cp ~/.ssh/system/${script_name} ~/.ssh/system/${script_name}.pub /opt/engines/etc/ssh/keys/services/system
-	echo cp ~/.ssh/system/${script_name} ~/.ssh/system/${script_name}.pub /opt/engines/etc/ssh/keys/services/system
+	#cp ~/.ssh/system/${script_name} ~/.ssh/system/${script_name}.pub /opt/engines/etc/ssh/keys/services/system
+	#echo cp ~/.ssh/system/${script_name} ~/.ssh/system/${script_name}.pub /opt/engines/etc/ssh/keys/services/system
 }
 
 
