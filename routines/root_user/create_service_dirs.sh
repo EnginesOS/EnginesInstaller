@@ -36,8 +36,7 @@ function make_dirs {
 	mkdir -p /opt/engines/run//utilitys/fsconfigurator/ /var/log/engines//utilitys/fsconfigurator
 	chown -R 21000 /opt/engines/run/utilitys/fsconfigurator/ /var/log/engines//utilitys/
 
-	mkdir -p /var/lib/engines/mgmt/public/
-	chown -R 22050 /var/lib/engines/services/mgmt/public/
+	
 
 	touch /var/lib/engines/local_host
 }
@@ -191,8 +190,8 @@ function setup_dns_dirs {
  
 function setup_imap_dirs {
  	echo "Setting up Imap "
- 	mkdir -p /var/lib/engines/imap/lib
-	mkdir -p /var/lib/engines/imap/mail
+ 	mkdir -p /var/lib/engines/services/imap/lib
+	mkdir -p /var/lib/engines/services/imap/mail
 	service=imap
 	setup_dirs 
 }
