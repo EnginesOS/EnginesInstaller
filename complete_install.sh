@@ -66,9 +66,11 @@ fi
   
 echo please visit http://${lan_ip}:8484/ or http://${ext_ip}:8484/ to complete installation
 echo 'Waiting for First run Form Submission' 
-while ! test -f /tmp/first_start.log
+
+while ! test -f /opt/engines/run/system/flags/first_run_ready
  do
     sleep 5
 done
-tail -f /tmp/first_start.log
+
  
+/opt/engines/system/install/_first
