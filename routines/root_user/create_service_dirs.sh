@@ -118,7 +118,7 @@ function setup_system_dirs {
 
 function setup_nginx_dirs {
 	echo "Setting up Nginx"
-	service=nginx
+	service=wap
 	setup_dirs
 	
 }
@@ -131,7 +131,7 @@ function setup_avahi_dirs {
 
 function setup_mysql_dirs {
 	echo "Creating MySQL Service Dirs"
-	service=mysql_server
+	service=mysqld
 	setup_dirs	
 }
 
@@ -157,7 +157,7 @@ function setup_syslog_dirs {
 }
 
 function setup_pqsql_dirs {
-	service=pgsql_server
+	service=pgsqld
 	setup_dirs
 }
 
@@ -204,27 +204,27 @@ function setup_ftp_dirs {
  
 function setup_mongo_dirs {
 	echo "Setting up Mongo " 	
- 	service=mongo_server
+ 	service=mongod
   	setup_dirs
 }
  
 function setup_cert_auth_dirs {
  	echo "Setting up Cert Auth "
-	mkdir -p /var/lib/engines/services/cert_auth/private/ca/keys
-	mkdir -p /var/lib/engines/services/cert_auth/public/certs
-	mkdir -p /var/lib/engines/services/cert_auth/public/certs
-	mkdir -p /var/lib/engines/services/cert_auth/public/ca/certs/
-	mkdir -p /var/lib/engines/services/cert_auth/public/ca/keys
-	mkdir -p /var/lib/engines/services/cert_auth/public/certs/system/system/
-	mkdir -p /var/lib/engines/services/cert_auth/public/certs/system/registry
-	mkdir -p /var/lib/engines/services/cert_auth/public/keys/system/system/
+	mkdir -p /var/lib/engines/services/certs/private/ca/keys
+	mkdir -p /var/lib/engines/services/certs/public/certs
+	mkdir -p /var/lib/engines/services/certs/public/certs
+	mkdir -p /var/lib/engines/services/certs/public/ca/certs/
+	mkdir -p /var/lib/engines/services/certs/public/ca/keys
+	mkdir -p /var/lib/engines/services/certs/public/certs/system/system/
+	mkdir -p /var/lib/engines/services/certs/public/certs/system/registry
+	mkdir -p /var/lib/engines/services/certs/public/keys/system/system/
 	
 	#empty file as CA so mapped by dockers as a file and not an auto create dir
-	touch /var/lib/engines/services/cert_auth/public/ca/certs/system_CA.pem
-	cert_uid=`/opt/engines/system/scripts/system/get_service_uid.sh  cert_auth`
-	chown -R $cert_uid /var/lib/engines/services/cert_auth/ 
+	touch /var/lib/engines/services/certs/public/ca/certs/system_CA.pem
+	cert_uid=`/opt/engines/system/scripts/system/get_service_uid.sh  certs`
+	chown -R $cert_uid /var/lib/engines/services/certs/ 
 		
-  	service=cert_auth
+  	service=certs
   	setup_dirs
 } 
 

@@ -24,8 +24,8 @@ chown  21000 /opt/engines/etc/os-release-host
 function remove_services {
 echo "Creating and starting Engines OS Services"
 
-docker stop  mysql_server backup nginx dns mgmt
-docker rm  mysql_server backup nginx dns mgmt
+docker stop  mysqld backup wap dns mgmt
+docker rm  mysqld backup wap dns mgmt
 	
 }
 

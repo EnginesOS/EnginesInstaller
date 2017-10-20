@@ -95,7 +95,7 @@ images="syslog\
  			redis\
  			firstrun\
  			auth\
- 			nginx \
+ 			wap \
  			backup \
  			cron \
  			smtp \
@@ -115,7 +115,7 @@ images="syslog\
 
 #syslog\
 #			avahi\
-#			cert_auth\
+#			certs\
 #			firstrun"\
 #			auth\
 #			nginx \
@@ -124,10 +124,10 @@ images="syslog\
 #			smtp \
 #			ldap \
 #			uadmin \
-#			log_rotate \
+#			logrotate \
 #			ftp"
  			
- for service in syslog cert_auth firstrun
+ for service in syslog certs firstrun
   do 
 	create_service
   done

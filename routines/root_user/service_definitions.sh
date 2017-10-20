@@ -28,7 +28,7 @@ function make_service_mapping {
 	mkdir -p filesystem/local/filesystem
 
 	cd ../
-	to_map="schedule cron backup avahi cert_auth mongo pgsql mysql filesystem syslog dns nginx logview log_rotate"
+	to_map="schedule cron backup avahi certs mongo pgsql mysql filesystem syslog dns wap logview logrotate"
 
 	  for service in $to_map
 	   do
