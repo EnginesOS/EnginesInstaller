@@ -73,4 +73,4 @@ while ! test -f /opt/engines/run/system/flags/first_run_ready
 done
 
  
-/opt/engines/system/install/_first
+/opt/engines/system/install/_first_start.sh 
