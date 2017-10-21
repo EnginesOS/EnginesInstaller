@@ -95,12 +95,12 @@ images="syslog\
  			redis\
  			firstrun\
  			auth\
- 			nginx \
+ 			wap \
  			backup \
  			cron \
+ 			ldap \
  			smtp \
  			ftp \
- 			ldap \
  			uadmin \
  			fs \
  			logrotate \
