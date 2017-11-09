@@ -42,7 +42,7 @@ function make_dirs {
 }
 
 function setup_key_dirs {
-	mkdir -p /opt/engines/etc/ssh/keys/containers
+	mkdir -p /opt/engines/etc/ssh/keys/apps
 	mkdir -p /opt/engines/etc/ssh/keys/services
 	mkdir -p /opt/engines/etc/ssh/keys/system_services
 	mkdir -p /opt/engines/etc/ssh/keys/utilitys
@@ -242,7 +242,7 @@ function setup_cron_dirs {
  
 function setup_run_dirs {
   	echo "Setting up Run Dirs"
-    chown 21000 /opt/engines/run/services/ /opt/engines/run/containers/
+    chown 21000 /opt/engines/run/services/ /opt/engines/run/apps/
  	chgrp -R 22020 /opt/engines/run/services/
 	chmod g+w -R  /opt/engines/run/services/
 	chgrp containers /opt/engines/run/services/*/run
@@ -251,7 +251,7 @@ function setup_run_dirs {
 	mkdir /opt/engines/run/cid
 	chown 21000 /opt/engines/run/cid
 	chown 21000 -R /opt/engines/run/services/
-	chown 21000 -R /opt/engines/run/containers/
+	chown 21000 -R /opt/engines/run/apps/
 	mkdir -p /opt/engines/etc/domains/
 	chown 21000 -R /opt/engines/etc/domains/
 	mkdir -p /opt/engines/etc/exported/net/  
