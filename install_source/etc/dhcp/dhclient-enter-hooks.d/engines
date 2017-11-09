@@ -1,29 +1,3 @@
 
-#set >>/tmp/dhcp_trigger_run
-#echo " "  >>/tmp/dhcp_trigger_run
-
-
- new_ip=`/opt/engines/bin/system_ip.sh`
- 
-#if ! test -z $new_domain_name_servers
-#        then
-#                 new_domain_name_servers=`echo $new_ip $new_domain_name_servers`
-#        fi
-  
-
-#want for reason REBOOT and .... 
-	       
-	        
-#	 if ! test -z "$new_ip_address"
-#	   then              
-#			if test -f /opt/engines/etc/net/ip
-#				then
-#	       			curr_ip=`cat /opt/engines/etc/net/ip`
-#	    		fi
-#	    			      
-#	       if ! test "$curr_ip" = $new_ip_address
-#	       	then
-#	       	sudo /opt/engines/system/scripts/refresh_local_hosted_domains.sh $new_ip_address	       		
-#	       	fi    
-# fi
-   echo $new_ip > /opt/engines/etc/net/ip
+new_ip=`/opt/engines/bin/system_ip.sh`
+echo $new_ip > /opt/engines/etc/exported/net/ip

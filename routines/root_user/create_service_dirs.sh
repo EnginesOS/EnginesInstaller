@@ -95,7 +95,7 @@ function setup_system_dirs {
 	mkdir -p /var/log/engines/updates/ 
 	chown -R 21000 /opt/engines/run/service_manager/
 	chown -R 21000 /home/engines/deployment/deployed/
-	chown 21000 /var/lib/engines  /var/log/engines/containers  /var/log/engines/ /var/log/engines/updates/ /var/log/engines/services/ /var/log/engines/containers/
+	chown 21000 /var/lib/engines  /var/log/engines/apps /var/log/engines/ /var/log/engines/updates/ /var/log/engines/services/
 	
 	chown -R 21000 ~engines/  /var/lib/engines/mgmt/public/system/ 
 
@@ -145,7 +145,7 @@ function setup_log_dir {
 	echo "Creating Log Dirs"
 	mkdir -p /var/log/engines
 	mkdir -p /var/log/engines/raw
-	mkdir -p /var/log/engines/containers/
+	mkdir -p /var/log/engines/apps/
 	mkdir -p /var/log/engines/services/
 	chown -R 21000 /var/log/engines 
 }
@@ -254,8 +254,8 @@ function setup_run_dirs {
 	chown 21000 -R /opt/engines/run/containers/
 	mkdir -p /opt/engines/etc/domains/
 	chown 21000 -R /opt/engines/etc/domains/
-	mkdir -p /opt/engines/etc/net/  
-	chown 21000 -R /opt/engines/etc/net/  
+	mkdir -p /opt/engines/etc/exported/net/  
+	chown 21000 -R /opt/engines/etc/exported/net  
 	mkdir -p /opt/engines/run/system/flags/
 	chown 21000 /opt/engines/run/system/
 	mkdir -p /opt/engines/etc/preferences/

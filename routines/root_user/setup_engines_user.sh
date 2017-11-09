@@ -4,6 +4,12 @@
  #  passwd engines 
   
   }
+  
+    function create_engssrc_user {
+   echo "Creating for engines source owner"
+  adduser -q  -gecos "Engines Src Owner"  --home /home/engsrc --disabled-password engsrc  
+  } 
+  
  
  function configure_engines_user {
   	echo "Configuring engines system user"
