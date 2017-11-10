@@ -242,6 +242,7 @@ function setup_cron_dirs {
  
 function setup_run_dirs {
   	echo "Setting up Run Dirs"
+  	mkdir /opt/engines/run/apps/
     chown 21000 /opt/engines/run/services/ /opt/engines/run/apps/
  	chgrp -R 22020 /opt/engines/run/services/
 	chmod g+w -R  /opt/engines/run/services/
