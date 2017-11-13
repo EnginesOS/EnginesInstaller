@@ -63,7 +63,7 @@ function setup_nfs_dirs {
 
 function setup_mgmt_dirs {
 	echo "Creating Management Service Dirs"
-	service=mgmt
+	service=control
 	setup_dirs	
 }
 		
@@ -76,13 +76,13 @@ function setup_system_dirs {
 	chmod og-rwx /home/engines/db/production.sqlite3
 
 	mkdir -p /home/engines/deployment/deployed/
-	mkdir -p  /var/lib/engines/mgmt/public/system/
+	mkdir -p  /var/lib/engines/control/public/system/
 	mkdir -p /home/engines/.ssh/system/
 	
-	mkdir -p /opt/engines/etc/ssh/keys/services/mgmt
-	chmod og-w /opt/engines/etc/ssh/keys/services/mgmt
-	chmod o-r /opt/engines/etc/ssh/keys/services/mgmt
-	chown 21000  /opt/engines/etc/ssh/keys/services/mgmt
+	mkdir -p /opt/engines/etc/ssh/keys/services/control
+	chmod og-w /opt/engines/etc/ssh/keys/services/control
+	chmod o-r /opt/engines/etc/ssh/keys/services/control
+	chown 21000  /opt/engines/etc/ssh/keys/services/control
 	
 	mkdir -p /var/log/engines/system_services/system/
 	chown -R 21000  /var/log/engines/system_services/system/
@@ -97,7 +97,7 @@ function setup_system_dirs {
 	chown -R 21000 /home/engines/deployment/deployed/
 	chown 21000 /var/lib/engines  /var/log/engines/apps /var/log/engines/ /var/log/engines/updates/ /var/log/engines/services/
 	
-	chown -R 21000 ~engines/  /var/lib/engines/mgmt/public/system/ 
+	chown -R 21000 ~engines/  /var/lib/engines/control/public/system/ 
 
 	
 	mkdir -p /opt/engines/run/system/flags/
