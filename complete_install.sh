@@ -40,13 +40,15 @@ rm -f /opt/engines/run/system/flags/engines_rebooting
 rm -f /opt/engines/run/system/flags/building_params 
 cp /etc/os-release /opt/engines/etc/os-release-host
 
-/opt/engines/bin/engines service firstrun wait_for_startup 125
-
+/opt/engines/bin/engines service firstrun wait_for_startup 325
+ 
+/opt/engines/bin/engines service firstrun wait_for_startup 325
 # FixME Test other services as well
 if ! test running = `/opt/engines/bin/engines service firstrun state`
  then
    echo "INSTALLATION FAILED"
    echo "First Run is not running"
+ 
    exit
   fi
 
