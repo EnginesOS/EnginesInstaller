@@ -10,9 +10,14 @@ function setup_service_definitions {
 	 	  fi
 		mv services services.old
 	  fi
-	git clone https://github.com/EnginesOS/ServiceDefinitions services
-	cd services
-	git checkout `cat /opt/engines/release`
+	  mkdir -p services/providers
+	  cd services/providers
+	  git clone https://github.com/EnginesServices/SumoLogic
+	  git clone https://github.com/EnginesServices/EnginesSystem
+	#git clone https://github.com/EnginesOS/ServiceDefinitions services
+	#cd services
+	#git checkout `cat /opt/engines/release`
+	cd ..
 	make_service_mapping
 }
 
