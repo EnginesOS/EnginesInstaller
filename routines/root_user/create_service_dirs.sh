@@ -210,15 +210,15 @@ function setup_mongo_dirs {
  
 function setup_cert_auth_dirs {
  	echo "Setting up Cert Auth "
-	mkdir -p /var/lib/engines/services/certs/private/ca/keys
-	mkdir -p /var/lib/engines/services/certs/public/certs
-	mkdir -p /var/lib/engines/services/certs/public/certs
-	mkdir -p /var/lib/engines/services/certs/public/ca/certs/
-	mkdir -p /var/lib/engines/services/certs/public/ca/keys
-	mkdir -p /var/lib/engines/services/certs/public/certs/system/system/
-	mkdir -p /var/lib/engines/services/certs/public/certs/system/registry
-	mkdir -p /var/lib/engines/services/certs/public/keys/system/system/
-	mkdir -p /var/lib/engines/services/certs/store
+	mkdir -p /var/lib/engines/services/certs/store/private/ca/keys
+	mkdir -p /var/lib/engines/services/certs/store/public/certs
+	mkdir -p /var/lib/engines/services/certs/store/public/certs
+	mkdir -p /var/lib/engines/services/certs/store/public/ca/certs/
+	mkdir -p /var/lib/engines/services/certs/store/public/ca/keys
+	mkdir -p /var/lib/engines/services/certs/store/public/certs/system/system/
+	mkdir -p /var/lib/engines/services/certs/store/public/certs/system/registry
+	mkdir -p /var/lib/engines/services/certs/store/public/keys/system/system/
+
 	#empty file as CA so mapped by dockers as a file and not an auto create dir
 	touch /var/lib/engines/services/certs/store/public/ca/certs/system_CA.pem
 	cert_uid=`/opt/engines/system/scripts/system/get_service_uid.sh  certs`
