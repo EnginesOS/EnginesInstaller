@@ -218,9 +218,9 @@ function setup_cert_auth_dirs {
 	mkdir -p /var/lib/engines/services/certs/public/certs/system/system/
 	mkdir -p /var/lib/engines/services/certs/public/certs/system/registry
 	mkdir -p /var/lib/engines/services/certs/public/keys/system/system/
-	
+	mkdir -p /var/lib/engines/services/certs/store
 	#empty file as CA so mapped by dockers as a file and not an auto create dir
-	touch /var/lib/engines/services/certs/public/ca/certs/system_CA.pem
+	touch /var/lib/engines/services/certs/store/public/ca/certs/system_CA.pem
 	cert_uid=`/opt/engines/system/scripts/system/get_service_uid.sh  certs`
 	chown -R $cert_uid /var/lib/engines/services/certs/ 
 		
@@ -248,7 +248,6 @@ function setup_run_dirs {
 	chmod g+w -R  /opt/engines/run/services/
 	chgrp containers /opt/engines/run/services/*/run
 	chmod g+w /opt/engines/run/services/*/run
-	chown root /opt/engines/etc/auth/
 	mkdir /opt/engines/run/cid
 	chown 21000 /opt/engines/run/cid
 	chown 21000 -R /opt/engines/run/services/
