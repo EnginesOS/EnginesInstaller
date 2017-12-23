@@ -137,7 +137,7 @@ function setup_mysql_dirs {
 
 function setup_fs_dir {
 	echo "Creating FS Dirs"
-	mkdir -p  /var/lib/engines/fs/
+	mkdir -p  /var/lib/engines/apps/
 	chown -R 21000 /var/lib/engines   
 }
 
