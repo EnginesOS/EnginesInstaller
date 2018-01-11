@@ -26,7 +26,7 @@ function install_docker_components {
 
 	  for package in $packages
  	    do
- 	 	   dpkg -l $package
+ 	 	  apt list $package  |grep $package 
  	 	     if test $? -ne 0
  	  		   then
  	 		      packages_to_install="$packages_to_install $package"
