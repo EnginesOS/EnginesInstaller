@@ -254,6 +254,8 @@ function setup_run_dirs {
 	chown 21000 -R /opt/engines/run/apps/
 	mkdir -p /opt/engines/etc/domains/
 	chown 21000 -R /opt/engines/etc/domains/
+	mkdir -p  /opt/engines/etc/exported/containers
+	chown 21000 -R /opt/engines/etc/exported/containers
 	mkdir -p /opt/engines/etc/exported/net/  
 	chown 21000 -R /opt/engines/etc/exported/net  
 	mkdir -p /opt/engines/run/system/flags/
