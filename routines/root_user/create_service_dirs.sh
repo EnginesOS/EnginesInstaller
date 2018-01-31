@@ -36,7 +36,8 @@ function make_dirs {
 	mkdir -p /opt/engines/run//utilitys/fsconfigurator/ /var/log/engines//utilitys/fsconfigurator
 	chown -R 21000 /opt/engines/run/utilitys/fsconfigurator/ /var/log/engines//utilitys/
 
-	
+	mkdir -p /opt/engines/run/public/services
+    chown 21000  /opt/engines/run/public/services
 
 	touch /var/lib/engines/local_host
 }
