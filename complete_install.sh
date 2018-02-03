@@ -66,7 +66,7 @@ if ! test -n $ext_ip
    ext_ip=`curl -s http://ipecho.net/ |grep "Your IP is" | sed "/^.* is /s///" | sed "/<.*$/s///"`
 fi
   
-echo please visit http://${lan_ip}:8484/ or http://${ext_ip}:8484/ to complete installation
+echo please visit https://${lan_ip}:8484/ or https://${ext_ip}:8484/ to complete installation
 echo 'Waiting for First run Form Submission' 
 
 while ! test -f /opt/engines/run/system/flags/first_run_ready
