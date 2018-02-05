@@ -28,7 +28,17 @@ function configure_git {
 
 function install_ruby {
    apt-get install -y ruby-dev
-   gem install bundler excon multi_json rspec rubytree git net_http_unix yajl-ruby rest-client  ffi-yajl >/dev/null
+   gem install bundler\
+   			   excon\
+   			   multi_json\
+   			   rspec\
+   			   rubytree\
+   			   git\
+   			   net_http_unix\
+   			   yajl-ruby\
+   			   rest-client\
+   			   ffi-yajl\
+   			   rb-inotify   >/dev/null
 }
 
 #function install_rbenv {
