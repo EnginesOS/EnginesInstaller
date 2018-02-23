@@ -44,11 +44,10 @@ cp /etc/os-release /opt/engines/etc/os-release-host
  
 /opt/engines/bin/engines service firstrun wait_for_startup 325
 # FixME Test other services as well
-if ! test running = `/opt/engines/bin/engines service firstrun state`
+if ! test running = `CONTROL_HTTP=y /opt/engines/bin/engines service firstrun state`
  then
    echo "INSTALLATION FAILED"
    echo "First Run is not running"
- 
    exit
   fi
 
