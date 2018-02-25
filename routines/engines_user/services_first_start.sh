@@ -113,20 +113,6 @@ images="syslog\
   done
    			
 
-#syslog\
-#			avahi\
-#			certs\
-#			firstrun"\
-#			auth\
-#			nginx \
-#			backup \
-#			cron \
-#			smtp \
-#			ldap \
-#			uadmin \
-#			logrotate \
-#			ftp"
- 			
  for service in syslog certs firstrun
   do 
 	create_service
