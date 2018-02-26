@@ -100,11 +100,11 @@ images="syslog\
  			cron \
  			ldap \
  			smtp \
- 			ftp \
  			uadmin \
  			fs \
  			logrotate \
  			volbuilder \
+ 			ftp \
  			fsconfigurator"
  			
  for image in $images
