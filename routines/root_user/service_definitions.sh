@@ -39,7 +39,7 @@ function make_service_mapping {
 	mkdir -p filesystem/local/filesystem
 
 	cd ../
-	to_map="schedule ldap auth cron backup avahi certs mongo pgsql mysql filesystem syslog dns wap logview logrotate"
+	to_map="schedule ldap ldap_access auth cron backup avahi certs mongo pgsql mysql filesystem syslog dns wap logview logrotate"
 
 	  for service in $to_map
 	   do
@@ -47,7 +47,9 @@ function make_service_mapping {
 		 echo service_def $service_def 
 		  if ! test -z "$service_def"
 		   then
-		     cp $service_def mapping/ManagedEngine
+		     #cp $service_def mapping/ManagedEngine
+		     #?? mkdir -p `dirname 	mapping/ManagedEngine/$service_def`	     
+		     ln -s /opt/engines/etc/services/$service_def mapping/ManagedEngine
 		  fi
        done
     
