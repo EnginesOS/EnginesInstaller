@@ -19,7 +19,7 @@ echo "Starting $service"
 }
 
 function pull_image {
-	echo "Downloading $image"
+	echo "Downloading $image engines/$image:$release"
 	docker pull engines/$image:$release >>/tmp/engines_install.log
 		if test $? -ne 0
 	      then
