@@ -95,7 +95,7 @@ images="syslog\
  			redis\
  			firstrun\
  			auth\
- 			nginx \
+ 			wap \
  			backup \
  			cron \
  			ldap \

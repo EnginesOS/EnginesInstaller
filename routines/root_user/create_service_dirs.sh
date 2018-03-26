@@ -15,7 +15,7 @@ function make_dirs {
 	setup_syslog_dirs
 	setup_auth_dirs
 	setup_mgmt_dirs
-	setup_nginx_dirs
+	setup_wap_dirs
 	setup_mysql_dirs
 	setup_pqsql_dirs 
 	setup_smtp_dirs
@@ -117,8 +117,8 @@ function setup_system_dirs {
 }
 
 
-function setup_nginx_dirs {
-	echo "Setting up Nginx"
+function setup_wap_dirs {
+	echo "Setting up Wap"
 	service=wap
 	setup_dirs
 	
