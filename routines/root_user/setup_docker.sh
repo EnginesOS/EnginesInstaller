@@ -36,9 +36,10 @@ function install_docker_components {
 
 	echo $packages_to_install >/opt/engines/system/packages_installed
   	echo "Installing Docker"		
-       if ! test -z '$packages_to_install'
+  	 apt-get install -y linux-image-extra-$(uname -r)  >>/tmp/engines_install.log
+       if ! test -z "$packages_to_install"
          then
-		    apt-get install -y linux-image-extra-$(uname -r)  $packages_to_install >>/tmp/engines_install.log
+		    apt-get install -y $packages_to_install >>/tmp/engines_install.log
        fi
 	grep UBUNTU_CODENAME=xenial /etc/os-release >/dev/null
       if test $? -eq 0
