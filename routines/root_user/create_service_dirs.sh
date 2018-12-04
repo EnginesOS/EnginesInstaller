@@ -9,6 +9,7 @@ function make_dirs {
 	setup_fs_dir
 	setup_log_dir
 	setup_system_dirs
+	setup_registry_dirs
 	setup_cert_auth_dirs
 	copy_install_ssl_cert
 	
@@ -54,6 +55,12 @@ function setup_system_dirs {
 	mkdir -p  /var/log/engines/system_services/system/
 	mkdir -p   /opt/engines/run/system_services/system/run
 	chown 21000 /opt/engines/run/system_services/system/run /var/log/engines/system_services/system/
+}
+
+function setup_registry_dirs {
+	mkdir -p  /var/log/engines/system_services/registry/
+	mkdir -p   /opt/engines/run/system_services/registry/run
+	chown 22023 /opt/engines/run/system_services/registry/run /var/log/engines/system_services/registry/
 }
 
 function setup_nfs_dirs {
