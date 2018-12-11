@@ -53,7 +53,7 @@ function install_docker_components {
 		 grep UBUNTU_CODENAME=bionic /etc/os-release >/dev/null
 		  if test $? -eq 0
                    then
-			apt-get install docker-runc docker-containerd
+			apt-get -y install docker-runc docker-containerd
 
 		else
 		 echo deb https://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list
