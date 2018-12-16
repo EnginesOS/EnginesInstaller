@@ -94,8 +94,8 @@ function configure_docker {
 		cp ${top}/install_source/lib/systemd/system/docker.service.blank  /lib/systemd/system/docker.service
 		service docker start	
 		service docker stop
-		ip=`ifconfig docker0  |grep "inet"  |awk '{print $2}'`
-		cat ${top}/install_source/lib/systemd/system/docker.service | sed "/IP/s//$ip/" > /lib/systemd/system/docker.service
+		ip=`ifconfig docker0  |grep "inet"  |awk '{print $2}' |head -1`
+		cat ${top}/install_source/lib/systemd/system/docker.service | sed "s/IP/$ip/" > /lib/systemd/system/docker.service
 		  if test -f /bin/systemctl
 			then  
 			  systemctl  daemon-reload
