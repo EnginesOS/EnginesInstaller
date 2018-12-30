@@ -39,7 +39,7 @@ function make_service_mapping {
 	mkdir -p filesystem/local/filesystem
 
 	cd ../
-	to_map="schedule ldap ldap_access auth cron backup avahi certs mongo pgsql mysql filesystem syslog dns wap logview secrets logrotate"
+	to_map="schedule ldap ldap_access auth samba cron backup avahi certs mongo pgsql mysql filesystem syslog dns wap logview secrets logrotate"
 
 	  for service in $to_map
 	   do
@@ -59,18 +59,18 @@ function make_service_mapping {
 	    do
 		  service_def=`find providers/ -name ${service}.yaml`
 		  echo service_def  $service_def 
-		  cp $service_def mapping/database/sql/mysql
-		  cp $service_def mapping/database/sql/pgsql
-		  cp $service_def mapping/filesystem/local/filesystem
+		  ln -s /opt/engines/etc/services/$service_def mapping/database/sql/mysql
+		  ln -s /opt/engines/etc/services/$service_def mapping/database/sql/pgsql
+		  ln -s /opt/engines/etc/services/$service_def mapping/filesystem/local/filesystem
        done
     
-  	to_map="ftp"
+  	to_map="ftp samba"
 
 	  for service in $to_map
 	    do
 		  service_def=`find providers/ -name ${service}.yaml`
 		  echo service_def  $service_def 
-		  cp $service_def mapping/filesystem/local/filesystem
+		   ln -s /opt/engines/etc/services/$service_def mapping/filesystem/local/filesystem
        done      
 }
     
