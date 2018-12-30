@@ -148,14 +148,16 @@ if test -d EnginesInstaller
 		#mv  /tmp/.local /etc/resolvconf/resolv.conf.d/head
 		##cat /etc/resolv.conf  | grep -v "$ip"  >/tmp/.local
 		##mv  /tmp/.local  /etc/resolv.conf 
-		cp -rp /opt/engines/system/uninstall/* /
-
- #cat /etc/dhcp/dhclient.conf| grep -v 172.17.42.1>/tmp/.local
- #mv /tmp/.local /etc/dhcp/dhclient.conf
-		cat /etc/rc.local |grep -v engines >/tmp/.local
-		cp /tmp/.local   /etc/rc.local
+		
+		
+	if ! test -f  /etc/network/if-up.d/engines_set_ip.sh
+	 then
+	  rm /etc/network/if-up.d/engines_set_ip.sh
+	fi
+ 
 		 rm -r EnginesInstaller
 		groupdel containers
+		
 		#usermod backup -r -G engines
 		usermod  -G backup backup
 		rm	/etc/sudoers.d/engines 
@@ -177,10 +179,9 @@ if test -d EnginesInstaller
 		rm -fr /home/engines/.rbenv
 		
 		groupdel docker
+		groupdel engines
 		
-		
-		cat /etc/default/grub | grep -v "cgroup_enable=memory swapaccount=1 cgroup_enable=memory use_hierarchy" > /tmp/grub
-		cp /tmp/grub /etc/default/grub
+		cp -rp /opt/engines/system/uninstall/* /	
 		update-grub
     else
       echo Script must be run as root from the dir that contains EnginesInstaller

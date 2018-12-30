@@ -69,7 +69,8 @@ function install_docker_components {
 
 function configure_docker {
 	echo "Configuring Docker DNS settings"	 
-
+	mkdir -p /opt/engines/system/uninstall/etc/default/
+    cp -p /etc/default/grub /opt/engines/system/uninstall/
 	#echo GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1 cgroup_enable=memory use_hierarchy=1" >> /etc/default/grub
 	echo GRUB_CMDLINE_LINUX=\"cgroup_enable=memory swapaccount=1 cgroup_enable=memory use_hierarchy=1\" >> /etc/default/grub
 	update-grub

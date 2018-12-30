@@ -28,7 +28,7 @@ if test $? -eq 0
   exit 127
 fi
 
-used_ports=`netstat -na --tcp --udp | grep -v 127. | awk ' {print $4}'  | awk -F ':' ' {print $NF}'`
+used_ports=`netstat -na --tcp --udp  | awk ' {print $4}'  | awk -F ':' ' {print $NF}'`
 
 for port in `cat ${top}/basic_ports_required`
  do 	
