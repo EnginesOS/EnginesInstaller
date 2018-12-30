@@ -2,7 +2,7 @@
 #engines section of install run as engines
 
 
-RUBY_VER=2.3.1
+RUBY_VER=2.5.1
 
 export RUBY_VER
 top=`cat /tmp/.install_dir`
@@ -10,10 +10,6 @@ top=`cat /tmp/.install_dir`
 . ${top}/routines/engines_user/crontab.sh
 . ${top}/routines/engines_user/script_keys.sh
 
-#echo Installing Ruby 
-#echo Please wait this step will take 5 to 10 minutes
-
-#echo Installing Ruby Gems
 
  
 echo Installing Mgmt Keys
@@ -56,7 +52,7 @@ if ! test running = `CONTROL_HTTP=y /opt/engines/bin/engines service firstrun st
 
 gw_ifac=`netstat -nr |grep ^0.0.0.0 | awk '{print $8}' | head -1`
 
-lan_ip=`/sbin/ifconfig $gw_ifac |grep "inet addr"  |  cut -f 2 -d: |cut -f 1 -d" "`
+lan_ip=`/sbin/ifconfig $gw_ifac |grep "inet "  |  awk '{print $2}'`
 
 ext_ip=`curl -s http://ipecho.net/ |grep "Your IP is" | sed "/^.* is /s///" | sed "/<.*$/s///"`
 

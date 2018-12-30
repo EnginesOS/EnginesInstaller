@@ -9,10 +9,16 @@ function setup_dns {
  		then
   			if test -f etc/resolvconf/resolv.conf.d/
    			 then
+   			     if test -f /etc/resolvconf/resolv.conf.d/head
+   			      then
+   			       mkdir -p /opt/engines/system/uninstall/etc/resolvconf/resolv.conf.d/
+   			       cp -p /etc/resolvconf/resolv.conf.d/head /opt/engines/system/uninstall/etc/resolvconf/resolv.conf.d/
+   			      fi
+   			       
 	 			echo "nameserver $ip" >> /etc/resolvconf/resolv.conf.d/head
   			fi
 		fi
-
+cp -p  $resolv_file  /opt/engines/system/uninstall/etc/
 	ip=`/opt/engines/bin/system_ip.sh`
 	echo "nameserver $ip" >> $resolv_file  
 
@@ -25,8 +31,8 @@ function setup_dns {
   
 function setup_ip_script {
  	echo "Installing ip-up hook"
- 	if ! test -f  /etc/network/if-up.d/set_ip.sh
+ 	if ! test -f  /etc/network/if-up.d/engines_set_ip.sh
  		then 
-			ln -s /opt/engines/system scripts/dhcpd/set_ip.sh /etc/network/if-up.d/
+			ln -s /opt/engines/system/scripts/dhcpd/set_ip.sh /etc/network/if-up.d/engines_set_ip.sh
 	fi
  }
