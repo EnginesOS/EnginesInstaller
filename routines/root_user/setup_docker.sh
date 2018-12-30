@@ -50,10 +50,17 @@ function install_docker_components {
 		apt-get update
 		apt-get -y   install docker-engine >>/tmp/engines_install.log
       else
+		 grep UBUNTU_CODENAME=bionic /etc/os-release >/dev/null
+		  if test $? -eq 0
+                   then
+			apt-get -y install docker.io
+
+		else
 		 echo deb https://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list
 		 wget -qO- https://get.docker.io/gpg | apt-key add - >>/tmp/engines_install.log
 		 apt-get update
 		 apt-get -y  install lxc-docker >>/tmp/engines_install.log
+	   fi
 	  fi
 		 
 	apt-get -y update >>/tmp/engines_install.log
@@ -88,8 +95,8 @@ function configure_docker {
 		cp ${top}/install_source/lib/systemd/system/docker.service.blank  /lib/systemd/system/docker.service
 		service docker start	
 		service docker stop
-		ip=`ifconfig docker0  |grep "inet addr:" |cut -f2 -d: |awk '{print $1}'`
-		cat ${top}/install_source/lib/systemd/system/docker.service | sed "/IP/s//$ip/" > /lib/systemd/system/docker.service
+		ip=`ifconfig docker0  |grep "inet"  |awk '{print $2}' |head -1`
+		cat ${top}/install_source/lib/systemd/system/docker.service | sed "s/IP/$ip/" > /lib/systemd/system/docker.service
 		  if test -f /bin/systemctl
 			then  
 			  systemctl  daemon-reload
