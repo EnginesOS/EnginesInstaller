@@ -51,7 +51,7 @@ function create_services {
 	echo "Creating and starting Engines Services"
 	create_db	
 	
-	mv /opt/engines/run/services-available/firstrun /opt/engines/run/services/
+	cp -r /opt/engines/run/services-available/firstrun /opt/engines/run/services/
 
 	release=`cat /opt/engines/release`
 	
