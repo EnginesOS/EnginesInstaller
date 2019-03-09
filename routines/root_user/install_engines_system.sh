@@ -21,8 +21,14 @@ function configure_git {
 	   done
 	mkdir -p /opt/engines/etc/ssl/ca/certs/system_CA.pem
 	touch /opt/engines/etc/ssl/ca/certs/system_CA.pem
-
-	touch /opt/engines/etc/no_obliterate 
+	
+    if ! test $branch = current
+     then
+	   touch /opt/engines/etc/no_obliterate
+	 fi   
+	
+	mkdir -p /opt/engines/system/startup/flags
+	chown engines /opt/engines/system/startup/flags
 }
 
 
