@@ -28,7 +28,7 @@ if ! test -d ./routines/
 
 systemctl disable systemd-resolved 
 service systemd-resolved stop
-
+echo nameserver 8.8.8.8 >/etc/resolv.conf
  
 can_install
 
