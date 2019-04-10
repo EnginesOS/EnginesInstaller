@@ -25,6 +25,10 @@ if ! test -d ./routines/
 . ${top}/routines/root_user/init_ssl_cert.sh 
 . ${top}/routines/root_user/setup_docker.sh 
 . ${top}/routines/root_user/service_definitions.sh 
+
+systemctl disable systemd-resolved 
+service systemd-resolved stop
+
  
 can_install
 
