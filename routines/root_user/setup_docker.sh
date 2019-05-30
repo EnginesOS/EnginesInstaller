@@ -59,7 +59,7 @@ function install_docker_components {
 		 echo deb https://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list
 		 wget -qO- https://get.docker.io/gpg | apt-key add - >>/tmp/engines_install.log
 		 apt-get update
-		 apt-get -y  install lxc-docker >>/tmp/engines_install.log
+		 apt-get -y  install docker-containerd >>/tmp/engines_install.log
 	   fi
 	  fi
 		 
