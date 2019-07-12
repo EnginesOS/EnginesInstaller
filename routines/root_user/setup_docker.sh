@@ -54,7 +54,6 @@ function install_docker_components {
 		  if test $? -eq 0
                    then
 			apt-get -y install docker.io
-
 		else
 		 echo deb https://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list
 		 wget -qO- https://get.docker.io/gpg | apt-key add - >>/tmp/engines_install.log
