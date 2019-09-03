@@ -26,9 +26,6 @@ function configure_git {
      then
 	   touch /opt/engines/etc/no_obliterate
 	 fi   
-	
-	mkdir -p /opt/engines/system/startup/flags
-	chown engines /opt/engines/system/startup/flags
 }
 
 

@@ -120,6 +120,9 @@ function setup_system_dirs {
 	mkdir -p /opt/engines/system/updates/failed/system
 	mkdir -p /opt/engines/system/updates/has_run/system
 	mkdir -p /opt/engines/system/updates/to_run/system
+	
+	mkdir -p /opt/engines/system/startup/flags
+	chown engines /opt/engines/system/startup/flags
 
 }
 
