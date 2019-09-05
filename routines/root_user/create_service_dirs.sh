@@ -4,6 +4,7 @@ function setup_dirs {
 	mkdir -p /var/lib/engines/services/$service
 	owner=`/opt/engines/system/scripts/system/get_service_uid.sh $service`
 	chown -R $owner /var/log/engines/services/$service /opt/engines/run/services/$service/run /var/lib/engines/services/$service
+	
 }
 function make_dirs {
 	setup_fs_dir
@@ -39,7 +40,8 @@ function make_dirs {
 
 	mkdir -p /opt/engines/run/public/services
     chown 21000  /opt/engines/run/public/services
-
+    mkdir -p  /opt/engines/etc/containers/uids/
+    chown 21000 /opt/engines/etc/containers/uids/
 	touch /var/lib/engines/local_host
 }
 
