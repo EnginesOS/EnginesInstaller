@@ -136,7 +136,7 @@ function configure_docker {
 		
 	sleep 20
 	service docker start
-	  
+	  sleep 10
 #stop appamour complaining about ptrace (caused be pas		
 		if ! test -f   /etc/apparmor.d/force-complain/docker
  		  then
