@@ -94,7 +94,7 @@ function configure_docker {
 		cp ${top}/install_source/lib/systemd/system/docker.service.blank  /lib/systemd/system/docker.service
 		service docker start	
 		service docker stop
-		ip=`ifconfig docker0  |grep "inet"  |awk '{print $2}' |head -1 |cut -f2 -d:`
+		ip=`ifconfig docker0  |grep "inet "  |awk '{print $2}' |head -1 |cut -f2 -d:`
 		cat ${top}/install_source/lib/systemd/system/docker.service | sed "s/IP/$ip/" > /lib/systemd/system/docker.service
 		  if test -f /bin/systemctl
 			then  
@@ -104,7 +104,7 @@ function configure_docker {
 	 fi
 	 update-rc.d docker defaults 
 	 service docker start	
-	 ip=`ifconfig docker0  |grep "inet addr:" |cut -f2 -d: |awk '{print $1}'`
+	 ip=`ifconfig docker0  |grep "inet " |cut -f2 -d: |awk '{print $1}'`
 	  if test -f /bin/systemctl
 		then
 		  systemctl enable docker
@@ -113,7 +113,7 @@ function configure_docker {
 		 #ensure docker0 is configured
 	docker run --name test busybox
 		 		  
-	ip=`ifconfig docker0  |grep "inet addr:" |cut -f2 -d: |awk '{print $1}'`
+	ip=`ifconfig docker0  |grep "inet " |cut -f2 -d: |awk '{print $1}'`
 		   
 	docker stop test
 	docker rm test
