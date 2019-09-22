@@ -31,6 +31,7 @@ function configure_git {
 
 function install_ruby {
    apt-get install -y ruby-dev
+    gem update --system 
    gem install bundler\
    			   excon\
    			   multi_json\
