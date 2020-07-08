@@ -31,18 +31,18 @@ function pull_image {
 }
 
 function create_system_service {
-    /opt/engines/bin/system_service.rb $system_service create  >& /dev/null
-	/opt/engines/bin/system_service.rb $system_service wait_for create 10
+    /opt/engines/bin/system_service.rb $system_service create 
+	/opt/engines/bin/system_service.rb $system_service wait_for create 126
 	docker start $system_service  >& /dev/null
-	/opt/engines/bin/system_service.rb $system_service wait_for start 20
-	/opt/engines/bin/system_service.rb $system_service wait_for_startup 10
+	/opt/engines/bin/system_service.rb $system_service wait_for start 120
+	/opt/engines/bin/system_service.rb $system_service wait_for_startup 134
 }
 
 function destroy_system_service {
 	/opt/engines/bin/system_service.rb $system_service stop >& /dev/null
-	/opt/engines/bin/system_service.rb $system_service wait_for stop 10
+	/opt/engines/bin/system_service.rb $system_service wait_for stop 120
 	/opt/engines/bin/system_service.rb $system_service destroy  >& /dev/null
-	/opt/engines/bin/system_service.rb $system_service wait_for destroy 10
+	/opt/engines/bin/system_service.rb $system_service wait_for destroy 120
 }
 
 
