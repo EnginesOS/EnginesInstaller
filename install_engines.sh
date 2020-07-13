@@ -26,8 +26,11 @@ if ! test -d ./routines/
 . ${top}/routines/root_user/setup_docker.sh 
 . ${top}/routines/root_user/service_definitions.sh 
 
+update_os
+
 systemctl disable systemd-resolved 
 service systemd-resolved stop
+sleep 5
 echo nameserver 8.8.8.8 >>/etc/resolv.conf
  
 can_install
@@ -58,7 +61,7 @@ export branch
 configure_git 
 echo -n $flavor > /opt/engines/flavor
 create_engines_user
-update_os
+
 
 install_docker_components
   

@@ -32,7 +32,7 @@ function pull_image {
 
 function create_system_service {
     /opt/engines/bin/system_service.rb $system_service create 
-	/opt/engines/bin/system_service.rb $system_service wait_for create 126
+	/opt/engines/bin/system_service.rb $system_service wait_for create 126	
 	docker start $system_service  >& /dev/null
 	/opt/engines/bin/system_service.rb $system_service wait_for start 120
 	/opt/engines/bin/system_service.rb $system_service wait_for_startup 134
