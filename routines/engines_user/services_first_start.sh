@@ -89,7 +89,7 @@ function create_services {
 	/opt/engines/bin/engines service dns wait_for start 20
 	echo "System services restarted"
 	
-images=`cat init_services`
+images=`cat ${top}/init_services`
 images="syslog\
  			avahi\
  			certs\

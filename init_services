@@ -1,17 +1,17 @@
-syslog\
- avahi\
- certs\
- mysql\
- firstrun\
- auth\
- wap \
- backup \
- cron \
- ldap \
- smtp \
- uadmin \
- fs \
- logrotate \
- volbuilder \
- ftp \
+syslog
+ avahi
+ certs
+ mysql
+ firstrun
+ auth
+ wap 
+ backup 
+ cron
+ ldap
+ smtp 
+ uadmin 
+ fs 
+ logrotate 
+ volbuilder 
+ ftp
  fsconfigurator
