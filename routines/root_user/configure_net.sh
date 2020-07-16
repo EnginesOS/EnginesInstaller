@@ -18,7 +18,7 @@ function setup_dns {
 	 			echo "nameserver $ip" >> /etc/resolvconf/resolv.conf.d/head
   			fi
 		fi
-cp -p  $resolv_file  /opt/engines/system/uninstall/etc/
+
 if test -h $resolv_file
  then
    rm $resolv_file

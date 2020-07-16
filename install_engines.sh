@@ -31,6 +31,7 @@ update_os
 systemctl disable systemd-resolved 
 service systemd-resolved stop
 sleep 5
+cp -p  /etc/resolv.conf /opt/engines/system/uninstall/etc/
 echo nameserver 8.8.8.8 >>/etc/resolv.conf
  
 can_install
@@ -78,7 +79,7 @@ setup_engines_service
 configure_engines_user
 # install_rbenv
 install_ruby
-setup_dns 	
+
 setup_ip_script
 setup_service_definitions
 make_dirs
@@ -92,6 +93,8 @@ echo -n ${top} >/tmp/.install_dir
 #service engines start
 update_os  >& /dev/null 
 apt-get upgrade -y linux-headers-generic linux-headers-virtual linux-image-virtual  linux-virtual  linux-image-extra-$(uname -r) >& /dev/null 
+ 
+setup_dns 	
  
 su -l engines -c  ${top}/complete_install.sh 
  
