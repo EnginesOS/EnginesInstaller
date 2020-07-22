@@ -18,6 +18,7 @@ function install_docker_components {
  	   then
  	      echo AWS Detected
  	      AWS=yes
+ 	      export AWS
       fi
  
 	/usr/sbin/addgroup --gid 909 docker
@@ -50,7 +51,7 @@ function install_docker_components {
 		apt-get update
 		apt-get -y   install docker-engine >>/tmp/engines_install.log
       else
-		 grep UBUNTU_CODENAME=bionic /etc/os-release >/dev/null
+		 egrep "UBUNTU_CODENAME=bionic|UBUNTU_CODENAME=focal" /etc/os-release >/dev/null		 
 		  if test $? -eq 0
                    then
 			apt-get -y install docker.io
