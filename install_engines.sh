@@ -31,9 +31,9 @@ update_os
 systemctl disable systemd-resolved 
 service systemd-resolved stop
 sleep 5
+mkdir -p /opt/engines/system/uninstall/etc/
 cp -p  /etc/resolv.conf /opt/engines/system/uninstall/etc/
-echo nameserver 8.8.8.8 >>/etc/resolv.conf
- 
+
 can_install
 
 default_branch=`cat default_branch`
