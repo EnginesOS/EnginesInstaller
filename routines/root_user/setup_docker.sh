@@ -4,7 +4,7 @@
 
 function install_docker_components {
 
-	dmesg |grep -i Xen >/dev/null
+	dmesg |grep -i Xen >&/dev/null
 	  if test $? -eq 0
  		then
  		   echo Xen Detected
@@ -13,7 +13,7 @@ function install_docker_components {
  	  fi
  
  
- 	dmesg |grep amazon>/dev/null
+ 	dmesg |grep amazon >& /dev/null
 	  if test $? -eq 0
  	   then
  	      echo AWS Detected
@@ -27,7 +27,7 @@ function install_docker_components {
 
 	  for package in $packages
  	    do
- 	 	   dpkg -s $package |grep Status |grep installed
+ 	 	   dpkg -s $package |grep Status |grep installed >& /dev/null
  	 	   #apt list $package  |grep installed 
  	 	     if test $? -ne 0
  	  		   then
@@ -37,12 +37,12 @@ function install_docker_components {
 
 	echo $packages_to_install >/opt/engines/system/packages_installed
   	echo "Installing Docker"		
-  	 apt-get install -y linux-image-extra-$(uname -r)  >>/tmp/engines_install.log
+  	 apt-get install -y linux-image-extra-$(uname -r)   >& /dev/null
        if ! test -z "$packages_to_install"
          then
 		    apt-get install -y $packages_to_install >>/tmp/engines_install.log
        fi
-	grep UBUNTU_CODENAME=xenial /etc/os-release >/dev/null
+	grep UBUNTU_CODENAME=xenial /etc/os-release >&/dev/null
       if test $? -eq 0
        then
        	echo "setting up for xenial"
@@ -140,7 +140,7 @@ function configure_docker {
 	service docker start
 	  sleep 10
 #stop appamour complaining about ptrace (caused be pas		
-		if ! test -f   /etc/apparmor.d/force-complain/docker
+		if ! test -f /etc/apparmor.d/force-complain/docker
  		  then
  			 ln -s /etc/apparmor.d/docker /etc/apparmor.d/force-complain/
  		fi 

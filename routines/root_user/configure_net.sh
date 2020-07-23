@@ -19,10 +19,10 @@ function setup_dns {
   			fi
 		fi
 
-if test -h $resolv_file
- then
-   rm $resolv_file
- fi
+#if test -h $resolv_file
+# then
+#   rm $resolv_file
+# fi
 	ip=`/opt/engines/bin/system_ip.sh`
 	echo "nameserver $ip" >> $resolv_file  
 
