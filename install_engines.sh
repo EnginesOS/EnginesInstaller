@@ -31,8 +31,7 @@ update_os
 systemctl disable systemd-resolved 
 service systemd-resolved stop
 sleep 5
-mkdir -p /opt/engines/system/uninstall/etc/
-cp -p  /etc/resolv.conf /opt/engines/system/uninstall/etc/
+
 
 can_install
 
@@ -74,6 +73,9 @@ else
    physical_hw_install
 fi
     
+mkdir -p /opt/engines/system/uninstall/etc/
+cp -p  /etc/resolv.conf /opt/engines/system/uninstall/etc/
+
 configure_docker
 setup_engines_service
 configure_engines_user
