@@ -92,11 +92,12 @@ function configure_docker {
 			   systemctl unmask docker.socket
 			   systemctl start docker.service
 		  fi
-		cp ${top}/install_source/lib/systemd/system/docker.service.blank  /lib/systemd/system/docker.service
+		mkdir -p /lib/systemd/system/docker.service.d 
+		cp ${top}/install_source/lib/systemd/system/docker.service.blank  /lib/systemd/system/docker.service.d/
 		service docker start	
 		service docker stop
 		ip=`ifconfig docker0  |grep "inet "  |awk '{print $2}' |head -1 |cut -f2 -d:`
-		cat ${top}/install_source/lib/systemd/system/docker.service | sed "s/IP/$ip/" > /lib/systemd/system/docker.service
+		cat ${top}/install_source/lib/systemd/system/docker.service.d/docker.service | sed "s/IP/$ip/" > /lib/systemd/system/docker.service.d/docker.service
 		  if test -f /bin/systemctl
 			then  
 			  systemctl  daemon-reload
